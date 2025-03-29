@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Helmet } from "react-helmet";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@/components/ui/breadcrumb";
@@ -9,6 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import BackButton from "@/components/back-button";
 
 const Faq = () => {
   const faqs = [
@@ -72,7 +72,8 @@ const Faq = () => {
         />
       </Helmet>
 
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 pt-24 pb-16">
+        <BackButton />
         <Breadcrumb className="mb-8">
           <BreadcrumbItem>
             <BreadcrumbLink href="/">Home</BreadcrumbLink>

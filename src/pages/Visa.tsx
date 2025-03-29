@@ -33,6 +33,9 @@ import { z } from "zod";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { useToast } from "@/components/ui/use-toast";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Toaster } from "@/components/ui/toaster";
+import BackButton from "@/components/back-button";
 
 const visaServices = [
   {
@@ -86,6 +89,7 @@ const formSchema = z.object({
 const Visa = () => {
   const { toast } = useToast();
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -107,20 +111,17 @@ const Visa = () => {
   }
 
   return (
-    <>
+    <div className="container mx-auto px-4 pt-24 pb-16">
+      <BackButton />
       {/* Hero Section */}
-      <section className="pt-24 pb-16 container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <span className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-secondary/30 text-secondary-foreground mb-3">
-            Visa Services
-          </span>
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Hassle-Free Visa Assistance
-          </h1>
-          <p className="text-xl text-muted-foreground">
-            Let us handle your visa application process while you plan your dream vacation
-          </p>
-        </div>
+      <section className="max-w-3xl mx-auto text-center mb-16">
+        <span className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-secondary/30 text-secondary-foreground mb-3">
+          Visa Services
+        </span>
+        <h1 className="text-4xl font-bold mb-4">Hassle-free Visa Processing</h1>
+        <p className="text-muted-foreground">
+          Let us handle your visa application process while you plan your dream vacation
+        </p>
       </section>
 
       {/* Main Content */}
@@ -442,7 +443,19 @@ const Visa = () => {
         imageSrc="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2000"
         align="center"
       />
-    </>
+
+      <Dialog open={isOpen} onOpenChange={setIsOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Application Submitted Successfully</DialogTitle>
+          </DialogHeader>
+          <p>Thank you for submitting your visa assistance application. Our team will contact you within 24 hours.</p>
+          <Button onClick={() => setIsOpen(false)}>Close</Button>
+        </DialogContent>
+      </Dialog>
+
+      <Toaster />
+    </div>
   );
 };
 

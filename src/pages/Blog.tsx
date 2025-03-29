@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Search, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import BackButton from "@/components/back-button";
 
 // Blog post data
 const blogPosts = [
@@ -116,10 +117,10 @@ const Blog = () => {
   const featuredPosts = blogPosts.filter(post => post.featured);
 
   return (
-    <>
+    <div className="container mx-auto px-4 pt-24 pb-16">
+      <BackButton />
       {/* Hero Section */}
-      <section className="pt-24 pb-16 container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-12">
+      <section className="max-w-3xl mx-auto text-center mb-12">
           <span className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-secondary/30 text-secondary-foreground mb-3">
             Our Blog
           </span>
@@ -140,7 +141,6 @@ const Blog = () => {
               className="pl-10"
             />
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-          </div>
         </div>
       </section>
 
@@ -376,7 +376,7 @@ const Blog = () => {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 };
 

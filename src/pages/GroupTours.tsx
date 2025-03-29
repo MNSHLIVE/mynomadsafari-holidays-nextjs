@@ -1,18 +1,17 @@
-
 import { useState } from "react";
 import SectionHeading from "@/components/section-heading";
 import TourCard from "@/components/tour-card";
 import CTASection from "@/components/cta-section";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { Calendar, MapPin, Users, Plane, Check } from "lucide-react";
+import { Calendar, MapPin, Users, Plane, Check, ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 const domesticGroupTours = [
   {
     id: 301,
     title: "Himalayan Adventure Group",
-    imageSrc: "https://images.unsplash.com/photo-1626016771041-8dfa5139e4cd?q=80&w=800",
+    imageSrc: "/Destination/Domestic/Tours/Group-Tours/Domestic Group Tours/Himalayan-Adventure-Group/Himalayan-Adventure.jpg",
     location: "Himachal & Uttarakhand",
     duration: "8 Days",
     price: "35000",
@@ -22,20 +21,20 @@ const domesticGroupTours = [
     departureDate: "15th May 2024",
     description: "Join our exciting group tour to the Himalayas and experience the beauty of the mountains with like-minded travelers.",
     itinerary: [
-      { day: 1, title: "Delhi to Shimla", description: "Group meetup in Delhi and transfer to Shimla by AC coach." },
-      { day: 2, title: "Shimla Sightseeing", description: "Explore Mall Road, Ridge, and Jakhu Temple in Shimla." },
-      { day: 3, title: "Shimla to Manali", description: "Scenic drive to Manali via Kullu Valley." },
-      { day: 4, title: "Manali Local Tour", description: "Visit Hadimba Temple, Vashisht Hot Springs, and Mall Road." },
-      { day: 5, title: "Rohtang Pass Excursion", description: "Full day excursion to snow-covered Rohtang Pass (subject to weather)." },
-      { day: 6, title: "Manali to Dharamshala", description: "Travel to Dharamshala, home of Dalai Lama." },
-      { day: 7, title: "McLeod Ganj Tour", description: "Visit Dalai Lama Temple, Bhagsu Waterfall, and local Tibetan market." },
-      { day: 8, title: "Return to Delhi", description: "Morning departure to Delhi. Tour ends." }
+      { day: 1, title: "Delhi to Shimla", description: "Group meetup in Delhi and transfer to Shimla by AC coach. Evening welcome dinner and briefing." },
+      { day: 2, title: "Shimla Sightseeing", description: "Explore Mall Road, Ridge, Christ Church, Jakhu Temple, and Viceregal Lodge. Evening free for shopping." },
+      { day: 3, title: "Shimla to Manali", description: "Scenic drive to Manali via Kullu Valley. Visit Hanogi Mata Temple and Kullu shawl factories en route." },
+      { day: 4, title: "Manali Local Tour", description: "Visit Hadimba Temple, Vashisht Hot Springs, Mall Road, and Tibetan Monastery. Evening cultural program." },
+      { day: 5, title: "Rohtang Pass Excursion", description: "Full day excursion to snow-covered Rohtang Pass. Enjoy snow activities and stunning views (subject to weather)." },
+      { day: 6, title: "Manali to Dharamshala", description: "Travel to Dharamshala, home of Dalai Lama. Evening visit to St. John's Church and local market." },
+      { day: 7, title: "McLeod Ganj Tour", description: "Visit Dalai Lama Temple, Bhagsu Waterfall, local Tibetan market, and HPCA Cricket Stadium." },
+      { day: 8, title: "Return to Delhi", description: "Morning departure to Delhi. Tour ends with memories to cherish forever." }
     ]
   },
   {
     id: 302,
     title: "Kerala Group Experience",
-    imageSrc: "https://images.unsplash.com/photo-1602425224456-8c4ad652b571?q=80&w=800",
+    imageSrc: "/Destination/Domestic/Tours/Group-Tours/Domestic Group Tours/Kerala-Group/Kerala-Group.jpg",
     location: "Kerala",
     duration: "6 Days",
     price: "28000",
@@ -45,12 +44,12 @@ const domesticGroupTours = [
     departureDate: "10th November 2024",
     description: "Explore the backwaters, beaches, and tea plantations of Kerala with our specially designed group tour.",
     itinerary: [
-      { day: 1, title: "Arrive in Kochi", description: "Group assembly at Kochi, welcome dinner." },
-      { day: 2, title: "Kochi City Tour", description: "Visit Fort Kochi, Chinese Fishing Nets, and Mattancherry Palace." },
-      { day: 3, title: "Kochi to Munnar", description: "Travel to Munnar, surrounded by tea plantations." },
-      { day: 4, title: "Munnar to Thekkady", description: "Visit Eravikulam National Park and spice plantations." },
-      { day: 5, title: "Thekkady to Alleppey", description: "Overnight houseboat stay in the backwaters." },
-      { day: 6, title: "Departure from Kochi", description: "Return to Kochi for departure." }
+      { day: 1, title: "Arrive in Kochi", description: "Group assembly at Kochi, traditional welcome, hotel check-in, and evening welcome dinner with cultural show." },
+      { day: 2, title: "Kochi City Tour", description: "Visit Fort Kochi, Chinese Fishing Nets, Jewish Synagogue, Mattancherry Palace, and evening Kathakali performance." },
+      { day: 3, title: "Kochi to Munnar", description: "Travel to Munnar through scenic routes, visit tea museum, Eravikulam National Park, and photo stop at waterfalls." },
+      { day: 4, title: "Munnar to Thekkady", description: "Visit tea plantations, spice gardens, and evening wildlife safari at Periyar Tiger Reserve." },
+      { day: 5, title: "Thekkady to Alleppey", description: "Check-in to luxury houseboat, backwater cruise, village visits, and overnight stay with traditional Kerala dinner." },
+      { day: 6, title: "Departure from Kochi", description: "Morning yoga by the backwaters, return to Kochi, farewell lunch, and departure." }
     ]
   }
 ];
@@ -59,7 +58,7 @@ const internationalGroupTours = [
   {
     id: 401,
     title: "Thailand Group Package",
-    imageSrc: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=800",
+    imageSrc: "/Destination/Domestic/Tours/Group-Tours/International Group Tours/Thailand-Group-Package.jpg",
     location: "Bangkok, Pattaya, Phuket",
     duration: "7 Days",
     price: "75000",
@@ -69,19 +68,19 @@ const internationalGroupTours = [
     departureDate: "20th December 2024",
     description: "Join our Thailand group tour and experience the perfect blend of culture, beaches, and nightlife with fellow travelers.",
     itinerary: [
-      { day: 1, title: "Arrive in Bangkok", description: "Group assembly at Bangkok Airport, transfer to hotel, and welcome dinner." },
-      { day: 2, title: "Bangkok City Tour", description: "Visit Grand Palace, Wat Arun, and enjoy Chao Phraya river cruise." },
-      { day: 3, title: "Bangkok to Pattaya", description: "Transfer to Pattaya, evening Alcazar Show." },
-      { day: 4, title: "Coral Island Tour", description: "Speedboat to Coral Island, water sports activities." },
-      { day: 5, title: "Pattaya to Phuket", description: "Fly to Phuket, evening at leisure at Patong Beach." },
-      { day: 6, title: "Phi Phi Island Tour", description: "Speedboat tour to Phi Phi Islands and James Bond Island." },
-      { day: 7, title: "Departure", description: "Transfer to Phuket airport for departure." }
+      { day: 1, title: "Arrive in Bangkok", description: "Group assembly at Bangkok Airport, traditional Thai welcome, transfer to hotel, orientation walk, and welcome dinner with cultural show." },
+      { day: 2, title: "Bangkok City Tour", description: "Visit Grand Palace complex, Emerald Buddha Temple, Wat Arun (Temple of Dawn), enjoy Chao Phraya river cruise with lunch, and evening Siam Niramit show." },
+      { day: 3, title: "Bangkok to Pattaya", description: "Transfer to Pattaya, visit Nong Nooch Village & Gardens, evening Alcazar Show, followed by dinner at a rooftop restaurant." },
+      { day: 4, title: "Coral Island Tour", description: "Speedboat to Coral Island, enjoy water sports (parasailing, banana boat), snorkeling at coral reefs, beachside lunch, and evening walking street tour." },
+      { day: 5, title: "Pattaya to Phuket", description: "Morning flight to Phuket, afternoon city tour including Big Buddha, Chalong Temple, and free time at Patong Beach with optional spa treatments." },
+      { day: 6, title: "Phi Phi Island Tour", description: "Full-day speedboat tour to Phi Phi Islands, Maya Bay, monkey beach, snorkeling at coral reefs, lunch at Phi Phi Don, and sunset dinner cruise." },
+      { day: 7, title: "Departure", description: "Morning free for shopping at local markets, farewell lunch, and transfer to Phuket airport for departure." }
     ]
   },
   {
     id: 402,
     title: "Dubai Group Adventure",
-    imageSrc: "https://images.unsplash.com/photo-1580674684081-7617fbf3d745?q=80&w=800",
+    imageSrc: "/Destination/Domestic/Tours/Group-Tours/International Group Tours/Dubai-Group-Adventure.jpg",
     location: "Dubai & Abu Dhabi",
     duration: "6 Days",
     price: "85000",
@@ -91,12 +90,12 @@ const internationalGroupTours = [
     departureDate: "15th February 2025",
     description: "Experience the glamour of Dubai and Abu Dhabi with our specially designed group tour package.",
     itinerary: [
-      { day: 1, title: "Arrive in Dubai", description: "Group assembly at Dubai Airport, transfer to hotel, and welcome dinner." },
-      { day: 2, title: "Dubai City Tour", description: "Visit Burj Khalifa, Dubai Mall, and Old Dubai." },
-      { day: 3, title: "Desert Safari", description: "Dune bashing, camel riding, and BBQ dinner with entertainment." },
-      { day: 4, title: "Abu Dhabi Day Trip", description: "Visit Sheikh Zayed Grand Mosque, Ferrari World, and Corniche." },
-      { day: 5, title: "Dubai Shopping & Leisure", description: "Visit Global Village, Miracle Garden, and free time for shopping." },
-      { day: 6, title: "Departure", description: "Transfer to Dubai airport for departure." }
+      { day: 1, title: "Arrive in Dubai", description: "Group assembly at Dubai Airport, meet & greet, transfer to hotel, evening Dubai Marina walk and welcome dinner at a floating restaurant." },
+      { day: 2, title: "Dubai City Tour", description: "Visit Burj Khalifa (124th floor), Dubai Mall, Dubai Aquarium, Old Dubai walking tour (Gold & Spice Souks), traditional Abra ride, and fountain show." },
+      { day: 3, title: "Desert Safari", description: "Morning at leisure, afternoon desert safari with dune bashing, camel riding, sandboarding, henna painting, and BBQ dinner with belly dance show." },
+      { day: 4, title: "Abu Dhabi Day Trip", description: "Full-day Abu Dhabi tour - Sheikh Zayed Grand Mosque, Presidential Palace, Heritage Village, Ferrari World (optional), and Corniche beach visit." },
+      { day: 5, title: "Dubai Modern Attractions", description: "Visit Miracle Garden, Global Village, Frame Dubai, afternoon tea at Burj Al Arab (optional), and Dhow cruise dinner with entertainment." },
+      { day: 6, title: "Departure", description: "Morning free for last-minute shopping at Dubai Mall or Mall of Emirates, farewell lunch, and transfer to Dubai airport." }
     ]
   }
 ];
@@ -104,8 +103,23 @@ const internationalGroupTours = [
 const GroupTours = () => {
   const [activeTab, setActiveTab] = useState("domestic");
 
+  const handleBack = () => {
+    window.history.back();
+  };
+
   return (
     <div className="container mx-auto px-4 pt-24 pb-16">
+      <div className="flex items-center mb-6">
+        <Button 
+          variant="ghost" 
+          className="flex items-center gap-2"
+          onClick={handleBack}
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Back
+        </Button>
+      </div>
+
       <div className="max-w-3xl mx-auto text-center mb-12">
         <span className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-secondary/30 text-secondary-foreground mb-3">
           Travel Together
@@ -228,7 +242,7 @@ const GroupTours = () => {
                   <div className="mt-auto">
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center">
-                        <span className="font-semibold">₹{parseInt(tour.price).toLocaleString()}</span>
+                        <span className="font-semibold">{parseInt(tour.price).toLocaleString('en-IN', { style: 'currency', currency: 'INR' })}</span>
                       </div>
                       <span className="text-xs text-muted-foreground">per person</span>
                     </div>
@@ -299,7 +313,7 @@ const GroupTours = () => {
                   <div className="mt-auto">
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center">
-                        <span className="font-semibold">₹{parseInt(tour.price).toLocaleString()}</span>
+                        <span className="font-semibold">{parseInt(tour.price).toLocaleString('en-IN', { style: 'currency', currency: 'INR' })}</span>
                       </div>
                       <span className="text-xs text-muted-foreground">per person</span>
                     </div>

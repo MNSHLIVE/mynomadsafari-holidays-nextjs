@@ -3,6 +3,7 @@ import { indianDestinations, internationalDestinations } from "@/components/home
 import { Button } from "@/components/ui/button";
 import { Calendar, MapPin, IndianRupee, Clock } from "lucide-react";
 import DestinationQueryForm from "@/components/destination-query-form";
+import BackButton from "@/components/back-button";
 
 const DestinationDetail = () => {
   const { destinationName } = useParams();
@@ -28,7 +29,8 @@ const DestinationDetail = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-16">
+    <div className="container mx-auto px-4 pt-24 pb-16">
+      <BackButton />
       {/* Hero Section */}
       <div className="relative h-[400px] rounded-xl overflow-hidden mb-8">
         <img

@@ -363,7 +363,7 @@ export const indianDestinations = [
     imageSrc: "/Destination/Domestic/main/Rajasthan-main.jpg",
     title: "Rajasthan",
     state: "Rajasthan",
-    description: "Experience the royal heritage and vibrant culture of Rajasthan.",
+    description: "Experience the royal heritage and vibrant culture of Rajasthan, from majestic forts to colorful festivals.",
     bestTime: "October - March",
     isPopular: true,
     placesToSee: [
@@ -389,13 +389,47 @@ export const indianDestinations = [
       "Rajasthan Heritage Tour",
       "Desert Safari Experience",
       "Palace on Wheels"
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: "Arrival in Jaipur",
+        description: "Welcome to the Pink City! Check into your hotel, followed by an evening visit to the spectacular Birla Temple and local bazaars."
+      },
+      {
+        day: 2,
+        title: "Jaipur Exploration",
+        description: "Visit Amber Fort, City Palace, Hawa Mahal, and Jantar Mantar. Evening cultural performance at Chokhi Dhani."
+      },
+      {
+        day: 3,
+        title: "Journey to Jodhpur",
+        description: "Travel to the Blue City. Visit Mehrangarh Fort and explore the vibrant Clock Tower market."
+      },
+      {
+        day: 4,
+        title: "Jodhpur to Udaipur",
+        description: "En route to Udaipur, visit the stunning Ranakpur Jain Temple. Evening boat ride on Lake Pichola."
+      },
+      {
+        day: 5,
+        title: "Udaipur Sightseeing",
+        description: "Explore City Palace, Saheliyon Ki Bari, and Jagdish Temple. Evening cultural show at Bagore Ki Haveli."
+      }
+    ],
+    highlights: [
+      "Royal palaces and forts",
+      "Desert safari in Jaisalmer",
+      "Traditional Rajasthani cuisine",
+      "Folk music and dance",
+      "Heritage hotel stays"
     ]
   },
   {
     imageSrc: "/Destination/Domestic/main/Kerala-main.jpg",
     title: "Kerala",
     state: "Kerala",
-    description: "Discover the serene backwaters and lush greenery of God's own country.",
+    description: "Discover the serene backwaters, lush tea plantations, and rich cultural heritage of God's Own Country.",
     bestTime: "September - March",
     isPopular: true,
     placesToSee: [
@@ -421,6 +455,40 @@ export const indianDestinations = [
       "Kerala Ayurveda Tour",
       "Kerala Wildlife Tour",
       "Kerala Cultural Tour"
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: "Arrival in Kochi",
+        description: "Welcome to Kerala! Visit Fort Kochi, Chinese fishing nets, and enjoy a Kathakali performance."
+      },
+      {
+        day: 2,
+        title: "Munnar Hills",
+        description: "Drive to Munnar, visit tea plantations, Eravikulam National Park, and spice gardens."
+      },
+      {
+        day: 3,
+        title: "Thekkady Wildlife",
+        description: "Explore Periyar Wildlife Sanctuary, spice plantation tour, and tribal village visit."
+      },
+      {
+        day: 4,
+        title: "Alleppey Backwaters",
+        description: "Board a traditional houseboat, cruise through backwaters, enjoy local cuisine and village life."
+      },
+      {
+        day: 5,
+        title: "Kovalam Beach",
+        description: "Relax at Kovalam beach, enjoy Ayurvedic spa treatments and fresh seafood."
+      }
+    ],
+    highlights: [
+      "Houseboat cruise",
+      "Tea plantations",
+      "Ayurvedic treatments",
+      "Wildlife sanctuaries",
+      "Traditional arts"
     ]
   },
   {
@@ -488,3 +556,439 @@ export const indianDestinations = [
     ]
   }
 ];
+
+export const destinations = {
+  domestic: [
+    {
+      title: "Rajasthan",
+      image: "/Destination/Domestic/main/Rajasthan-main.jpg",
+      description: "Experience the royal heritage and vibrant culture of Rajasthan, from majestic forts to colorful festivals.",
+      itinerary: [
+        {
+          day: 1,
+          title: "Arrival in Jaipur",
+          description: "Welcome to the Pink City! Check into your hotel, followed by an evening visit to the spectacular Birla Temple and local bazaars."
+        },
+        {
+          day: 2,
+          title: "Jaipur Exploration",
+          description: "Visit Amber Fort, City Palace, Hawa Mahal, and Jantar Mantar. Evening cultural performance at Chokhi Dhani."
+        },
+        {
+          day: 3,
+          title: "Journey to Jodhpur",
+          description: "Travel to the Blue City. Visit Mehrangarh Fort and explore the vibrant Clock Tower market."
+        },
+        {
+          day: 4,
+          title: "Jodhpur to Udaipur",
+          description: "En route to Udaipur, visit the stunning Ranakpur Jain Temple. Evening boat ride on Lake Pichola."
+        },
+        {
+          day: 5,
+          title: "Udaipur Sightseeing",
+          description: "Explore City Palace, Saheliyon Ki Bari, and Jagdish Temple. Evening cultural show at Bagore Ki Haveli."
+        }
+      ],
+      highlights: [
+        "Royal palaces and forts",
+        "Desert safari in Jaisalmer",
+        "Traditional Rajasthani cuisine",
+        "Folk music and dance",
+        "Heritage hotel stays"
+      ]
+    },
+    {
+      title: "Kerala",
+      image: "/Destination/Domestic/main/Kerala-main.jpg",
+      description: "Discover the serene backwaters, lush tea plantations, and rich cultural heritage of God's Own Country.",
+      itinerary: [
+        {
+          day: 1,
+          title: "Arrival in Kochi",
+          description: "Welcome to Kerala! Visit Fort Kochi, Chinese fishing nets, and enjoy a Kathakali performance."
+        },
+        {
+          day: 2,
+          title: "Munnar Hills",
+          description: "Drive to Munnar, visit tea plantations, Eravikulam National Park, and spice gardens."
+        },
+        {
+          day: 3,
+          title: "Thekkady Wildlife",
+          description: "Explore Periyar Wildlife Sanctuary, spice plantation tour, and tribal village visit."
+        },
+        {
+          day: 4,
+          title: "Alleppey Backwaters",
+          description: "Board a traditional houseboat, cruise through backwaters, enjoy local cuisine and village life."
+        },
+        {
+          day: 5,
+          title: "Kovalam Beach",
+          description: "Relax at Kovalam beach, enjoy Ayurvedic spa treatments and fresh seafood."
+        }
+      ],
+      highlights: [
+        "Houseboat cruise",
+        "Tea plantations",
+        "Ayurvedic treatments",
+        "Wildlife sanctuaries",
+        "Traditional arts"
+      ]
+    },
+    {
+      title: "Himachal Pradesh",
+      image: "/Destination/Domestic/main/Himachal-Main.jpg",
+      description: "Explore the snow-capped mountains, scenic valleys, and adventure sports in the heart of the Himalayas.",
+      itinerary: [
+        {
+          day: 1,
+          title: "Arrival in Shimla",
+          description: "Check-in and evening walk on Mall Road, visit Christ Church and Scandal Point."
+        },
+        {
+          day: 2,
+          title: "Shimla to Manali",
+          description: "Scenic drive to Manali via Kullu Valley. Visit Hadimba Temple and local market."
+        },
+        {
+          day: 3,
+          title: "Rohtang Pass",
+          description: "Full day excursion to Rohtang Pass (subject to weather). Snow activities and photography."
+        },
+        {
+          day: 4,
+          title: "Solang Valley",
+          description: "Adventure activities like paragliding, zorbing, and rope activities."
+        },
+        {
+          day: 5,
+          title: "Local Exploration",
+          description: "Visit Naggar Castle, Vashisht Hot Springs, and Buddhist monasteries."
+        }
+      ],
+      highlights: [
+        "Snow activities",
+        "Adventure sports",
+        "Buddhist monasteries",
+        "Hot springs",
+        "Mountain views"
+      ]
+    },
+    {
+      title: "Goa",
+      image: "/Destination/Domestic/main/Goa-main.jpg",
+      description: "Experience the perfect blend of beaches, Portuguese heritage, and vibrant nightlife in India's party capital.",
+      itinerary: [
+        {
+          day: 1,
+          title: "Arrival in Goa",
+          description: "Check-in at beach resort, evening at Calangute Beach, dinner at beachfront restaurant."
+        },
+        {
+          day: 2,
+          title: "North Goa Tour",
+          description: "Visit Fort Aguada, Chapora Fort, and Anjuna Flea Market. Evening cruise on Mandovi River."
+        },
+        {
+          day: 3,
+          title: "Old Goa Heritage",
+          description: "Explore Basilica of Bom Jesus, Se Cathedral, and other Portuguese monuments. Evening at Panjim City."
+        },
+        {
+          day: 4,
+          title: "South Goa",
+          description: "Visit Colva Beach, Benaulim Beach, and water sports activities. Evening at Martin's Corner."
+        },
+        {
+          day: 5,
+          title: "Adventure Day",
+          description: "Dudhsagar Falls trip, spice plantation visit, and wildlife sanctuary tour."
+        }
+      ],
+      highlights: [
+        "Beach activities",
+        "Portuguese heritage",
+        "Water sports",
+        "Nightlife",
+        "Seafood cuisine"
+      ]
+    },
+    {
+      title: "Ladakh",
+      image: "/Destination/Domestic/main/Ladhak-main.jpg",
+      description: "Journey through the high-altitude desert, ancient monasteries, and stunning landscapes of the Land of High Passes.",
+      itinerary: [
+        {
+          day: 1,
+          title: "Arrival in Leh",
+          description: "Acclimatization day, short walk around Leh Market, visit Leh Palace."
+        },
+        {
+          day: 2,
+          title: "Monastery Tour",
+          description: "Visit Thiksey, Hemis, and Shey Monasteries. Evening at Shanti Stupa."
+        },
+        {
+          day: 3,
+          title: "Pangong Lake",
+          description: "Full day excursion to Pangong Lake via Changla Pass. Stay at lake camp."
+        },
+        {
+          day: 4,
+          title: "Nubra Valley",
+          description: "Drive to Nubra Valley via Khardung La. Visit Diskit Monastery and sand dunes."
+        },
+        {
+          day: 5,
+          title: "Local Experience",
+          description: "Visit Alchi Monastery, rafting in Zanskar River, local family homestay."
+        }
+      ],
+      highlights: [
+        "Buddhist monasteries",
+        "High-altitude lakes",
+        "Mountain passes",
+        "Desert camping",
+        "Cultural experiences"
+      ]
+    }
+  ],
+  international: [
+    {
+      title: "Dubai",
+      image: "/Destination/International/Main/Dubai-main.jpg",
+      description: "Experience the perfect blend of modern luxury and traditional Arabian culture in this desert metropolis.",
+      itinerary: [
+        {
+          day: 1,
+          title: "Arrival & City Tour",
+          description: "Hotel check-in, evening Dhow cruise dinner with entertainment."
+        },
+        {
+          day: 2,
+          title: "Modern Dubai",
+          description: "Visit Burj Khalifa, Dubai Mall, Dubai Fountain show, and Dubai Frame."
+        },
+        {
+          day: 3,
+          title: "Desert Safari",
+          description: "Dune bashing, camel riding, BBQ dinner with belly dancing show."
+        },
+        {
+          day: 4,
+          title: "Abu Dhabi Tour",
+          description: "Visit Sheikh Zayed Mosque, Ferrari World, and Yas Island."
+        },
+        {
+          day: 5,
+          title: "Shopping & Leisure",
+          description: "Visit Gold Souk, Spice Souk, and free time for shopping."
+        }
+      ],
+      highlights: [
+        "Burj Khalifa visit",
+        "Desert safari",
+        "Shopping festivals",
+        "Theme parks",
+        "Luxury hotels"
+      ]
+    },
+    {
+      title: "Singapore",
+      image: "/Destination/International/Main/Singapore-main.jpg",
+      description: "Discover the perfect blend of nature, technology, and diverse cultures in the Lion City.",
+      itinerary: [
+        {
+          day: 1,
+          title: "Arrival & City Tour",
+          description: "Hotel check-in, evening visit to Gardens by the Bay light show."
+        },
+        {
+          day: 2,
+          title: "Sentosa Island",
+          description: "Universal Studios, S.E.A. Aquarium, and Cable Car ride."
+        },
+        {
+          day: 3,
+          title: "Cultural Tour",
+          description: "Visit Chinatown, Little India, and Marina Bay Sands."
+        },
+        {
+          day: 4,
+          title: "Nature & Wildlife",
+          description: "Singapore Zoo, Night Safari, and River Safari."
+        },
+        {
+          day: 5,
+          title: "Shopping & Leisure",
+          description: "Orchard Road shopping, Singapore Flyer, and Clarke Quay."
+        }
+      ],
+      highlights: [
+        "Universal Studios",
+        "Gardens by the Bay",
+        "Cultural districts",
+        "World-class zoo",
+        "Shopping paradise"
+      ]
+    },
+    {
+      title: "Thailand",
+      image: "/Destination/International/Main/Thailand-main.jpg",
+      description: "Experience the vibrant culture, pristine beaches, and warm hospitality of the Land of Smiles.",
+      itinerary: [
+        {
+          day: 1,
+          title: "Bangkok Arrival",
+          description: "Hotel check-in, evening Chao Phraya dinner cruise."
+        },
+        {
+          day: 2,
+          title: "Bangkok Temples",
+          description: "Visit Grand Palace, Wat Phra Kaew, Wat Arun, and Wat Pho."
+        },
+        {
+          day: 3,
+          title: "Phuket Transfer",
+          description: "Fly to Phuket, evening beach visit and night market."
+        },
+        {
+          day: 4,
+          title: "Phi Phi Islands",
+          description: "Island hopping, snorkeling, and beach activities."
+        },
+        {
+          day: 5,
+          title: "Phuket Leisure",
+          description: "Big Buddha visit, Thai massage, and shopping."
+        }
+      ],
+      highlights: [
+        "Temple tours",
+        "Island hopping",
+        "Thai cuisine",
+        "Traditional massage",
+        "Night markets"
+      ]
+    },
+    {
+      title: "Bali",
+      image: "/Destination/International/Main/Bali-main.jpg",
+      description: "Immerse yourself in the island's rich culture, stunning beaches, and spiritual atmosphere.",
+      itinerary: [
+        {
+          day: 1,
+          title: "Arrival in Denpasar",
+          description: "Transfer to Ubud, welcome dinner with traditional dance."
+        },
+        {
+          day: 2,
+          title: "Ubud Culture",
+          description: "Rice terraces, monkey forest, and art villages."
+        },
+        {
+          day: 3,
+          title: "Temple Tour",
+          description: "Visit Tanah Lot, Uluwatu Temple, and Kecak fire dance."
+        },
+        {
+          day: 4,
+          title: "Beach Time",
+          description: "Nusa Dua beach activities, water sports, and spa."
+        },
+        {
+          day: 5,
+          title: "Adventure Day",
+          description: "White water rafting, elephant safari, and cooking class."
+        }
+      ],
+      highlights: [
+        "Cultural shows",
+        "Temple visits",
+        "Beach activities",
+        "Adventure sports",
+        "Spa treatments"
+      ]
+    },
+    {
+      title: "Vietnam",
+      image: "/Destination/International/Main/Vietnam-main.jpg",
+      description: "Explore the rich history, stunning landscapes, and delicious cuisine of this Southeast Asian gem.",
+      itinerary: [
+        {
+          day: 1,
+          title: "Hanoi Arrival",
+          description: "Check-in, explore Old Quarter, evening Water Puppet Show."
+        },
+        {
+          day: 2,
+          title: "Halong Bay Cruise",
+          description: "Overnight cruise in Halong Bay, kayaking, cave exploration."
+        },
+        {
+          day: 3,
+          title: "Hoi An Ancient Town",
+          description: "Walking tour of UNESCO site, lantern making workshop, cooking class."
+        },
+        {
+          day: 4,
+          title: "Ho Chi Minh City",
+          description: "Cu Chi Tunnels, War Remnants Museum, Ben Thanh Market."
+        },
+        {
+          day: 5,
+          title: "Mekong Delta",
+          description: "River cruise, floating markets, village visits, traditional music."
+        }
+      ],
+      highlights: [
+        "UNESCO sites",
+        "River cruises",
+        "War history",
+        "Local cuisine",
+        "Cultural workshops"
+      ]
+    },
+    {
+      title: "Maldives",
+      image: "/Destination/International/Main/Maldives-main.jpg",
+      description: "Experience luxury, pristine beaches, and world-class diving in this tropical paradise.",
+      itinerary: [
+        {
+          day: 1,
+          title: "Paradise Arrival",
+          description: "Speedboat transfer to resort, welcome drinks, beach relaxation."
+        },
+        {
+          day: 2,
+          title: "Ocean Adventure",
+          description: "Snorkeling with marine life, dolphin watching cruise, sunset fishing."
+        },
+        {
+          day: 3,
+          title: "Island Experience",
+          description: "Visit local island, cultural performances, traditional crafts."
+        },
+        {
+          day: 4,
+          title: "Water Activities",
+          description: "Scuba diving, jet skiing, parasailing, underwater restaurant."
+        },
+        {
+          day: 5,
+          title: "Spa & Relaxation",
+          description: "Overwater spa treatment, beach dining, stargazing."
+        }
+      ],
+      highlights: [
+        "Luxury resorts",
+        "Water sports",
+        "Marine life",
+        "Spa treatments",
+        "Beach dining"
+      ]
+    }
+  ]
+};

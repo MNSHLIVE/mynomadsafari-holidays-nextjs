@@ -15,6 +15,7 @@ import { Input } from "@/components/ui/input";
 import { Search, X, ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
+import BackButton from "@/components/back-button";
 
 // Sample data for destinations
 const indianDestinations = [
@@ -241,10 +242,9 @@ const Destinations = () => {
   }, []);
 
   return (
-    <>
-      {/* Hero Section */}
-      <section className="pt-24 pb-16 container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-12">
+    <div className="container mx-auto px-4 pt-24 pb-16">
+      <BackButton />
+      <section className="max-w-3xl mx-auto text-center mb-12">
           <span className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-secondary/30 text-secondary-foreground mb-3">
             Explore
           </span>
@@ -274,7 +274,7 @@ const Destinations = () => {
               </button>
             )}
           </div>
-        </div>
+      </section>
 
         {/* Main Content */}
         <Tabs defaultValue="india" className="w-full">
@@ -306,16 +306,16 @@ const Destinations = () => {
                         destinationName={dest.state} 
                         buttonText="Enquire Now"
                       />
-                      <Link to={`/destinations/${dest.state.toLowerCase().replace(/\s+/g, '-')}`}>
+                    <Link to={`/destinations/${dest.state.toLowerCase().replace(/\s+/g, '-')}`}>
                       <Button 
                         variant="outline" 
                         size="sm" 
                         className="border-primary/20 hover:border-primary hover:bg-primary/5"
                       >
-                          View Details
+                        View Details
                       </Button>
-                      </Link>
-                    </div>
+                    </Link>
+                  </div>
                   </div>
                 </div>
               ))}
@@ -422,11 +422,11 @@ const Destinations = () => {
                             <p className="text-lg font-semibold">{dest.budgets.luxury}</p>
                             <p className="text-sm text-muted-foreground">High-end experiences</p>
                           </div>
-                          <div className="p-4 border border-border rounded-lg bg-green-50/50 dark:bg-green-900/10">
-                            <h5 className="font-medium text-green-700 dark:text-green-300 mb-2">Premier</h5>
+                        <div className="p-4 border border-border rounded-lg bg-green-50/50 dark:bg-green-900/10">
+                          <h5 className="font-medium text-green-700 dark:text-green-300 mb-2">Premier</h5>
                             <p className="text-lg font-semibold">{dest.budgets.premier}</p>
-                            <p className="text-sm text-muted-foreground">Exclusive experiences</p>
-                          </div>
+                          <p className="text-sm text-muted-foreground">Exclusive experiences</p>
+                        </div>
                         </div>
                       </div>
                     </AccordionContent>
@@ -438,17 +438,17 @@ const Destinations = () => {
 
           {/* International Tab */}
           <TabsContent value="international" className="mt-0">
-            <div className="flex justify-between items-center mb-8">
-              <h2 className="text-2xl font-bold">International Destinations</h2>
-              <Button
-                variant="outline"
-                onClick={() => setActiveTab("all")}
-                className="flex items-center gap-2"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                Back to All Destinations
-              </Button>
-            </div>
+          <div className="flex justify-between items-center mb-8">
+            <h2 className="text-2xl font-bold">International Destinations</h2>
+            <Button
+              variant="outline"
+              onClick={() => setActiveTab("all")}
+              className="flex items-center gap-2"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Back to All Destinations
+            </Button>
+          </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
               {filteredInternationalDestinations.map((dest, index) => (
@@ -469,16 +469,16 @@ const Destinations = () => {
                         destinationName={dest.country} 
                         buttonText="Enquire Now"
                       />
-                      <Link to={`/destinations/${dest.country.toLowerCase().replace(/\s+/g, '-')}`}>
+                    <Link to={`/destinations/${dest.country.toLowerCase().replace(/\s+/g, '-')}`}>
                       <Button 
                         variant="outline" 
                         size="sm" 
                         className="border-primary/20 hover:border-primary hover:bg-primary/5"
                       >
-                          View Details
+                        View Details
                       </Button>
-                      </Link>
-                    </div>
+                    </Link>
+                  </div>
                   </div>
                 </div>
               ))}
@@ -585,11 +585,11 @@ const Destinations = () => {
                             <p className="text-lg font-semibold">{dest.budgets.luxury}</p>
                             <p className="text-sm text-muted-foreground">High-end experiences</p>
                           </div>
-                          <div className="p-4 border border-border rounded-lg bg-green-50/50 dark:bg-green-900/10">
-                            <h5 className="font-medium text-green-700 dark:text-green-300 mb-2">Premier</h5>
+                        <div className="p-4 border border-border rounded-lg bg-green-50/50 dark:bg-green-900/10">
+                          <h5 className="font-medium text-green-700 dark:text-green-300 mb-2">Premier</h5>
                             <p className="text-lg font-semibold">{dest.budgets.premier}</p>
-                            <p className="text-sm text-muted-foreground">Exclusive experiences</p>
-                          </div>
+                          <p className="text-sm text-muted-foreground">Exclusive experiences</p>
+                        </div>
                         </div>
                       </div>
                     </AccordionContent>
@@ -599,8 +599,7 @@ const Destinations = () => {
             </div>
           </TabsContent>
         </Tabs>
-      </section>
-    </>
+    </div>
   );
 };
 

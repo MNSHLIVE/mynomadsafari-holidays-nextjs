@@ -40,6 +40,7 @@ import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Card, CardContent } from "@/components/ui/card";
+import BackButton from "@/components/back-button";
 
 const tours = [
   // Featured Door-to-Door Packages
@@ -453,9 +454,9 @@ const Tours = () => {
   };
 
   return (
-    <>
-      <section className="pt-24 pb-16 container mx-auto px-4">
-      <div className="max-w-3xl mx-auto text-center mb-12">
+    <div className="container mx-auto px-4 pt-24 pb-16">
+      <BackButton />
+      <section className="max-w-3xl mx-auto text-center mb-12">
         <span className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-secondary/30 text-secondary-foreground mb-3">
           Explore Our Tours
         </span>
@@ -489,7 +490,7 @@ const Tours = () => {
             </Button>
           </Link>
         </div>
-      </div>
+      </section>
 
       <section className="container mx-auto px-4 mb-16">
         <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-xl p-6 md:p-8 shadow-sm border border-primary/20">
@@ -984,8 +985,7 @@ const Tours = () => {
         buttonText="Contact Us"
         buttonLink="/contact"
       />
-      </section>
-    </>
+    </div>
   );
 };
 

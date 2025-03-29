@@ -2,6 +2,7 @@ import SectionHeading from "@/components/section-heading";
 import CTASection from "@/components/cta-section";
 import { Check, Award, Users, Clock, Globe } from "lucide-react";
 import { cn } from "@/lib/utils";
+import BackButton from "@/components/back-button";
 
 const AboutUs = () => {
   const stats = [
@@ -12,7 +13,8 @@ const AboutUs = () => {
   ];
 
   return (
-    <>
+    <div className="container mx-auto px-4 pt-24 pb-16">
+      <BackButton />
       {/* Hero Section */}
       <section className="pt-24 pb-16 container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
@@ -193,7 +195,7 @@ const AboutUs = () => {
         imageSrc="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2000"
         align="center"
       />
-    </>
+    </div>
   );
 };
 

@@ -8,13 +8,14 @@ import { Button } from "@/components/ui/button";
 import { Church, Landmark } from "lucide-react";
 import DestinationQueryForm from "@/components/destination-query-form";
 import { Badge } from "@/components/ui/badge";
+import BackButton from "@/components/back-button";
 
 const religiousTours = [
   {
     id: 1,
     title: "Char Dham Yatra",
-    imageSrc: "/Destination/Tours/Religious Tour/CharDham/CharDham-Main.jpg",
-    image: "/Destination/Tours/Religious Tour/CharDham/CharDham-Main.jpg",
+    imageSrc: "/Destination/Domestic/Tours/Religious-Pilgrimage/Hindu/CharDham/CharDham-Main.jpg",
+    image: "/Destination/Domestic/Tours/Religious-Pilgrimage/Hindu/CharDham/CharDham-Main.jpg",
     duration: "12 Days",
     location: "Yamunotri, Gangotri, Kedarnath, Badrinath",
     bestTime: "May - June, Sept - Oct",
@@ -26,8 +27,8 @@ const religiousTours = [
   {
     id: 2,
     title: "South India Temple Tour",
-    imageSrc: "/Destination/Tours/Religious Tour/SouthIndia/SouthIndia-Main.jpg",
-    image: "/Destination/Tours/Religious Tour/SouthIndia/SouthIndia-Main.jpg",
+    imageSrc: "/Destination/Domestic/Tours/Religious-Pilgrimage/Hindu/SouthIndia/SouthIndia-Main.jpg",
+    image: "/Destination/Domestic/Tours/Religious-Pilgrimage/Hindu/SouthIndia/SouthIndia-Main.jpg",
     duration: "10 Days",
     location: "Chennai, Tirupati, Madurai, Rameshwaram",
     bestTime: "October - March",
@@ -39,8 +40,8 @@ const religiousTours = [
   {
     id: 3,
     title: "Vaishno Devi Yatra",
-    imageSrc: "/Destination/Tours/Religious Tour/VaishnoDevi/VaishnoDevi-Main.jpg",
-    image: "/Destination/Tours/Religious Tour/VaishnoDevi/VaishnoDevi-Main.jpg",
+    imageSrc: "/Destination/Domestic/Tours/Religious-Pilgrimage/Hindu/VaishnoDevi/VaishnoDevi-Main.jpg",
+    image: "/Destination/Domestic/Tours/Religious-Pilgrimage/Hindu/VaishnoDevi/VaishnoDevi-Main.jpg",
     duration: "5 Days",
     location: "Katra, Vaishno Devi Temple",
     bestTime: "March - June, Sept - Oct",
@@ -52,8 +53,8 @@ const religiousTours = [
   {
     id: 4,
     title: "Badrinath Kedarnath Yatra",
-    imageSrc: "/Destination/Tours/Religious Tour/BadrinathKedarnath/BK-Main.jpg",
-    image: "/Destination/Tours/Religious Tour/BadrinathKedarnath/BK-Main.jpg",
+    imageSrc: "/Destination/Domestic/Tours/Religious-Pilgrimage/Hindu/BadrinathKedarnath/BK-Main.jpg",
+    image: "/Destination/Domestic/Tours/Religious-Pilgrimage/Hindu/BadrinathKedarnath/BK-Main.jpg",
     duration: "8 Days",
     location: "Haridwar, Kedarnath, Badrinath",
     bestTime: "May - June, Sept - Oct",
@@ -65,8 +66,8 @@ const religiousTours = [
   {
     id: 5,
     title: "12 Jyotirlinga Darshan",
-    imageSrc: "/Destination/Tours/Religious Tour/Jyotirlinga/Jyotirlinga-Main.jpg",
-    image: "/Destination/Tours/Religious Tour/Jyotirlinga/Jyotirlinga-Main.jpg",
+    imageSrc: "/Destination/Domestic/Tours/Religious-Pilgrimage/Hindu/Jyotirlinga/Jyotirlinga-Main.jpg",
+    image: "/Destination/Domestic/Tours/Religious-Pilgrimage/Hindu/Jyotirlinga/Jyotirlinga-Main.jpg",
     duration: "15 Days",
     location: "Various locations across India",
     bestTime: "October - March",
@@ -78,8 +79,8 @@ const religiousTours = [
   {
     id: 6,
     title: "Ashtavinayak Yatra",
-    imageSrc: "/Destination/Tours/Religious Tour/Ashtavinayak/Ashtavinayak-Main.jpg",
-    image: "/Destination/Tours/Religious Tour/Ashtavinayak/Ashtavinayak-Main.jpg",
+    imageSrc: "/Destination/Domestic/Tours/Religious-Pilgrimage/Hindu/Ashtavinayak/Ashtavinayak-Main.jpg",
+    image: "/Destination/Domestic/Tours/Religious-Pilgrimage/Hindu/Ashtavinayak/Ashtavinayak-Main.jpg",
     duration: "7 Days",
     location: "Eight Ganesh temples in Maharashtra",
     bestTime: "October - March",
@@ -91,8 +92,8 @@ const religiousTours = [
   {
     id: 7,
     title: "Dwarka Shirdi Tour",
-    imageSrc: "/Destination/Tours/Religious Tour/DwarkaShirdi/DwarkaShirdi-Main.jpg",
-    image: "/Destination/Tours/Religious Tour/DwarkaShirdi/DwarkaShirdi-Main.jpg",
+    imageSrc: "/Destination/Domestic/Tours/Religious-Pilgrimage/Hindu/DwarkaShirdi/Dwarkashirdi-Main.jpg",
+    image: "/Destination/Domestic/Tours/Religious-Pilgrimage/Hindu/DwarkaShirdi/Dwarkashirdi-Main.jpg",
     duration: "6 Days",
     location: "Dwarka, Shirdi",
     bestTime: "October - March",
@@ -112,6 +113,7 @@ const ReligiousTours = () => {
 
   return (
     <div className="container mx-auto px-4 pt-24 pb-16">
+      <BackButton />
       <div className="max-w-3xl mx-auto text-center mb-12">
         <span className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-secondary/30 text-secondary-foreground mb-3">
           Spiritual Journeys
