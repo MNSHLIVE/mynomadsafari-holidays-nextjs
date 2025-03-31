@@ -36,6 +36,17 @@ const HeroSlider = ({ slides, interval = 5000, className }: HeroSliderProps) => 
     setCurrentSlide((prev) => (prev + 1) % slides.length);
   };
 
+  const scrollToCalculator = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const calculator = document.getElementById('package-calculator');
+    if (calculator) {
+      calculator.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
   return (
     <div className={cn("relative h-[600px] md:h-[700px] overflow-hidden", className)}>
       {slides.map((slide, index) => (
@@ -67,11 +78,17 @@ const HeroSlider = ({ slides, interval = 5000, className }: HeroSliderProps) => 
                 </p>
               )}
               <div className="flex flex-wrap justify-center gap-4">
-                <a href="#package-calculator" className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-11 rounded-md px-8 py-2">
+                <Link
+                  to="/calculate-tour"
+                  className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-11 rounded-md px-8 py-2"
+                >
                   Calculate Your Trip
-                </a>
-                <Link to="/contact" className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-white/10 text-white hover:bg-white/20 h-11 rounded-md px-8 py-2">
-                  Contact Us
+                </Link>
+                <Link 
+                  to="/destinations" 
+                  className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-white/10 text-white hover:bg-white/20 h-11 rounded-md px-8 py-2"
+                >
+                  Know More
                 </Link>
               </div>
             </div>

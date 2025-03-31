@@ -191,7 +191,7 @@ const Contact = () => {
                   info@mynomadsafariholidays.in
                 </a>
               </p>
-            </div>
+              </div>
             </div>
 
           {/* Office Hours */}

@@ -22,6 +22,7 @@ import Refund from "./pages/Refund";
 import Faq from "./pages/Faq";
 import DestinationDetail from "./pages/DestinationDetail";
 import ReligiousTours from "./pages/ReligiousTours";
+import CalculateTourPage from "@/pages/calculate-tour";
 
 // Using createRoutesFromElements for better readability
 const router = createBrowserRouter(
@@ -41,6 +42,7 @@ const router = createBrowserRouter(
       <Route path="privacy" element={<Privacy />} />
       <Route path="refund" element={<Refund />} />
       <Route path="faq" element={<Faq />} />
+      <Route path="calculate-tour" element={<CalculateTourPage />} />
       <Route path="*" element={<NotFound />} />
     </Route>
   )

@@ -315,7 +315,7 @@ const Destinations = () => {
                         View Details
                       </Button>
                     </Link>
-                  </div>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -426,7 +426,7 @@ const Destinations = () => {
                           <h5 className="font-medium text-green-700 dark:text-green-300 mb-2">Premier</h5>
                             <p className="text-lg font-semibold">{dest.budgets.premier}</p>
                           <p className="text-sm text-muted-foreground">Exclusive experiences</p>
-                        </div>
+                          </div>
                         </div>
                       </div>
                     </AccordionContent>
@@ -478,7 +478,7 @@ const Destinations = () => {
                         View Details
                       </Button>
                     </Link>
-                  </div>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -589,7 +589,7 @@ const Destinations = () => {
                           <h5 className="font-medium text-green-700 dark:text-green-300 mb-2">Premier</h5>
                             <p className="text-lg font-semibold">{dest.budgets.premier}</p>
                           <p className="text-sm text-muted-foreground">Exclusive experiences</p>
-                        </div>
+                          </div>
                         </div>
                       </div>
                     </AccordionContent>
