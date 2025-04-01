@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
+import { Button, type ButtonProps } from '@/components/ui/button';
 import { X } from 'lucide-react';
 
 interface Destination {
@@ -100,11 +100,14 @@ export function DestinationModal({ isOpen, onClose, destination }: DestinationMo
 
         {/* Close Button */}
         <Button
+          onClick={onClose}
+          size="icon"
           variant="ghost"
           className="absolute top-4 right-4"
-          onClick={onClose}
+          type="button"
         >
           <X className="h-4 w-4" />
+          <span className="sr-only">Close</span>
         </Button>
       </DialogContent>
     </Dialog>
