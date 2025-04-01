@@ -1,19 +1,15 @@
+'use client';
+
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import dynamic from "next/dynamic";
+import Link from "next/link";
 import Layout from "@/components/layout";
 import SectionHeading from "@/components/section-heading";
-import TourCard from "@/components/tour-card";
 import CTASection from "@/components/cta-section";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import type { SelectProps } from "@radix-ui/react-select";
 import {
   Accordion,
   AccordionContent,
@@ -35,12 +31,24 @@ import {
   Bus,
   UtensilsCrossed
 } from "lucide-react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Card, CardContent } from "@/components/ui/card";
 import BackButton from "@/components/back-button";
+import ClientOnly from "@/components/client-only";
+
+// Dynamic imports with proper typing
+const TourCard = dynamic(() => import("@/components/tour-card"), { ssr: false });
+const Select = dynamic<SelectProps>(() => import("@/components/ui/select").then(mod => mod.Select), { ssr: false });
+const SelectContent = dynamic<any>(() => import("@/components/ui/select").then(mod => mod.SelectContent), { ssr: false });
+const SelectItem = dynamic<any>(() => import("@/components/ui/select").then(mod => mod.SelectItem), { ssr: false });
+const SelectTrigger = dynamic<any>(() => import("@/components/ui/select").then(mod => mod.SelectTrigger), { ssr: false });
+const SelectValue = dynamic<any>(() => import("@/components/ui/select").then(mod => mod.SelectValue), { ssr: false });
+const Tabs = dynamic<any>(() => import("@/components/ui/tabs").then(mod => mod.Tabs), { ssr: false });
+const TabsContent = dynamic<any>(() => import("@/components/ui/tabs").then(mod => mod.TabsContent), { ssr: false });
+const TabsList = dynamic<any>(() => import("@/components/ui/tabs").then(mod => mod.TabsList), { ssr: false });
+const TabsTrigger = dynamic<any>(() => import("@/components/ui/tabs").then(mod => mod.TabsTrigger), { ssr: false });
 
 const tours = [
   // Featured Door-to-Door Packages
@@ -48,7 +56,6 @@ const tours = [
     id: 101,
     title: "Dubai Family Delight",
     imageSrc: "/Destination/International/Tours/Dubai/Dubai-Family-Delight.jpg",
-    image: "/Destination/International/Tours/Dubai/Dubai-Family-Delight.jpg",
     location: "Dubai, UAE",
     duration: "7 Days",
     price: 159999,
@@ -75,7 +82,6 @@ const tours = [
     id: 102,
     title: "Singapore Complete Experience",
     imageSrc: "/Destination/International/Tours/Singapore/Singapore-Complete-Experience.jpg",
-    image: "/Destination/International/Tours/Singapore/Singapore-Complete-Experience.jpg",
     location: "Singapore",
     duration: "6 Days",
     price: 145999,
@@ -101,7 +107,6 @@ const tours = [
     id: 103,
     title: "Enchanting Bali Getaway",
     imageSrc: "/Destination/International/Tours/Bali/Bali-Getaway.jpg",
-    image: "/Destination/International/Tours/Bali/Bali-Getaway.jpg",
     location: "Bali, Indonesia",
     duration: "8 Days",
     price: 135999,
@@ -119,7 +124,6 @@ const tours = [
     id: 104,
     title: "Thailand Family Adventure",
     imageSrc: "/Destination/International/Tours/Thailand/Thailand-Family-Adventure.jpg",
-    image: "/Destination/International/Tours/Thailand/Thailand-Family-Adventure.jpg",
     location: "Bangkok, Phuket, Krabi",
     duration: "9 Days",
     price: 179999,
@@ -139,7 +143,6 @@ const tours = [
     id: 5,
     title: "Goa Beach Getaway",
     imageSrc: "/Destination/Domestic/Tours/Goa/Goa-Beach-Getaway.jpg",
-    image: "/Destination/Domestic/Tours/Goa/Goa-Beach-Getaway.jpg",
     location: "North and South Goa",
     duration: "4 Days",
     price: 21332,
@@ -163,7 +166,6 @@ const tours = [
     id: 6,
     title: "Kerala Backwaters Luxury",
     imageSrc: "/Destination/Domestic/Tours/Kerala/Kerala-Backwaters-Luxury.jpg",
-    image: "/Destination/Domestic/Tours/Kerala/Kerala-Backwaters-Luxury.jpg",
     location: "Kochi, Munnar, Alleppey",
     duration: "6 Days",
     price: 31998,
@@ -189,7 +191,6 @@ const tours = [
     id: 7,
     title: "Premier Himachal Adventure",
     imageSrc: "/Destination/Domestic/Tours/Himachal/Himachal-Adventure.jpg",
-    image: "/Destination/Domestic/Tours/Himachal/Himachal-Adventure.jpg",
     location: "Shimla, Kullu, Manali, Dharamshala",
     duration: "7 Days",
     price: 37331,
@@ -218,7 +219,6 @@ const tours = [
     id: 1,
     title: "Dubai Discovery",
     imageSrc: "/Destination/International/Tours/Dubai/Dubai-Discovery.jpg",
-    image: "/Destination/International/Tours/Dubai/Dubai-Discovery.jpg",
     location: "Dubai, UAE",
     duration: "7 Days",
     price: "73885",
@@ -241,27 +241,27 @@ const tours = [
       {
         day: 3,
         title: "Desert Safari",
-        description: "Experience the thrill of dune bashing, camel riding, and enjoy a BBQ dinner with traditional entertainment."
+        description: "Experience an exciting desert safari with dune bashing, camel riding, and a BBQ dinner with entertainment under the stars."
       },
       {
         day: 4,
-        title: "Dubai Marina and JBR Walk",
-        description: "Explore the stunning Dubai Marina and enjoy the beach at JBR. Evening dhow cruise with dinner."
+        title: "Abu Dhabi Day Trip",
+        description: "Visit the Sheikh Zayed Grand Mosque, Ferrari World, and other attractions in Abu Dhabi."
       },
       {
         day: 5,
-        title: "Abu Dhabi Day Trip",
-        description: "Visit the capital city of UAE, including the Sheikh Zayed Grand Mosque and Ferrari World."
+        title: "Dubai Miracle Garden",
+        description: "Visit the world's largest natural flower garden and enjoy the evening at Dubai Marina."
       },
       {
         day: 6,
-        title: "Global Village and Miracle Garden",
-        description: "Experience the cultural diversity at Global Village and visit the beautiful Miracle Garden."
+        title: "Palm Jumeirah and Atlantis",
+        description: "Explore the Palm Jumeirah and visit the iconic Atlantis Hotel. Evening at leisure."
       },
       {
         day: 7,
         title: "Departure",
-        description: "Last-minute shopping and departure."
+        description: "After breakfast, check out and transfer to the airport for your return flight."
       }
     ]
   },
@@ -269,7 +269,6 @@ const tours = [
     id: 2,
     title: "Singapore Explorer",
     imageSrc: "/Destination/International/Tours/Singapore/Singapore-Explorer.jpg",
-    image: "/Destination/International/Tours/Singapore/Singapore-Explorer.jpg",
     location: "Singapore",
     duration: "6 Days",
     price: "63330",
@@ -315,7 +314,6 @@ const tours = [
     id: 3,
     title: "Bali Bliss",
     imageSrc: "/Destination/International/Tours/Bali/Bali-Bliss.jpg",
-    image: "/Destination/International/Tours/Bali/Bali-Bliss.jpg",
     location: "Bali, Indonesia",
     duration: "8 Days",
     price: "84440",
@@ -329,7 +327,6 @@ const tours = [
     id: 4,
     title: "Thailand Adventure",
     imageSrc: "/Destination/International/Tours/Thailand/Thailand-Adventure.jpg",
-    image: "/Destination/International/Tours/Thailand/Thailand-Adventure.jpg",
     location: "Bangkok, Phuket, Krabi",
     duration: "9 Days",
     price: "94995",
@@ -364,16 +361,43 @@ const activities = [
   "Water Sports"
 ];
 
+// Client-side select wrapper
+interface SelectWrapperProps {
+  value: string;
+  onValueChange: (value: string) => void;
+  placeholder: string;
+  options: Array<{ value: string; label: string }>;
+}
+
+const SelectWrapper = ({ value, onValueChange, placeholder, options }: SelectWrapperProps) => {
+  return (
+    <Select value={value} onValueChange={onValueChange}>
+      <SelectTrigger>
+        <SelectValue placeholder={placeholder} />
+      </SelectTrigger>
+      <SelectContent>
+        {options.map((option) => (
+          <SelectItem key={option.value} value={option.value}>
+            {option.label}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+  );
+};
+
 const Tours = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedRegions, setSelectedRegions] = useState<string[]>([]);
   const [selectedActivities, setSelectedActivities] = useState<string[]>([]);
   const [selectedDuration, setSelectedDuration] = useState("");
+  const [selectedPriceRange, setSelectedPriceRange] = useState("");
   const [priceRange, setPriceRange] = useState([0, 100000]);
   const [filters, setFilters] = useState(false);
   const [selectedTour, setSelectedTour] = useState<number | null>(null);
   const [tourDetailsOpen, setTourDetailsOpen] = useState(false);
   const [currentTourDetail, setCurrentTourDetail] = useState<any>(null);
+  const [selectedPackageType, setSelectedPackageType] = useState("");
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -433,8 +457,10 @@ const Tours = () => {
     setSelectedRegions([]);
     setSelectedActivities([]);
     setSelectedDuration("");
+    setSelectedPriceRange("");
     setPriceRange([0, 100000]);
     setSearchTerm("");
+    setSelectedPackageType("");
   };
 
   const toggleRegion = (region: string) => {
@@ -479,12 +505,12 @@ const Tours = () => {
         </div>
         
         <div className="flex flex-wrap justify-center gap-4 mb-4">
-          <Link to="/tours/religious">
+          <Link href="/tours/religious">
             <Button variant="outline" className="rounded-full">
               Religious Tours
             </Button>
           </Link>
-          <Link to="/tours/group">
+          <Link href="/tours/group">
             <Button variant="outline" className="rounded-full">
               Group Tours
             </Button>
@@ -544,7 +570,6 @@ const Tours = () => {
             <TourCard
               key={tour.id}
               imageSrc={tour.imageSrc}
-              image={tour.image}
               title={tour.title}
               location={tour.location}
               duration={tour.duration}
@@ -685,36 +710,42 @@ const Tours = () => {
               </div>
 
               <div className="mb-6">
-                <h4 className="text-sm font-medium mb-3">Price Range (₹)</h4>
-                <div className="px-2">
-                  <Slider
-                    defaultValue={[0, 100000]}
-                    value={priceRange}
-                    onValueChange={setPriceRange}
-                    max={100000}
-                    step={5000}
-                    className="mb-2"
-                  />
-                  <div className="flex items-center justify-between text-sm">
-                    <span>₹{priceRange[0].toLocaleString()}</span>
-                    <span>₹{priceRange[1].toLocaleString()}</span>
-                  </div>
-                </div>
+                <h4 className="text-sm font-medium mb-3">Price Range</h4>
+                <ClientOnly>
+                  <Select defaultValue={selectedPriceRange} onValueChange={setSelectedPriceRange}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Any price range" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="0-1000">Under $1,000</SelectItem>
+                      <SelectItem value="1000-2000">$1,000 - $2,000</SelectItem>
+                      <SelectItem value="2000-3000">$2,000 - $3,000</SelectItem>
+                      <SelectItem value="3000+">Over $3,000</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </ClientOnly>
               </div>
 
               <div className="mb-6">
                 <h4 className="text-sm font-medium mb-3">Duration</h4>
-                <Select value={selectedDuration} onValueChange={setSelectedDuration}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Any duration" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="any">Any duration</SelectItem>
-                    <SelectItem value="short">Short (1-5 days)</SelectItem>
-                    <SelectItem value="medium">Medium (6-9 days)</SelectItem>
-                    <SelectItem value="long">Long (10+ days)</SelectItem>
-                  </SelectContent>
-                </Select>
+                <ClientOnly>
+                  <div className="relative w-full">
+                    <Select
+                      defaultValue={selectedDuration}
+                      onValueChange={setSelectedDuration}
+                    >
+                      <SelectTrigger className="w-full">
+                        <SelectValue placeholder="Any duration" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="1-3">1-3 Days</SelectItem>
+                        <SelectItem value="4-7">4-7 Days</SelectItem>
+                        <SelectItem value="8-14">8-14 Days</SelectItem>
+                        <SelectItem value="15+">15+ Days</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </ClientOnly>
               </div>
 
               <div className="mb-6">
@@ -762,222 +793,137 @@ const Tours = () => {
                   ))}
                 </div>
               </div>
+
+              <div className="mb-6">
+                <h4 className="text-sm font-medium mb-3">Package Type</h4>
+                <ClientOnly>
+                  <Select defaultValue={selectedPackageType} onValueChange={setSelectedPackageType}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Any package type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="door-to-door">Door-to-Door</SelectItem>
+                      <SelectItem value="group">Group</SelectItem>
+                      <SelectItem value="private">Private</SelectItem>
+                      <SelectItem value="religious">Religious</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </ClientOnly>
+              </div>
             </div>
           </div>
 
           <div className="lg:w-3/4">
-            <Tabs defaultValue="all" className="w-full">
-              <div className="flex items-center justify-between mb-6">
-                <TabsList>
-                  <TabsTrigger value="all">All Tours</TabsTrigger>
-                  <TabsTrigger value="india">India</TabsTrigger>
-                  <TabsTrigger value="international">International</TabsTrigger>
-                </TabsList>
-                
-                <div className="hidden md:flex items-center gap-2">
-                  <Select defaultValue="recommended">
-                    <SelectTrigger className="w-[180px]">
-                      <SelectValue placeholder="Sort by" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="recommended">Recommended</SelectItem>
-                      <SelectItem value="price-low">Price: Low to High</SelectItem>
-                      <SelectItem value="price-high">Price: High to Low</SelectItem>
-                      <SelectItem value="duration-short">Duration: Shortest</SelectItem>
-                      <SelectItem value="duration-long">Duration: Longest</SelectItem>
-                    </SelectContent>
-                  </Select>
+            <ClientOnly>
+              <Tabs defaultValue="all" className="w-full">
+                <div className="flex items-center justify-between mb-6">
+                  <TabsList>
+                    <TabsTrigger value="all">All Tours</TabsTrigger>
+                    <TabsTrigger value="india">India</TabsTrigger>
+                    <TabsTrigger value="international">International</TabsTrigger>
+                  </TabsList>
+                  
+                  <div className="hidden md:flex items-center gap-2">
+                    <Select defaultValue="recommended">
+                      <SelectTrigger className="w-[180px]">
+                        <SelectValue placeholder="Sort by" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="recommended">Recommended</SelectItem>
+                        <SelectItem value="price-low">Price: Low to High</SelectItem>
+                        <SelectItem value="price-high">Price: High to Low</SelectItem>
+                        <SelectItem value="duration-short">Duration: Shortest</SelectItem>
+                        <SelectItem value="duration-long">Duration: Longest</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
-              </div>
 
-              <TabsContent value="all" className="mt-0">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-                  {filterTours([...tours]).length > 0 ? (
-                    filterTours([...tours]).map((tour) => (
-                      <TourCard
-                        key={tour.id}
-                        imageSrc={tour.imageSrc}
-                        image={tour.image}
-                        title={tour.title}
-                        location={tour.location}
-                        duration={tour.duration}
-                        price={`Starting from ₹${tour.price.toLocaleString()}`}
-                        bestTime={tour.bestTime}
-                        packageType={tour.packageType as "Budgeted" | "Luxury" | "Premier"}
-                        link="#"
-                        description={tour.description}
-                        itinerary={tour.itinerary}
-                      />
-                    ))
-                  ) : (
-                    <div className="col-span-full py-12 text-center">
-                      <h3 className="text-xl font-semibold mb-2">No tours found</h3>
-                      <p className="text-muted-foreground mb-4">Try adjusting your filters or search criteria</p>
-                      <Button onClick={clearFilters}>Clear All Filters</Button>
-                    </div>
-                  )}
-                </div>
-              </TabsContent>
+                <TabsContent value="all" className="mt-0">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                    {filterTours([...tours]).length > 0 ? (
+                      filterTours([...tours]).map((tour) => (
+                        <TourCard
+                          key={tour.id}
+                          imageSrc={tour.imageSrc}
+                          title={tour.title}
+                          location={tour.location}
+                          duration={tour.duration}
+                          price={`Starting from ₹${tour.price.toLocaleString()}`}
+                          bestTime={tour.bestTime}
+                          packageType={tour.packageType as "Budgeted" | "Luxury" | "Premier"}
+                          link="#"
+                          className="relative"
+                          itinerary={tour.itinerary}
+                          description={tour.description}
+                        />
+                      ))
+                    ) : (
+                      <div className="col-span-full text-center py-12">
+                        <p className="text-muted-foreground">No tours found matching your criteria.</p>
+                      </div>
+                    )}
+                  </div>
+                </TabsContent>
 
-              <TabsContent value="india" className="mt-0">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-                  {indianTours.length > 0 ? (
-                    indianTours.map((tour) => (
-                      <TourCard
-                        key={tour.id}
-                        imageSrc={tour.imageSrc}
-                        image={tour.image}
-                        title={tour.title}
-                        location={tour.location}
-                        duration={tour.duration}
-                        price={`Starting from ₹${tour.price.toLocaleString()}`}
-                        bestTime={tour.bestTime}
-                        packageType={tour.packageType as "Budgeted" | "Luxury" | "Premier"}
-                        link="#"
-                        description={tour.description}
-                        itinerary={tour.itinerary}
-                      />
-                    ))
-                  ) : (
-                    <div className="col-span-full py-12 text-center">
-                      <h3 className="text-xl font-semibold mb-2">No tours found</h3>
-                      <p className="text-muted-foreground mb-4">Try adjusting your filters or search criteria</p>
-                      <Button onClick={clearFilters}>Clear All Filters</Button>
-                    </div>
-                  )}
-                </div>
-              </TabsContent>
+                <TabsContent value="india" className="mt-0">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                    {indianTours.length > 0 ? (
+                      indianTours.map((tour) => (
+                        <TourCard
+                          key={tour.id}
+                          imageSrc={tour.imageSrc}
+                          title={tour.title}
+                          location={tour.location}
+                          duration={tour.duration}
+                          price={`Starting from ₹${tour.price.toLocaleString()}`}
+                          bestTime={tour.bestTime}
+                          packageType={tour.packageType as "Budgeted" | "Luxury" | "Premier"}
+                          link="#"
+                          className="relative"
+                          itinerary={tour.itinerary}
+                          description={tour.description}
+                        />
+                      ))
+                    ) : (
+                      <div className="col-span-full text-center py-12">
+                        <p className="text-muted-foreground">No Indian tours found matching your criteria.</p>
+                      </div>
+                    )}
+                  </div>
+                </TabsContent>
 
-              <TabsContent value="international" className="mt-0">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-                  {internationalTours.length > 0 ? (
-                    internationalTours.map((tour) => (
-                      <TourCard
-                        key={tour.id}
-                        imageSrc={tour.imageSrc}
-                        image={tour.image}
-                        title={tour.title}
-                        location={tour.location}
-                        duration={tour.duration}
-                        price={`Starting from ₹${tour.price.toLocaleString()}`}
-                        bestTime={tour.bestTime}
-                        packageType={tour.packageType as "Budgeted" | "Luxury" | "Premier"}
-                        link="#"
-                        description={tour.description}
-                        itinerary={tour.itinerary}
-                      />
-                    ))
-                  ) : (
-                    <div className="col-span-full py-12 text-center">
-                      <h3 className="text-xl font-semibold mb-2">No tours found</h3>
-                      <p className="text-muted-foreground mb-4">Try adjusting your filters or search criteria</p>
-                      <Button onClick={clearFilters}>Clear All Filters</Button>
-                    </div>
-                  )}
-                </div>
-              </TabsContent>
-            </Tabs>
+                <TabsContent value="international" className="mt-0">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                    {internationalTours.length > 0 ? (
+                      internationalTours.map((tour) => (
+                        <TourCard
+                          key={tour.id}
+                          imageSrc={tour.imageSrc}
+                          title={tour.title}
+                          location={tour.location}
+                          duration={tour.duration}
+                          price={`Starting from ₹${tour.price.toLocaleString()}`}
+                          bestTime={tour.bestTime}
+                          packageType={tour.packageType as "Budgeted" | "Luxury" | "Premier"}
+                          link="#"
+                          className="relative"
+                          itinerary={tour.itinerary}
+                          description={tour.description}
+                        />
+                      ))
+                    ) : (
+                      <div className="col-span-full text-center py-12">
+                        <p className="text-muted-foreground">No international tours found matching your criteria.</p>
+                      </div>
+                    )}
+                  </div>
+                </TabsContent>
+              </Tabs>
+            </ClientOnly>
           </div>
         </div>
       </section>
-
-      <Dialog open={tourDetailsOpen} onOpenChange={setTourDetailsOpen}>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
-          {currentTourDetail && (
-            <div className="space-y-6">
-              <div className="relative h-64 w-full overflow-hidden rounded-lg">
-                <img 
-                  src={currentTourDetail.imageSrc} 
-                  alt={currentTourDetail.title}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute top-4 right-4">
-                  <Badge className={cn(
-                    currentTourDetail.packageType === "Budgeted" && "bg-blue-100 text-blue-700",
-                    currentTourDetail.packageType === "Luxury" && "bg-purple-100 text-purple-700",
-                    currentTourDetail.packageType === "Premier" && "bg-amber-100 text-amber-700",
-                  )}>
-                    {currentTourDetail.packageType}
-                  </Badge>
-                </div>
-              </div>
-              
-              <div>
-                <h2 className="text-2xl font-bold">{currentTourDetail.title}</h2>
-                <div className="flex flex-wrap gap-4 mt-2">
-                  <div className="flex items-center text-sm text-muted-foreground">
-                    <MapPin className="w-4 h-4 mr-1" />
-                    <span>{currentTourDetail.location}</span>
-                  </div>
-                  <div className="flex items-center text-sm text-muted-foreground">
-                    <Clock className="w-4 h-4 mr-1" />
-                    <span>{currentTourDetail.duration}</span>
-                  </div>
-                  <div className="flex items-center text-sm text-muted-foreground">
-                    <Calendar className="w-4 h-4 mr-1" />
-                    <span>Best time: {currentTourDetail.bestTime}</span>
-                  </div>
-                  <div className="flex items-center text-sm font-medium">
-                    <IndianRupee className="w-4 h-4 mr-1" />
-                    <span>₹{currentTourDetail.price.toLocaleString()}</span>
-                  </div>
-                </div>
-              </div>
-              
-              <div>
-                <h3 className="text-lg font-semibold mb-2">Description</h3>
-                <p className="text-muted-foreground">{currentTourDetail.description}</p>
-              </div>
-              
-              {currentTourDetail.itinerary && (
-                <div>
-                  <h3 className="text-lg font-semibold mb-3">Itinerary</h3>
-                  <div className="space-y-4">
-                    {currentTourDetail.itinerary.map((day: any) => (
-                      <div key={day.day} className="p-4 border rounded-lg">
-                        <h4 className="font-medium flex items-center">
-                          <span className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary text-xs mr-2">
-                            {day.day}
-                          </span>
-                          {day.title}
-                        </h4>
-                        <p className="text-sm text-muted-foreground mt-1">{day.description}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="text-lg font-semibold mb-2">Activities</h3>
-                  <ul className="list-disc list-inside space-y-1 text-muted-foreground">
-                    {currentTourDetail.activities?.map((activity: string, idx: number) => (
-                      <li key={idx}>{activity}</li>
-                    ))}
-                  </ul>
-                </div>
-                
-                {currentTourDetail.included && (
-                  <div>
-                    <h3 className="text-lg font-semibold mb-2">Included in Package</h3>
-                    <ul className="list-disc list-inside space-y-1 text-muted-foreground">
-                      {currentTourDetail.included.map((item: string, idx: number) => (
-                        <li key={idx}>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </div>
-              
-              <div className="flex justify-between pt-4 border-t">
-                <p className="text-xl font-semibold">Total Price: ₹{currentTourDetail.price.toLocaleString()}</p>
-                <Button>Book Now</Button>
-              </div>
-            </div>
-          )}
-        </DialogContent>
-      </Dialog>
 
       <CTASection 
         title="Create Your Custom Tour"

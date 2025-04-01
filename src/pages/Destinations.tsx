@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, X, ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import BackButton from "@/components/back-button";
 
 // Sample data for destinations
@@ -306,7 +306,7 @@ const Destinations = () => {
                         destinationName={dest.state} 
                         buttonText="Enquire Now"
                       />
-                    <Link to={`/destinations/${dest.state.toLowerCase().replace(/\s+/g, '-')}`}>
+                    <Link href={`/destinations/${dest.state.toLowerCase().replace(/\s+/g, '-')}`}>
                       <Button 
                         variant="outline" 
                         size="sm" 
@@ -469,7 +469,7 @@ const Destinations = () => {
                         destinationName={dest.country} 
                         buttonText="Enquire Now"
                       />
-                    <Link to={`/destinations/${dest.country.toLowerCase().replace(/\s+/g, '-')}`}>
+                    <Link href={`/destinations/${dest.country.toLowerCase().replace(/\s+/g, '-')}`}>
                       <Button 
                         variant="outline" 
                         size="sm" 

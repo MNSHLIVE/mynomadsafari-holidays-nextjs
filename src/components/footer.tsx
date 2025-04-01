@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Facebook, Instagram, Twitter, Mail, Phone, MapPin } from "lucide-react";
@@ -78,7 +78,7 @@ const Footer = () => {
               ].map((link) => (
                 <li key={link.href}>
                   <Link 
-                    to={link.href}
+                    href={link.href}
                     className="text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
                     {link.label}
@@ -140,10 +140,10 @@ const Footer = () => {
 
         <div className="border-t border-border mt-10 pt-6 text-center">
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-4 text-sm text-muted-foreground">
-            <Link to="/terms" className="hover:text-primary transition-colors">Terms & Conditions</Link>
-            <Link to="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
-            <Link to="/refund" className="hover:text-primary transition-colors">Refund Policy</Link>
-            <Link to="/faq" className="hover:text-primary transition-colors">FAQs</Link>
+            <Link href="/terms" className="hover:text-primary transition-colors">Terms & Conditions</Link>
+            <Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
+            <Link href="/refund" className="hover:text-primary transition-colors">Refund Policy</Link>
+            <Link href="/faq" className="hover:text-primary transition-colors">FAQs</Link>
           </div>
           <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} My Nomadsafari Holidays. All rights reserved.</p>
         </div>

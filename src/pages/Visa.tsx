@@ -36,6 +36,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Toaster } from "@/components/ui/toaster";
 import BackButton from "@/components/back-button";
+import ClientOnly from "@/components/client-only";
 
 const visaServices = [
   {
@@ -192,186 +193,188 @@ const Visa = () => {
 
           {/* Inquiry Form */}
           <div className="lg:col-span-2">
-            <div className="bg-card border border-border/50 rounded-xl p-6 shadow-sm sticky top-20">
-              {isSubmitted ? (
-                <div className="text-center py-6 space-y-4">
-                  <div className="mx-auto w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full">
-                    <CheckCircle className="h-8 w-8 text-primary" />
+            <ClientOnly>
+              <div className="bg-card border border-border/50 rounded-xl p-6 shadow-sm sticky top-20">
+                {isSubmitted ? (
+                  <div className="text-center py-6 space-y-4">
+                    <div className="mx-auto w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full">
+                      <CheckCircle className="h-8 w-8 text-primary" />
+                    </div>
+                    <h3 className="text-xl font-semibold">Inquiry Submitted!</h3>
+                    <p className="text-muted-foreground">
+                      Thank you for your inquiry. Our visa expert will contact you within 24 hours.
+                    </p>
+                    <Button 
+                      className="mt-4" 
+                      onClick={() => setIsSubmitted(false)}
+                    >
+                      Submit Another Inquiry
+                    </Button>
                   </div>
-                  <h3 className="text-xl font-semibold">Inquiry Submitted!</h3>
-                  <p className="text-muted-foreground">
-                    Thank you for your inquiry. Our visa expert will contact you within 24 hours.
-                  </p>
-                  <Button 
-                    className="mt-4" 
-                    onClick={() => setIsSubmitted(false)}
-                  >
-                    Submit Another Inquiry
-                  </Button>
-                </div>
-              ) : (
-                <>
-                  <h3 className="text-xl font-semibold mb-6">Visa Inquiry Form</h3>
-                  <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                      <FormField
-                        control={form.control}
-                        name="name"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Full Name</FormLabel>
-                            <FormControl>
-                              <Input placeholder="John Doe" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      
-                      <FormField
-                        control={form.control}
-                        name="email"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Email</FormLabel>
-                            <FormControl>
-                              <Input type="email" placeholder="john@example.com" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      
-                      <FormField
-                        control={form.control}
-                        name="phone"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Phone Number</FormLabel>
-                            <FormControl>
-                              <Input placeholder="+1 (555) 123-4567" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      
-                      <FormField
-                        control={form.control}
-                        name="destination"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Destination Country</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                ) : (
+                  <>
+                    <h3 className="text-xl font-semibold mb-6">Visa Inquiry Form</h3>
+                    <Form {...form}>
+                      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                        <FormField
+                          control={form.control}
+                          name="name"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Full Name</FormLabel>
                               <FormControl>
-                                <SelectTrigger>
-                                  <SelectValue placeholder="Select a country" />
-                                </SelectTrigger>
+                                <Input placeholder="John Doe" {...field} />
                               </FormControl>
-                              <SelectContent>
-                                {["Thailand", "Singapore", "Dubai", "Malaysia", "Bali", "Vietnam", "Australia", "USA", "UK", "Europe", "Canada"].map((country) => (
-                                  <SelectItem key={country} value={country}>
-                                    {country}
-                                  </SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      
-                      <FormField
-                        control={form.control}
-                        name="travelDate"
-                        render={({ field }) => (
-                          <FormItem className="flex flex-col">
-                            <FormLabel>Expected Travel Date</FormLabel>
-                            <Popover>
-                              <PopoverTrigger asChild>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        
+                        <FormField
+                          control={form.control}
+                          name="email"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Email</FormLabel>
+                              <FormControl>
+                                <Input type="email" placeholder="john@example.com" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        
+                        <FormField
+                          control={form.control}
+                          name="phone"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Phone Number</FormLabel>
+                              <FormControl>
+                                <Input placeholder="+1 (555) 123-4567" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        
+                        <FormField
+                          control={form.control}
+                          name="destination"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Destination Country</FormLabel>
+                              <Select onValueChange={field.onChange} defaultValue={field.value}>
                                 <FormControl>
-                                  <Button
-                                    variant={"outline"}
-                                    className={cn(
-                                      "w-full pl-3 text-left font-normal",
-                                      !field.value && "text-muted-foreground"
-                                    )}
-                                  >
-                                    {field.value ? (
-                                      format(field.value, "PPP")
-                                    ) : (
-                                      <span>Pick a date</span>
-                                    )}
-                                    <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                                  </Button>
+                                  <SelectTrigger>
+                                    <SelectValue placeholder="Select a country" />
+                                  </SelectTrigger>
                                 </FormControl>
-                              </PopoverTrigger>
-                              <PopoverContent className="w-auto p-0" align="start">
-                                <Calendar
-                                  mode="single"
-                                  selected={field.value}
-                                  onSelect={field.onChange}
-                                  disabled={(date) =>
-                                    date < new Date()
-                                  }
-                                  initialFocus
-                                />
-                              </PopoverContent>
-                            </Popover>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      
-                      <FormField
-                        control={form.control}
-                        name="visaType"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Visa Type</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                <SelectContent>
+                                  {["Thailand", "Singapore", "Dubai", "Malaysia", "Bali", "Vietnam", "Australia", "USA", "UK", "Europe", "Canada"].map((country) => (
+                                    <SelectItem key={country} value={country}>
+                                      {country}
+                                    </SelectItem>
+                                  ))}
+                                </SelectContent>
+                              </Select>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        
+                        <FormField
+                          control={form.control}
+                          name="travelDate"
+                          render={({ field }) => (
+                            <FormItem className="flex flex-col">
+                              <FormLabel>Expected Travel Date</FormLabel>
+                              <Popover>
+                                <PopoverTrigger asChild>
+                                  <FormControl>
+                                    <Button
+                                      variant={"outline"}
+                                      className={cn(
+                                        "w-full pl-3 text-left font-normal",
+                                        !field.value && "text-muted-foreground"
+                                      )}
+                                    >
+                                      {field.value ? (
+                                        format(field.value, "PPP")
+                                      ) : (
+                                        <span>Pick a date</span>
+                                      )}
+                                      <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                    </Button>
+                                  </FormControl>
+                                </PopoverTrigger>
+                                <PopoverContent className="w-auto p-0" align="start">
+                                  <Calendar
+                                    mode="single"
+                                    selected={field.value}
+                                    onSelect={field.onChange}
+                                    disabled={(date) =>
+                                      date < new Date()
+                                    }
+                                    initialFocus
+                                  />
+                                </PopoverContent>
+                              </Popover>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        
+                        <FormField
+                          control={form.control}
+                          name="visaType"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Visa Type</FormLabel>
+                              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                <FormControl>
+                                  <SelectTrigger>
+                                    <SelectValue placeholder="Select visa type" />
+                                  </SelectTrigger>
+                                </FormControl>
+                                <SelectContent>
+                                  <SelectItem value="tourist">Tourist Visa</SelectItem>
+                                  <SelectItem value="business">Business Visa</SelectItem>
+                                  <SelectItem value="work">Work Visa</SelectItem>
+                                  <SelectItem value="student">Student Visa</SelectItem>
+                                  <SelectItem value="other">Other</SelectItem>
+                                </SelectContent>
+                              </Select>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        
+                        <FormField
+                          control={form.control}
+                          name="message"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Additional Information</FormLabel>
                               <FormControl>
-                                <SelectTrigger>
-                                  <SelectValue placeholder="Select visa type" />
-                                </SelectTrigger>
+                                <Textarea 
+                                  placeholder="Any specific requirements or questions..." 
+                                  className="resize-none" 
+                                  {...field} 
+                                />
                               </FormControl>
-                              <SelectContent>
-                                <SelectItem value="tourist">Tourist Visa</SelectItem>
-                                <SelectItem value="business">Business Visa</SelectItem>
-                                <SelectItem value="work">Work Visa</SelectItem>
-                                <SelectItem value="student">Student Visa</SelectItem>
-                                <SelectItem value="other">Other</SelectItem>
-                              </SelectContent>
-                            </Select>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      
-                      <FormField
-                        control={form.control}
-                        name="message"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Additional Information</FormLabel>
-                            <FormControl>
-                              <Textarea 
-                                placeholder="Any specific requirements or questions..." 
-                                className="resize-none" 
-                                {...field} 
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      
-                      <Button type="submit" className="w-full">Submit Inquiry</Button>
-                    </form>
-                  </Form>
-                </>
-              )}
-            </div>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        
+                        <Button type="submit" className="w-full">Submit Inquiry</Button>
+                      </form>
+                    </Form>
+                  </>
+                )}
+              </div>
+            </ClientOnly>
           </div>
         </div>
       </section>

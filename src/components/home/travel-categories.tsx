@@ -1,5 +1,4 @@
-
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Palmtree, Mountain, Star, Building, Plane, Map } from "lucide-react";
 
 interface TravelCategoryProps {
@@ -22,7 +21,7 @@ const TravelCategories = () => {
     <section className="py-10 container mx-auto px-4">
       <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
         {travelCategories.map((category, index) => (
-          <Link to={category.link} key={index} className="flex flex-col items-center group">
+          <Link href={category.link} key={index} className="flex flex-col items-center group">
             <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-2 transition-all group-hover:bg-primary/20">
               {category.icon}
             </div>

@@ -1,5 +1,5 @@
 import { ReactNode, useEffect } from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import { useRouter } from "next/router";
 import MainNav from "./main-nav";
 import Footer from "./footer";
 import { ScrollToTop } from "./scroll-to-top";
@@ -19,13 +19,13 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps) => {
-  const location = useLocation();
+  const router = useRouter();
   
   useEffect(() => {
     // Track page views on route change
     if (window.gtag) {
       window.gtag('event', 'page_view', {
-        page_path: location.pathname + location.search,
+        page_path: router.asPath,
       });
     }
     
@@ -33,14 +33,14 @@ const Layout = ({ children }: LayoutProps) => {
     if (window.fbq) {
       window.fbq('track', 'PageView');
     }
-  }, [location]);
+  }, [router.asPath]);
 
   return (
     <div className="min-h-screen flex flex-col">
       <ScrollToTop />
       <MainNav />
       <main className="flex-grow">
-        {children || <Outlet />}
+        {children}
       </main>
       <Footer />
       <WhatsAppWidget />

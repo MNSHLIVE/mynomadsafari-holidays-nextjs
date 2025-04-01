@@ -1,19 +1,18 @@
-
 import React from "react";
-import { Helmet } from "react-helmet";
+import Head from "next/head";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@/components/ui/breadcrumb";
 import { ChevronRight } from "lucide-react";
 
 const Privacy = () => {
   return (
     <>
-      <Helmet>
+      <Head>
         <title>Privacy Policy | My Nomadsafari Holidays</title>
         <meta 
           name="description" 
-          content="Read about how My Nomadsafari Holidays protects and handles your personal data." 
+          content="Learn about how My Nomadsafari Holidays collects, uses, and protects your personal information." 
         />
-      </Helmet>
+      </Head>
 
       <div className="container mx-auto px-4 py-12">
         <Breadcrumb className="mb-8">

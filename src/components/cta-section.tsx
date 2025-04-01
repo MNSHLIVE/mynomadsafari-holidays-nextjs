@@ -1,5 +1,4 @@
-
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -53,7 +52,7 @@ const CTASection = ({
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{title}</h2>
             <p className="mb-8 text-lg opacity-90">{description}</p>
-            <Link to={buttonLink}>
+            <Link href={buttonLink}>
               <Button 
                 size="lg" 
                 className="group bg-primary hover:bg-primary/90"

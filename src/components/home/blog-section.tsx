@@ -1,5 +1,4 @@
-
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import SectionHeading from "@/components/section-heading";
@@ -41,7 +40,7 @@ const BlogSection = ({ posts }: BlogSectionProps) => {
       </div>
 
       <div className="text-center mt-10">
-        <Link to="/blog">
+        <Link href="/blog">
           <Button variant="outline" className="group">
             <span>Read More Articles</span>
             <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />

@@ -29,6 +29,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Calendar as CalendarComponent } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import DestinationQueryForm from "@/components/destination-query-form";
+import ClientOnly from "./client-only";
 
 // Constants for rate calculations
 const HOTEL_RATES = {
@@ -237,303 +238,305 @@ const TourCalculator = ({ className, onSubmit }: TourCalculatorProps) => {
             </CardDescription>
           </CardHeader>
           <CardContent className="pt-6">
-            <Tabs 
-              defaultValue="domestic" 
-              value={calculatorType} 
-              onValueChange={(value) => setCalculatorType(value as CalculatorType)}
-            >
-              <TabsList className="grid grid-cols-2 mb-6">
-                <TabsTrigger value="domestic">Domestic Tour</TabsTrigger>
-                <TabsTrigger value="international">International Tour</TabsTrigger>
-              </TabsList>
-              
-              <div className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {/* Left Column */}
-                  <div className="space-y-4">
-                    {/* Destination */}
-                    <div>
-                      <Label htmlFor="destination" className="flex items-center gap-1 mb-1.5">
-                        <MapPin className="h-4 w-4 text-primary" />
-                        Destination
-                      </Label>
-                      <Select
-                        value={destination}
-                        onValueChange={setDestination}
-                      >
-                        <SelectTrigger id="destination">
-                          <SelectValue placeholder="Select destination" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {(calculatorType === "domestic" ? domesticDestinations : internationalDestinations)
-                            .map((dest) => (
-                              <SelectItem key={dest} value={dest}>
-                                {dest}
-                              </SelectItem>
-                            ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    {/* Duration */}
-                    <div>
-                      <Label htmlFor="days" className="flex items-center gap-1 mb-1.5">
-                        <Calendar className="h-4 w-4 text-primary" />
-                        Duration (Days)
-                      </Label>
-                      <Input
-                        id="days"
-                        type="number"
-                        min={1}
-                        max={30}
-                        value={days}
-                        onChange={(e) => setDays(Math.max(1, parseInt(e.target.value) || 1))}
-                      />
-                    </div>
-
-                    {/* Travel Date */}
-                    <div>
-                      <Label htmlFor="travelDate" className="flex items-center gap-1 mb-1.5">
-                        <Calendar className="h-4 w-4 text-primary" />
-                        Travel Date
-                      </Label>
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <Button
-                            variant="outline"
-                            className="w-full justify-start text-left font-normal"
-                            id="travelDate"
-                          >
-                            {travelDate ? format(travelDate, "PPP") : "Select a date"}
-                          </Button>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0" align="start">
-                          <CalendarComponent
-                            mode="single"
-                            selected={travelDate}
-                            onSelect={setTravelDate}
-                            initialFocus
-                            disabled={(date) => date < new Date()}
-                          />
-                        </PopoverContent>
-                      </Popover>
-                    </div>
-
-                    {/* Travelers */}
-                    <div>
-                      <Label className="flex items-center gap-1 mb-1.5">
-                        <Users className="h-4 w-4 text-primary" />
-                        Travelers
-                      </Label>
-                      <div className="grid grid-cols-2 gap-4">
-                        <div>
-                          <Label htmlFor="adults" className="text-xs">Adults</Label>
-                          <Input
-                            id="adults"
-                            type="number"
-                            min={1}
-                            max={20}
-                            value={adults}
-                            onChange={(e) => setAdults(Math.max(1, parseInt(e.target.value) || 1))}
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor="children" className="text-xs">Children (4-12 yrs)</Label>
-                          <Input
-                            id="children"
-                            type="number"
-                            min={0}
-                            max={10}
-                            value={children}
-                            onChange={(e) => setChildren(Math.max(0, parseInt(e.target.value) || 0))}
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Distance (Domestic only) */}
-                    {calculatorType === "domestic" && (
+            <ClientOnly>
+              <Tabs 
+                defaultValue="domestic" 
+                value={calculatorType} 
+                onValueChange={(value) => setCalculatorType(value as CalculatorType)}
+              >
+                <TabsList className="grid grid-cols-2 mb-6">
+                  <TabsTrigger value="domestic">Domestic Tour</TabsTrigger>
+                  <TabsTrigger value="international">International Tour</TabsTrigger>
+                </TabsList>
+                
+                <div className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Left Column */}
+                    <div className="space-y-4">
+                      {/* Destination */}
                       <div>
-                        <Label htmlFor="distance" className="flex items-center gap-1 mb-1.5">
-                          <Car className="h-4 w-4 text-primary" />
-                          Estimated Distance (km)
+                        <Label htmlFor="destination" className="flex items-center gap-1 mb-1.5">
+                          <MapPin className="h-4 w-4 text-primary" />
+                          Destination
+                        </Label>
+                        <Select
+                          value={destination}
+                          onValueChange={setDestination}
+                        >
+                          <SelectTrigger id="destination">
+                            <SelectValue placeholder="Select destination" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {(calculatorType === "domestic" ? domesticDestinations : internationalDestinations)
+                              .map((dest) => (
+                                <SelectItem key={dest} value={dest}>
+                                  {dest}
+                                </SelectItem>
+                              ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      {/* Duration */}
+                      <div>
+                        <Label htmlFor="days" className="flex items-center gap-1 mb-1.5">
+                          <Calendar className="h-4 w-4 text-primary" />
+                          Duration (Days)
                         </Label>
                         <Input
-                          id="distance"
+                          id="days"
                           type="number"
-                          value={distance}
-                          readOnly
-                          className="bg-muted"
+                          min={1}
+                          max={30}
+                          value={days}
+                          onChange={(e) => setDays(Math.max(1, parseInt(e.target.value) || 1))}
                         />
-                        <p className="text-xs text-muted-foreground mt-1">
-                          Based on {days} days (250km per day)
-                        </p>
                       </div>
-                    )}
-                  </div>
 
-                  {/* Right Column */}
-                  <div className="space-y-4">
-                    {/* Hotel Type */}
-                    <div>
-                      <Label htmlFor="hotelType" className="flex items-center gap-1 mb-1.5">
-                        <Hotel className="h-4 w-4 text-primary" />
-                        Hotel Type
-                      </Label>
-                      <Select
-                        value={hotelType}
-                        onValueChange={(value) => setHotelType(value as HotelType)}
-                      >
-                        <SelectTrigger id="hotelType">
-                          <SelectValue placeholder="Select hotel type" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="3-star">3-Star Hotel</SelectItem>
-                          <SelectItem value="4-star">4-Star Hotel</SelectItem>
-                          <SelectItem value="5-star">5-Star Hotel</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
+                      {/* Travel Date */}
+                      <div>
+                        <Label htmlFor="travelDate" className="flex items-center gap-1 mb-1.5">
+                          <Calendar className="h-4 w-4 text-primary" />
+                          Travel Date
+                        </Label>
+                        <Popover>
+                          <PopoverTrigger asChild>
+                            <Button
+                              variant="outline"
+                              className="w-full justify-start text-left font-normal"
+                              id="travelDate"
+                            >
+                              {travelDate ? format(travelDate, "PPP") : "Select a date"}
+                            </Button>
+                          </PopoverTrigger>
+                          <PopoverContent className="w-auto p-0" align="start">
+                            <CalendarComponent
+                              mode="single"
+                              selected={travelDate}
+                              onSelect={setTravelDate}
+                              initialFocus
+                              disabled={(date) => date < new Date()}
+                            />
+                          </PopoverContent>
+                        </Popover>
+                      </div>
 
-                    {/* Room Type */}
-                    <div>
-                      <Label htmlFor="roomType" className="flex items-center gap-1 mb-1.5">
-                        Room Type
-                      </Label>
-                      <Select
-                        value={roomType}
-                        onValueChange={(value) => setRoomType(value as RoomType)}
-                      >
-                        <SelectTrigger id="roomType">
-                          <SelectValue placeholder="Select room type" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="single">Single Room</SelectItem>
-                          <SelectItem value="double">Double Room</SelectItem>
-                          <SelectItem value="triple">Triple Room</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
+                      {/* Travelers */}
+                      <div>
+                        <Label className="flex items-center gap-1 mb-1.5">
+                          <Users className="h-4 w-4 text-primary" />
+                          Travelers
+                        </Label>
+                        <div className="grid grid-cols-2 gap-4">
+                          <div>
+                            <Label htmlFor="adults" className="text-xs">Adults</Label>
+                            <Input
+                              id="adults"
+                              type="number"
+                              min={1}
+                              max={20}
+                              value={adults}
+                              onChange={(e) => setAdults(Math.max(1, parseInt(e.target.value) || 1))}
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="children" className="text-xs">Children (4-12 yrs)</Label>
+                            <Input
+                              id="children"
+                              type="number"
+                              min={0}
+                              max={10}
+                              value={children}
+                              onChange={(e) => setChildren(Math.max(0, parseInt(e.target.value) || 0))}
+                            />
+                          </div>
+                        </div>
+                      </div>
 
-                    {/* Number of Rooms */}
-                    <div>
-                      <Label htmlFor="rooms" className="flex items-center gap-1 mb-1.5">
-                        Number of Rooms
-                      </Label>
-                      <Input
-                        id="rooms"
-                        type="number"
-                        min={1}
-                        max={10}
-                        value={rooms}
-                        onChange={(e) => setRooms(Math.max(1, parseInt(e.target.value) || 1))}
-                      />
-                      {adults > 4 && (
-                        <p className="text-xs text-amber-600 mt-1">
-                          2+ rooms recommended for {adults} adults
-                        </p>
+                      {/* Distance (Domestic only) */}
+                      {calculatorType === "domestic" && (
+                        <div>
+                          <Label htmlFor="distance" className="flex items-center gap-1 mb-1.5">
+                            <Car className="h-4 w-4 text-primary" />
+                            Estimated Distance (km)
+                          </Label>
+                          <Input
+                            id="distance"
+                            type="number"
+                            value={distance}
+                            readOnly
+                            className="bg-muted"
+                          />
+                          <p className="text-xs text-muted-foreground mt-1">
+                            Based on {days} days (250km per day)
+                          </p>
+                        </div>
                       )}
                     </div>
 
-                    {/* Transport Type (Domestic only) */}
-                    {calculatorType === "domestic" && (
+                    {/* Right Column */}
+                    <div className="space-y-4">
+                      {/* Hotel Type */}
                       <div>
-                        <Label htmlFor="transportType" className="flex items-center gap-1 mb-1.5">
-                          <Car className="h-4 w-4 text-primary" />
-                          Transport Type
+                        <Label htmlFor="hotelType" className="flex items-center gap-1 mb-1.5">
+                          <Hotel className="h-4 w-4 text-primary" />
+                          Hotel Type
                         </Label>
                         <Select
-                          value={transportType}
-                          onValueChange={(value) => setTransportType(value as keyof typeof TRANSPORT_RATES)}
+                          value={hotelType}
+                          onValueChange={(value) => setHotelType(value as HotelType)}
                         >
-                          <SelectTrigger id="transportType">
-                            <SelectValue placeholder="Select transport type" />
+                          <SelectTrigger id="hotelType">
+                            <SelectValue placeholder="Select hotel type" />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="sedan">Sedan Car (up to 4 people)</SelectItem>
-                            <SelectItem value="suv">SUV (up to 6 people)</SelectItem>
-                            <SelectItem value="tempo">Tempo Traveller (up to 16 people)</SelectItem>
+                            <SelectItem value="3-star">3-Star Hotel</SelectItem>
+                            <SelectItem value="4-star">4-Star Hotel</SelectItem>
+                            <SelectItem value="5-star">5-Star Hotel</SelectItem>
                           </SelectContent>
                         </Select>
-                        {/* Add vehicle capacity warning if needed */}
-                        {adults + children > VEHICLE_CAPACITY[transportType] && (
-                          <p className="text-xs text-destructive mt-1">
-                            Selected vehicle cannot accommodate {adults + children} travelers. Please choose a larger vehicle.
+                      </div>
+
+                      {/* Room Type */}
+                      <div>
+                        <Label htmlFor="roomType" className="flex items-center gap-1 mb-1.5">
+                          Room Type
+                        </Label>
+                        <Select
+                          value={roomType}
+                          onValueChange={(value) => setRoomType(value as RoomType)}
+                        >
+                          <SelectTrigger id="roomType">
+                            <SelectValue placeholder="Select room type" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="single">Single Room</SelectItem>
+                            <SelectItem value="double">Double Room</SelectItem>
+                            <SelectItem value="triple">Triple Room</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      {/* Number of Rooms */}
+                      <div>
+                        <Label htmlFor="rooms" className="flex items-center gap-1 mb-1.5">
+                          Number of Rooms
+                        </Label>
+                        <Input
+                          id="rooms"
+                          type="number"
+                          min={1}
+                          max={10}
+                          value={rooms}
+                          onChange={(e) => setRooms(Math.max(1, parseInt(e.target.value) || 1))}
+                        />
+                        {adults > 4 && (
+                          <p className="text-xs text-amber-600 mt-1">
+                            2+ rooms recommended for {adults} adults
                           </p>
                         )}
                       </div>
-                    )}
-                  </div>
-                </div>
 
-                {/* Cost Summary */}
-                <div className="mt-6 p-4 bg-muted/50 rounded-lg">
-                  <h3 className="font-semibold mb-3 text-lg">Estimated Package Cost</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <div className="flex justify-between">
-                        <span>Hotel Cost:</span>
-                        <span className="font-medium">{formatCurrency(hotelCost)}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>Transportation Cost:</span>
-                        <span className="font-medium">{formatCurrency(transportCost)}</span>
-                      </div>
-                      <div className="flex justify-between text-lg font-bold pt-2 border-t">
-                        <span>Base Package Cost:</span>
-                        <span className="text-primary">{formatCurrency(totalCost)}</span>
-                      </div>
-                    </div>
-                    <div className="bg-primary/5 p-4 rounded-lg">
-                      <h4 className="font-medium mb-2">
-                        Package Type: <span className="font-bold">{packageType}</span>
-                      </h4>
-                      <p className="text-sm text-muted-foreground">
-                        This is a base estimate. Final price may vary based on availability and season.
-                      </p>
-                      <div className="mt-3 text-xs space-y-1">
-                        {calculatorType === "domestic" ? (
-                          <>
-                            <p className="text-amber-600 font-medium">Additional charges (not included):</p>
-                            <p>• Toll taxes and parking charges</p>
-                            <p>• Driver allowance (₹500 per day)</p>
-                            <p>• Meals and entrance fees</p>
-                            <p>• Any other personal expenses</p>
-                          </>
-                        ) : (
-                          <>
-                            <p>• All flights and transfers included</p>
-                            <p>• Local sightseeing with guide</p>
-                            <p>• All taxes and visa assistance</p>
-                          </>
-                        )}
-                      </div>
+                      {/* Transport Type (Domestic only) */}
+                      {calculatorType === "domestic" && (
+                        <div>
+                          <Label htmlFor="transportType" className="flex items-center gap-1 mb-1.5">
+                            <Car className="h-4 w-4 text-primary" />
+                            Transport Type
+                          </Label>
+                          <Select
+                            value={transportType}
+                            onValueChange={(value) => setTransportType(value as keyof typeof TRANSPORT_RATES)}
+                          >
+                            <SelectTrigger id="transportType">
+                              <SelectValue placeholder="Select transport type" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="sedan">Sedan Car (up to 4 people)</SelectItem>
+                              <SelectItem value="suv">SUV (up to 6 people)</SelectItem>
+                              <SelectItem value="tempo">Tempo Traveller (up to 16 people)</SelectItem>
+                            </SelectContent>
+                          </Select>
+                          {/* Add vehicle capacity warning if needed */}
+                          {adults + children > VEHICLE_CAPACITY[transportType] && (
+                            <p className="text-xs text-destructive mt-1">
+                              Selected vehicle cannot accommodate {adults + children} travelers. Please choose a larger vehicle.
+                            </p>
+                          )}
+                        </div>
+                      )}
                     </div>
                   </div>
-                </div>
 
-                {showQueryForm ? (
-                  <div className="mt-6">
-                    <DestinationQueryForm 
-                      destinationName={`${destination} ${calculatorType === "domestic" ? "Tour" : "Package"}`}
-                      buttonText="Submit Booking Request"
-                      buttonVariant="default"
-                      className="w-full"
-                    />
+                  {/* Cost Summary */}
+                  <div className="mt-6 p-4 bg-muted/50 rounded-lg">
+                    <h3 className="font-semibold mb-3 text-lg">Estimated Package Cost</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <div className="flex justify-between">
+                          <span>Hotel Cost:</span>
+                          <span className="font-medium">{formatCurrency(hotelCost)}</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>Transportation Cost:</span>
+                          <span className="font-medium">{formatCurrency(transportCost)}</span>
+                        </div>
+                        <div className="flex justify-between text-lg font-bold pt-2 border-t">
+                          <span>Base Package Cost:</span>
+                          <span className="text-primary">{formatCurrency(totalCost)}</span>
+                        </div>
+                      </div>
+                      <div className="bg-primary/5 p-4 rounded-lg">
+                        <h4 className="font-medium mb-2">
+                          Package Type: <span className="font-bold">{packageType}</span>
+                        </h4>
+                        <p className="text-sm text-muted-foreground">
+                          This is a base estimate. Final price may vary based on availability and season.
+                        </p>
+                        <div className="mt-3 text-xs space-y-1">
+                          {calculatorType === "domestic" ? (
+                            <>
+                              <p className="text-amber-600 font-medium">Additional charges (not included):</p>
+                              <p>• Toll taxes and parking charges</p>
+                              <p>• Driver allowance (₹500 per day)</p>
+                              <p>• Meals and entrance fees</p>
+                              <p>• Any other personal expenses</p>
+                            </>
+                          ) : (
+                            <>
+                              <p>• All flights and transfers included</p>
+                              <p>• Local sightseeing with guide</p>
+                              <p>• All taxes and visa assistance</p>
+                            </>
+                          )}
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                ) : (
-                  <div className="mt-6">
-                    <Button 
-                      type="button"
-                      onClick={handleSubmit}
-                      className="w-full bg-primary hover:bg-primary/90 text-white"
-                    >
-                      Book Your Tour
-                    </Button>
-                  </div>
-                )}
-              </div>
-            </Tabs>
+
+                  {showQueryForm ? (
+                    <div className="mt-6">
+                      <DestinationQueryForm 
+                        destinationName={`${destination} ${calculatorType === "domestic" ? "Tour" : "Package"}`}
+                        buttonText="Submit Booking Request"
+                        buttonVariant="default"
+                        className="w-full"
+                      />
+                    </div>
+                  ) : (
+                    <div className="mt-6">
+                      <Button 
+                        type="button"
+                        onClick={handleSubmit}
+                        className="w-full bg-primary hover:bg-primary/90 text-white"
+                      >
+                        Book Your Tour
+                      </Button>
+                    </div>
+                  )}
+                </div>
+              </Tabs>
+            </ClientOnly>
           </CardContent>
         </Card>
       </div>

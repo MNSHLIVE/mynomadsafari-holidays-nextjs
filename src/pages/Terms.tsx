@@ -1,19 +1,18 @@
-
 import React from "react";
-import { Helmet } from "react-helmet";
+import Head from "next/head";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@/components/ui/breadcrumb";
 import { ChevronRight } from "lucide-react";
 
 const Terms = () => {
   return (
     <>
-      <Helmet>
-        <title>Terms & Conditions | My Nomadsafari Holidays</title>
+      <Head>
+        <title>Terms and Conditions | My Nomadsafari Holidays</title>
         <meta 
           name="description" 
-          content="Read the terms and conditions for booking travel services with My Nomadsafari Holidays." 
+          content="Read our terms and conditions to understand your rights and responsibilities when using My Nomadsafari Holidays services." 
         />
-      </Helmet>
+      </Head>
 
       <div className="container mx-auto px-4 py-12">
         <Breadcrumb className="mb-8">

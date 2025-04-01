@@ -1,6 +1,5 @@
-
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Calendar } from "lucide-react";
 
@@ -64,7 +63,7 @@ const BlogCard = ({
           </div>
         )}
         
-        <Link to={link} className="hover:text-primary transition-colors">
+        <Link href={link} className="hover:text-primary transition-colors">
           <h3 className="text-lg font-semibold mb-2 line-clamp-2">{title}</h3>
         </Link>
         

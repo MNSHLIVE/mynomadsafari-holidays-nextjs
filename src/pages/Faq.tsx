@@ -1,5 +1,5 @@
 import React from "react";
-import { Helmet } from "react-helmet";
+import Head from "next/head";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@/components/ui/breadcrumb";
 import { ChevronRight } from "lucide-react";
 import {
@@ -9,6 +9,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import BackButton from "@/components/back-button";
+import ClientOnly from "@/components/client-only";
 
 const Faq = () => {
   const faqs = [
@@ -64,13 +65,13 @@ const Faq = () => {
 
   return (
     <>
-      <Helmet>
+      <Head>
         <title>Frequently Asked Questions | My Nomadsafari Holidays</title>
         <meta 
           name="description" 
           content="Find answers to commonly asked questions about booking tours, payments, cancellations, and more with My Nomadsafari Holidays." 
         />
-      </Helmet>
+      </Head>
 
       <div className="container mx-auto px-4 pt-24 pb-16">
         <BackButton />
@@ -95,18 +96,20 @@ const Faq = () => {
           </p>
         </div>
 
-        <Accordion type="single" collapsible className="w-full">
-          {faqs.map((faq, index) => (
-            <AccordionItem key={index} value={`item-${index}`}>
-              <AccordionTrigger className="text-left font-medium">
-                {faq.question}
-              </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground">
-                {faq.answer}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+        <ClientOnly>
+          <Accordion type="single" collapsible className="w-full">
+            {faqs.map((faq, index) => (
+              <AccordionItem key={index} value={`item-${index}`}>
+                <AccordionTrigger className="text-left font-medium">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </ClientOnly>
 
         <div className="mt-12 p-6 bg-muted rounded-lg">
           <h2 className="text-xl font-semibold mb-4">Still have questions?</h2>

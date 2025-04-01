@@ -1,19 +1,18 @@
-
 import React from "react";
-import { Helmet } from "react-helmet";
+import Head from "next/head";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@/components/ui/breadcrumb";
 import { ChevronRight } from "lucide-react";
 
 const Refund = () => {
   return (
     <>
-      <Helmet>
+      <Head>
         <title>Refund Policy | My Nomadsafari Holidays</title>
         <meta 
           name="description" 
-          content="Learn about the refund policy for bookings made with My Nomadsafari Holidays." 
+          content="Learn about our refund and cancellation policies for tours and travel services at My Nomadsafari Holidays." 
         />
-      </Helmet>
+      </Head>
 
       <div className="container mx-auto px-4 py-12">
         <Breadcrumb className="mb-8">

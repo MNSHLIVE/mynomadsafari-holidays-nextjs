@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { DialogFooter } from "@/components/ui/dialog";
@@ -8,6 +7,7 @@ import { CalendarSelector } from "./calendar-selector";
 import { TravelerSelector } from "./traveler-selector";
 import { PackageSelector } from "./package-selector";
 import { SpecialRequirements } from "./special-requirements";
+import ClientOnly from "../client-only";
 
 interface QueryFormContentProps {
   destinationName: string;
@@ -55,48 +55,50 @@ export const QueryFormContent = ({ destinationName, onClose }: QueryFormContentP
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 py-4">
-      <div className="grid grid-cols-1 gap-4">
-        <ContactFields 
-          name={name}
-          email={email}
-          phone={phone}
-          setName={setName}
-          setEmail={setEmail}
-          setPhone={setPhone}
-        />
-        
-        <div className="grid grid-cols-2 gap-3">
-          <div>
-            <CalendarSelector 
-              travelDate={travelDate} 
-              setTravelDate={setTravelDate} 
+    <ClientOnly>
+      <form onSubmit={handleSubmit} className="space-y-4 py-4">
+        <div className="grid grid-cols-1 gap-4">
+          <ContactFields 
+            name={name}
+            email={email}
+            phone={phone}
+            setName={setName}
+            setEmail={setEmail}
+            setPhone={setPhone}
+          />
+          
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <CalendarSelector 
+                travelDate={travelDate} 
+                setTravelDate={setTravelDate} 
+              />
+            </div>
+            <TravelerSelector 
+              adults={adults}
+              children={children}
+              setAdults={setAdults}
+              setChildren={setChildren}
             />
           </div>
-          <TravelerSelector 
-            adults={adults}
-            children={children}
-            setAdults={setAdults}
-            setChildren={setChildren}
+
+          <PackageSelector 
+            packageType={packageType}
+            setPackageType={setPackageType}
+          />
+          
+          <SpecialRequirements 
+            message={message}
+            setMessage={setMessage}
           />
         </div>
-
-        <PackageSelector 
-          packageType={packageType}
-          setPackageType={setPackageType}
-        />
         
-        <SpecialRequirements 
-          message={message}
-          setMessage={setMessage}
-        />
-      </div>
-      
-      <DialogFooter>
-        <Button type="submit" disabled={isSubmitting} className="w-full">
-          {isSubmitting ? "Submitting..." : "Submit Enquiry"}
-        </Button>
-      </DialogFooter>
-    </form>
+        <DialogFooter>
+          <Button type="submit" disabled={isSubmitting} className="w-full">
+            {isSubmitting ? "Submitting..." : "Submit Enquiry"}
+          </Button>
+        </DialogFooter>
+      </form>
+    </ClientOnly>
   );
 };

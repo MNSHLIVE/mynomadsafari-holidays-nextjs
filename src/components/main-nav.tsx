@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -8,7 +9,7 @@ import { cn } from "@/lib/utils";
 const MainNav = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const location = useLocation();
+  const router = useRouter();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -27,7 +28,7 @@ const MainNav = () => {
   useEffect(() => {
     // Close mobile menu when route changes
     setIsOpen(false);
-  }, [location]);
+  }, [router.asPath]);
 
   const navLinks = [
     { href: "/", label: "Home" },
@@ -52,7 +53,7 @@ const MainNav = () => {
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
             <Link 
-              to="/" 
+              href="/" 
               className="text-xl font-bold text-primary flex items-center space-x-3"
             >
               <img 
@@ -71,10 +72,10 @@ const MainNav = () => {
             {navLinks.map((link) => (
               <Link
                 key={link.href}
-                to={link.href}
+                href={link.href}
                 className={cn(
                   "text-sm font-medium transition-all duration-300 relative group py-2 px-3 rounded-md hover:bg-primary/10",
-                  location.pathname === link.href 
+                  router.asPath === link.href 
                     ? "text-primary bg-primary/10" 
                     : "text-foreground/80 hover:text-primary"
                 )}
@@ -83,7 +84,7 @@ const MainNav = () => {
                 <span 
                   className={cn(
                     "absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 transition-transform duration-300 bg-primary rounded-full",
-                    location.pathname === link.href 
+                    router.asPath === link.href 
                       ? "scale-x-100" 
                       : "group-hover:scale-x-100"
                   )}
@@ -120,10 +121,10 @@ const MainNav = () => {
             {navLinks.map((link) => (
               <Link
                 key={link.href}
-                to={link.href}
+                href={link.href}
                 className={cn(
                   "block py-3 px-4 rounded-md text-base font-medium transition-colors",
-                  location.pathname === link.href 
+                  router.asPath === link.href 
                     ? "bg-primary/10 text-primary" 
                     : "hover:bg-muted"
                 )}

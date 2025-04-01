@@ -1,6 +1,7 @@
 import { useState } from "react";
 import TourCalculator from "@/components/tour-calculator";
 import { toast } from "sonner";
+import ClientOnly from "@/components/client-only";
 
 export default function CalculatorPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -32,10 +33,12 @@ export default function CalculatorPage() {
 
   return (
     <div className="container mx-auto py-8 px-4">
-      <TourCalculator 
-        onSubmit={handleCalculatorSubmit}
-        className="max-w-4xl mx-auto"
-      />
+      <ClientOnly>
+        <TourCalculator 
+          onSubmit={handleCalculatorSubmit}
+          className="max-w-4xl mx-auto"
+        />
+      </ClientOnly>
     </div>
   );
 } 

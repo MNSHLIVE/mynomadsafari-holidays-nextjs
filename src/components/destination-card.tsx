@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -62,7 +62,7 @@ const DestinationCard = ({
             <span className="font-medium">Best time to visit:</span> {bestTime}
           </p>
         )}
-        <Link to={link} className="mt-auto">
+        <Link href={link} className="mt-auto">
           <Button 
             variant="default" 
             className="w-full group bg-primary hover:bg-primary/90"

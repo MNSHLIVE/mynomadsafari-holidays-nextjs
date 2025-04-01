@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import SectionHeading from "@/components/section-heading";
 import TourCard from "@/components/tour-card";
 import { Button } from "@/components/ui/button";
@@ -19,7 +19,7 @@ import {
   blogPosts
 } from "@/components/home/home-data";
 
-const Index = () => {
+export default function Home() {
   return (
     <>
       <HeroSlider slides={heroSlides} />
@@ -37,13 +37,13 @@ const Index = () => {
               <TourCard
                 key={index}
                 {...tour}
-                image={tour.imageSrc}
+                imageSrc={tour.imageSrc}
               />
             ))}
           </div>
           <div className="text-center mt-8">
             <Button asChild>
-              <Link to="/tours">View All Tours</Link>
+              <Link href="/tours">View All Tours</Link>
             </Button>
           </div>
         </div>
@@ -62,13 +62,13 @@ const Index = () => {
               <TourCard
                 key={index}
                 {...tour}
-                image={tour.imageSrc}
+                imageSrc={tour.imageSrc}
               />
             ))}
           </div>
           <div className="text-center mt-8">
             <Button asChild>
-              <Link to="/tours/religious">View All Religious Tours</Link>
+              <Link href="/tours/religious">View All Religious Tours</Link>
             </Button>
           </div>
         </div>
@@ -123,6 +123,4 @@ const Index = () => {
       <WhatsAppButton />
     </>
   );
-};
-
-export default Index;
+} 

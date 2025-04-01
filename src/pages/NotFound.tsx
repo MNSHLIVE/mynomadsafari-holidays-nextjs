@@ -1,5 +1,4 @@
-
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { HomeIcon, ArrowLeft } from "lucide-react";
 
@@ -13,13 +12,13 @@ const NotFound = () => {
       </p>
       <div className="flex flex-col md:flex-row gap-4">
         <Button asChild>
-          <Link to="/" className="flex items-center">
+          <Link href="/" className="flex items-center">
             <HomeIcon className="mr-2 h-4 w-4" />
             Back to Home
           </Link>
         </Button>
         <Button variant="outline" asChild>
-          <Link to="/contact" className="flex items-center">
+          <Link href="/contact" className="flex items-center">
             <ArrowLeft className="mr-2 h-4 w-4" />
             Contact Us
           </Link>
