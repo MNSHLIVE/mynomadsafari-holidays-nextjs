@@ -1,7 +1,11 @@
 import React from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import { X } from 'lucide-react';
+import type { VariantProps } from 'class-variance-authority';
+
+type ButtonSize = VariantProps<typeof buttonVariants>['size'];
+type ButtonVariant = VariantProps<typeof buttonVariants>['variant'];
 
 interface Destination {
   title: string;
@@ -107,8 +111,8 @@ export function DestinationModal({ isOpen, onClose, destination }: DestinationMo
         {/* Close Button */}
         <Button
           onClick={onClose}
-          size="icon"
-          variant="ghost"
+          size={'icon' as ButtonSize}
+          variant={'ghost' as ButtonVariant}
           className="absolute top-4 right-4"
           type="button"
         >
