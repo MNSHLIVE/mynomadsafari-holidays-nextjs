@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { Button, type ButtonProps } from '@/components/ui/button';
+import { Button } from '@/components/ui/button';
 import { X } from 'lucide-react';
 
 interface Destination {
@@ -14,6 +14,12 @@ interface Destination {
   inclusions: string[];
   exclusions: string[];
   importantNotes: string[];
+  imageSrc: string;
+  description: string;
+  placesToSee?: string[];
+  foodRecommendations?: string[];
+  tips?: string[];
+  majorTours?: string[];
 }
 
 interface DestinationModalProps {
