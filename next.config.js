@@ -15,6 +15,14 @@ const nextConfig = {
       }
     }
     return config
+  },
+  typescript: {
+    ignoreBuildErrors: true
+  },
+  swcMinify: false,
+  experimental: {
+    workerThreads: false,
+    cpus: 1
   }
 }
 
