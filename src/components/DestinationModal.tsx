@@ -28,7 +28,7 @@ interface DestinationModalProps {
   onClose: () => void;
 }
 
-export function DestinationModal({ destination, isOpen, onClose }: DestinationModalProps) {
+export default function DestinationModal({ destination, isOpen, onClose }: DestinationModalProps) {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl">
@@ -41,7 +41,6 @@ export function DestinationModal({ destination, isOpen, onClose }: DestinationMo
           className="absolute right-4 top-4"
           variant="ghost"
           size="icon"
-          type="button"
         >
           <X className="h-4 w-4" />
           <span className="sr-only">Close</span>
