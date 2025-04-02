@@ -38,8 +38,9 @@ const DestinationModal: React.FC<DestinationModalProps> = ({ destination, isOpen
         
         <Button 
           onClick={onClose}
-          className="absolute right-4 top-4"
+          size="icon"
           variant="ghost"
+          className="absolute right-4 top-4"
           aria-label="Close"
         >
           <X className="h-4 w-4" />
