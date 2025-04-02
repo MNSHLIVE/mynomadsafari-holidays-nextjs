@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { DestinationModal } from '@/components/DestinationModal';
+import DestinationModal from '@/components/destination-modal';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import SectionHeading from "@/components/section-heading";
 import DestinationQueryForm from "@/components/destination-query-form";
-import DestinationModal from '@/components/destination-modal';
 
 const destination = {
   title: "Thailand",

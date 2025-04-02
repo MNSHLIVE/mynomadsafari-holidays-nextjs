@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DestinationModal } from '@/components/DestinationModal';
+import DestinationModal from '@/components/destination-modal';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import SectionHeading from "@/components/section-heading";
