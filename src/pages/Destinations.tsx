@@ -220,21 +220,23 @@ const internationalDestinations = [
 ];
 
 const Destinations = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
   const [activeTab, setActiveTab] = useState("all");
 
   const filteredIndianDestinations = indianDestinations.filter(dest => 
-    dest.state.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    dest.description.toLowerCase().includes(searchTerm.toLowerCase())
+    dest.state.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    dest.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    dest.places.some(place => place.toLowerCase().includes(searchQuery.toLowerCase()))
   );
 
   const filteredInternationalDestinations = internationalDestinations.filter(dest => 
-    dest.country.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    dest.description.toLowerCase().includes(searchTerm.toLowerCase())
+    dest.country.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    dest.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    dest.places.some(place => place.toLowerCase().includes(searchQuery.toLowerCase()))
   );
 
   const clearSearch = () => {
-    setSearchTerm("");
+    setSearchQuery("");
   };
 
   useEffect(() => {
@@ -260,12 +262,12 @@ const Destinations = () => {
             <Input
               type="text"
               placeholder="Search destinations..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-10 pr-10"
             />
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            {searchTerm && (
+            {searchQuery && (
               <button 
                 onClick={clearSearch}
                 className="absolute right-3 top-1/2 transform -translate-y-1/2"

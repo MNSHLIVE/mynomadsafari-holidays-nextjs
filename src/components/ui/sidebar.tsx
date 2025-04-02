@@ -3,26 +3,26 @@ import { cn } from "@/lib/utils"
 
 // Simple sidebar components without complex ref handling
 export function Sidebar({ className, children, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return (
+    return (
     <div
       className={cn("flex h-full flex-col gap-4", className)}
-      {...props}
-    >
-      {children}
-    </div>
+            {...props}
+          >
+            {children}
+          </div>
   )
 }
 
 export function SidebarGroup({ className, children, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return (
-    <div
+      return (
+        <div
       className={cn("flex flex-col gap-1", className)}
-      {...props}
-    >
-      {children}
-    </div>
-  )
-}
+          {...props}
+        >
+          {children}
+        </div>
+      )
+    }
 
 export function SidebarLabel({ className, children, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return (
