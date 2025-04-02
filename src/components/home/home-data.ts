@@ -1,6 +1,49 @@
-// Shared data for home page components
+// TypeScript interfaces
+export interface HeroSlide {
+  imageSrc: string;
+  title: string;
+  subtitle: string;
+}
 
-export const heroSlides = [
+export interface Destination {
+  imageSrc: string;
+  title: string;
+  description: string;
+  bestTime: string;
+  isPopular?: boolean;
+  country?: string;
+  placesToSee?: string[];
+  foodRecommendations?: string[];
+  tips?: string[];
+  majorTours?: string[];
+}
+
+export interface Tour {
+  id: string;
+  title: string;
+  description: string;
+  duration: string;
+  price: number;
+  imageSrc: string;
+  category: string;
+  rating?: number;
+  reviews?: number;
+  isPopular?: boolean;
+}
+
+export interface BlogPost {
+  id: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  imageSrc: string;
+  date: string;
+  author: string;
+  category: string;
+}
+
+// Shared data for home page components
+export const heroSlides: HeroSlide[] = [
   {
     imageSrc: "/Destination/Home/Hero/Rajasthan-hero.jpg",
     title: "Your One-Stop Travel Expert – Explore the World Your Way",
@@ -20,6 +63,16 @@ export const heroSlides = [
     imageSrc: "/Destination/Home/Hero/Goa-hero.jpg",
     title: "Door-to-Door Travel Solutions",
     subtitle: "We pick you up from home and drop you back - hassle-free travel guaranteed"
+  },
+  {
+    imageSrc: "/Destination/Home/Hero/Himachal-hero.jpg",
+    title: "Experience the Magic of Mountains",
+    subtitle: "Discover the serene beauty of Himachal Pradesh"
+  },
+  {
+    imageSrc: "/Destination/Home/Hero/Singapore-hero.jpg",
+    title: "Explore the Lion City",
+    subtitle: "Experience the perfect blend of culture and modernity in Singapore"
   }
 ];
 
