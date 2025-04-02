@@ -1,17 +1,17 @@
 import React from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { Button, type ButtonProps } from '@/components/ui/button';
+import { Button } from '@/components/ui/button';
 import { X } from 'lucide-react';
 
 interface Destination {
   title: string;
   description?: string;
   imageSrc?: string;
-  itinerary?: {
+  itinerary?: Array<{
     day: string;
     title: string;
     description: string;
-  }[];
+  }>;
   highlights?: string[];
   inclusions?: string[];
   exclusions?: string[];
@@ -28,7 +28,7 @@ interface DestinationModalProps {
   onClose: () => void;
 }
 
-export default function DestinationModal({ destination, isOpen, onClose }: DestinationModalProps) {
+const DestinationModal: React.FC<DestinationModalProps> = ({ destination, isOpen, onClose }) => {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl">
@@ -40,9 +40,7 @@ export default function DestinationModal({ destination, isOpen, onClose }: Desti
           onClick={onClose}
           className="absolute right-4 top-4"
           variant="ghost"
-          size="icon"
-          type="button"
-          aria-label="Close dialog"
+          aria-label="Close"
         >
           <X className="h-4 w-4" />
           <span className="sr-only">Close</span>
@@ -65,7 +63,7 @@ export default function DestinationModal({ destination, isOpen, onClose }: Desti
             </div>
           )}
 
-          {destination.itinerary && (
+          {destination.itinerary && destination.itinerary.length > 0 && (
             <div>
               <h3 className="text-lg font-semibold mb-2">Itinerary</h3>
               <div className="space-y-4">
@@ -79,7 +77,7 @@ export default function DestinationModal({ destination, isOpen, onClose }: Desti
             </div>
           )}
 
-          {destination.highlights && (
+          {destination.highlights && destination.highlights.length > 0 && (
             <div>
               <h3 className="text-lg font-semibold mb-2">Highlights</h3>
               <ul className="grid gap-2">
@@ -93,7 +91,7 @@ export default function DestinationModal({ destination, isOpen, onClose }: Desti
             </div>
           )}
 
-          {destination.inclusions && (
+          {destination.inclusions && destination.inclusions.length > 0 && (
             <div>
               <h3 className="text-lg font-semibold mb-2">Inclusions</h3>
               <ul className="grid gap-2">
@@ -107,7 +105,7 @@ export default function DestinationModal({ destination, isOpen, onClose }: Desti
             </div>
           )}
 
-          {destination.exclusions && (
+          {destination.exclusions && destination.exclusions.length > 0 && (
             <div>
               <h3 className="text-lg font-semibold mb-2">Exclusions</h3>
               <ul className="grid gap-2">
@@ -121,7 +119,7 @@ export default function DestinationModal({ destination, isOpen, onClose }: Desti
             </div>
           )}
 
-          {destination.importantNotes && (
+          {destination.importantNotes && destination.importantNotes.length > 0 && (
             <div>
               <h3 className="text-lg font-semibold mb-2">Important Notes</h3>
               <ul className="grid gap-2">
@@ -135,7 +133,7 @@ export default function DestinationModal({ destination, isOpen, onClose }: Desti
             </div>
           )}
 
-          {destination.placesToSee && (
+          {destination.placesToSee && destination.placesToSee.length > 0 && (
             <div>
               <h3 className="text-lg font-semibold mb-2">Places to See</h3>
               <ul className="grid gap-2">
@@ -149,7 +147,7 @@ export default function DestinationModal({ destination, isOpen, onClose }: Desti
             </div>
           )}
 
-          {destination.foodRecommendations && (
+          {destination.foodRecommendations && destination.foodRecommendations.length > 0 && (
             <div>
               <h3 className="text-lg font-semibold mb-2">Must-Try Foods</h3>
               <ul className="grid gap-2">
@@ -163,7 +161,7 @@ export default function DestinationModal({ destination, isOpen, onClose }: Desti
             </div>
           )}
 
-          {destination.tips && (
+          {destination.tips && destination.tips.length > 0 && (
             <div>
               <h3 className="text-lg font-semibold mb-2">Travel Tips</h3>
               <ul className="grid gap-2">
@@ -177,7 +175,7 @@ export default function DestinationModal({ destination, isOpen, onClose }: Desti
             </div>
           )}
 
-          {destination.majorTours && (
+          {destination.majorTours && destination.majorTours.length > 0 && (
             <div>
               <h3 className="text-lg font-semibold mb-2">Popular Tours</h3>
               <ul className="grid gap-2">
@@ -194,4 +192,6 @@ export default function DestinationModal({ destination, isOpen, onClose }: Desti
       </DialogContent>
     </Dialog>
   );
-} 
+};
+
+export default DestinationModal; 
