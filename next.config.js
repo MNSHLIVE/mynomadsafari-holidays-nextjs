@@ -1,9 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  output: 'export',  // Enable static exports
   images: {
+    unoptimized: true,  // Required for static export
     domains: ['localhost'],
-    unoptimized: process.env.NODE_ENV === 'development'
   },
   // Optimize development performance
   webpack: (config, { dev, isServer }) => {

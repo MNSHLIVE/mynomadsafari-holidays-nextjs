@@ -128,79 +128,79 @@ const ReligiousTours = () => {
       </div>
 
       <ClientOnly>
-        <section className="mb-16">
-          <Card className="border-primary/20 bg-primary/5">
-            <CardContent className="p-6 md:p-8">
-              <div className="flex flex-col md:flex-row gap-6 items-center">
-                <div className="md:w-3/4">
-                  <h2 className="text-2xl font-bold mb-4 flex items-center">
-                    <Landmark className="mr-2 h-5 w-5 text-primary" />
-                    Sacred Pilgrimages Across India
-                  </h2>
-                  <p className="text-lg mb-4">
-                    India is home to some of the world's most revered religious sites. Our carefully curated tours 
-                    combine spiritual experiences with comfortable travel arrangements.
-                  </p>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
-                    <Badge className="justify-start" variant="outline">Hindu Temples</Badge>
-                    <Badge className="justify-start" variant="outline">Buddhist Sites</Badge>
-                    <Badge className="justify-start" variant="outline">Sikh Gurdwaras</Badge>
-                    <Badge className="justify-start" variant="outline">Sacred Rivers</Badge>
-                  </div>
-                </div>
-                <div className="md:w-1/4 flex justify-center">
-                  <DestinationQueryForm
-                    destinationName="Religious Tours"
-                    buttonText="Plan Your Pilgrimage"
-                    buttonVariant="default"
-                    className="px-6"
-                  />
+      <section className="mb-16">
+        <Card className="border-primary/20 bg-primary/5">
+          <CardContent className="p-6 md:p-8">
+            <div className="flex flex-col md:flex-row gap-6 items-center">
+              <div className="md:w-3/4">
+                <h2 className="text-2xl font-bold mb-4 flex items-center">
+                  <Landmark className="mr-2 h-5 w-5 text-primary" />
+                  Sacred Pilgrimages Across India
+                </h2>
+                <p className="text-lg mb-4">
+                  India is home to some of the world's most revered religious sites. Our carefully curated tours 
+                  combine spiritual experiences with comfortable travel arrangements.
+                </p>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
+                  <Badge className="justify-start" variant="outline">Hindu Temples</Badge>
+                  <Badge className="justify-start" variant="outline">Buddhist Sites</Badge>
+                  <Badge className="justify-start" variant="outline">Sikh Gurdwaras</Badge>
+                  <Badge className="justify-start" variant="outline">Sacred Rivers</Badge>
                 </div>
               </div>
-            </CardContent>
-          </Card>
-        </section>
+              <div className="md:w-1/4 flex justify-center">
+                <DestinationQueryForm
+                  destinationName="Religious Tours"
+                  buttonText="Plan Your Pilgrimage"
+                  buttonVariant="default"
+                  className="px-6"
+                />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </section>
 
-        <Tabs defaultValue="hindu" className="w-full mb-10">
-          <div className="flex justify-center mb-6">
-            <TabsList>
-              <TabsTrigger value="hindu">Hindu Pilgrimages</TabsTrigger>
-              <TabsTrigger value="buddhist">Buddhist Circuits</TabsTrigger>
-              <TabsTrigger value="sikh">Sikh Pilgrimages</TabsTrigger>
-              <TabsTrigger value="all">All Religious Tours</TabsTrigger>
-            </TabsList>
-          </div>
+      <Tabs defaultValue="hindu" className="w-full mb-10">
+        <div className="flex justify-center mb-6">
+          <TabsList>
+            <TabsTrigger value="hindu">Hindu Pilgrimages</TabsTrigger>
+            <TabsTrigger value="buddhist">Buddhist Circuits</TabsTrigger>
+            <TabsTrigger value="sikh">Sikh Pilgrimages</TabsTrigger>
+            <TabsTrigger value="all">All Religious Tours</TabsTrigger>
+          </TabsList>
+        </div>
 
-          <TabsContent value="hindu" className="mt-0">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+        <TabsContent value="hindu" className="mt-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
               {religiousTours.map((tour, index) => (
-                <TourCard
+              <TourCard
                   key={index}
                   title={tour.title}
-                  imageSrc={tour.imageSrc}
+                imageSrc={tour.imageSrc}
                   duration={tour.duration}
-                  location={tour.location}
-                  bestTime={tour.bestTime}
-                  description={tour.description}
+                location={tour.location}
+                bestTime={tour.bestTime}
+                description={tour.description}
                   packageType={tour.packageType}
                   price={tour.price}
-                />
-              ))}
-            </div>
-          </TabsContent>
+              />
+            ))}
+          </div>
+        </TabsContent>
 
-          <TabsContent value="buddhist" className="mt-0">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+        <TabsContent value="buddhist" className="mt-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
               {/* Add Buddhist tours here */}
-            </div>
-          </TabsContent>
+          </div>
+        </TabsContent>
 
-          <TabsContent value="sikh" className="mt-0">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+        <TabsContent value="sikh" className="mt-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
               {/* Add Sikh tours here */}
-            </div>
-          </TabsContent>
-        </Tabs>
+          </div>
+        </TabsContent>
+      </Tabs>
       </ClientOnly>
 
       <div className="max-w-3xl mx-auto bg-card rounded-xl p-6 border my-10">

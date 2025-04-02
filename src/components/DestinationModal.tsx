@@ -2,24 +2,20 @@ import React from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { X } from 'lucide-react';
-import type { VariantProps } from 'class-variance-authority';
-
-type ButtonSize = VariantProps<typeof buttonVariants>['size'];
-type ButtonVariant = VariantProps<typeof buttonVariants>['variant'];
 
 interface Destination {
   title: string;
-  itinerary: {
+  description?: string;
+  imageSrc?: string;
+  itinerary?: {
     day: string;
     title: string;
     description: string;
   }[];
-  highlights: string[];
-  inclusions: string[];
-  exclusions: string[];
-  importantNotes: string[];
-  imageSrc: string;
-  description: string;
+  highlights?: string[];
+  inclusions?: string[];
+  exclusions?: string[];
+  importantNotes?: string[];
   placesToSee?: string[];
   foodRecommendations?: string[];
   tips?: string[];
@@ -52,17 +48,91 @@ export function DestinationModal({ destination, isOpen, onClose }: DestinationMo
         </Button>
 
         <div className="grid gap-6">
-          <div className="relative h-[300px] w-full overflow-hidden rounded-lg">
-            <img
-              src={destination.imageSrc}
-              alt={destination.title}
-              className="h-full w-full object-cover"
-            />
-          </div>
+          {destination.imageSrc && (
+            <div className="relative h-[300px] w-full overflow-hidden rounded-lg">
+              <img
+                src={destination.imageSrc}
+                alt={destination.title}
+                className="h-full w-full object-cover"
+              />
+            </div>
+          )}
 
-          <div>
-            <p className="text-muted-foreground">{destination.description}</p>
-          </div>
+          {destination.description && (
+            <div>
+              <p className="text-muted-foreground">{destination.description}</p>
+            </div>
+          )}
+
+          {destination.itinerary && (
+            <div>
+              <h3 className="text-lg font-semibold mb-2">Itinerary</h3>
+              <div className="space-y-4">
+                {destination.itinerary.map((item, index) => (
+                  <div key={index} className="border-l-2 border-primary pl-4">
+                    <h4 className="font-medium">{item.day}: {item.title}</h4>
+                    <p className="text-muted-foreground">{item.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {destination.highlights && (
+            <div>
+              <h3 className="text-lg font-semibold mb-2">Highlights</h3>
+              <ul className="grid gap-2">
+                {destination.highlights.map((highlight, index) => (
+                  <li key={index} className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                    {highlight}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {destination.inclusions && (
+            <div>
+              <h3 className="text-lg font-semibold mb-2">Inclusions</h3>
+              <ul className="grid gap-2">
+                {destination.inclusions.map((inclusion, index) => (
+                  <li key={index} className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                    {inclusion}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {destination.exclusions && (
+            <div>
+              <h3 className="text-lg font-semibold mb-2">Exclusions</h3>
+              <ul className="grid gap-2">
+                {destination.exclusions.map((exclusion, index) => (
+                  <li key={index} className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                    {exclusion}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {destination.importantNotes && (
+            <div>
+              <h3 className="text-lg font-semibold mb-2">Important Notes</h3>
+              <ul className="grid gap-2">
+                {destination.importantNotes.map((note, index) => (
+                  <li key={index} className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                    {note}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           {destination.placesToSee && (
             <div>
