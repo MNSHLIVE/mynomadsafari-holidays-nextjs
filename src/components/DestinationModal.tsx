@@ -39,9 +39,9 @@ export function DestinationModal({ destination, isOpen, onClose }: DestinationMo
         <Button 
           onClick={onClose}
           className="absolute right-4 top-4"
-          type="button"
           variant="ghost"
           size="icon"
+          type="button"
         >
           <X className="h-4 w-4" />
           <span className="sr-only">Close</span>
