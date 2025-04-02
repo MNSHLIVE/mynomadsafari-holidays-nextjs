@@ -22,12 +22,12 @@ const indianDestinations = [
   {
     state: "Rajasthan",
     image: "/Destination/Domestic/main/Rajasthan-main.jpg",
-    description: "Experience the royal heritage and vibrant culture of Rajasthan, from the majestic forts to the colorful festivals.",
+    description: "Experience the royal heritage and vibrant culture of Rajasthan.",
     bestTime: "October to March",
     places: ["Jaipur", "Udaipur", "Jodhpur", "Jaisalmer"],
-    food: ["Dal Bati Churma", "Laal Maas", "Ghevar", "Kachori"],
-    tips: ["Visit during winter months", "Book heritage hotels in advance", "Try local handicrafts", "Experience desert safari"],
-    majorTours: ["Golden Triangle Tour", "Rajasthan Heritage Tour", "Desert Safari Tour"],
+    food: ["Dal Bati Churma", "Laal Maas", "Ghevar"],
+    tips: ["Visit during winter months", "Book heritage hotels in advance"],
+    majorTours: ["Golden Triangle Tour", "Rajasthan Heritage Tour"],
     budgets: {
       budgeted: "₹15,000 - ₹25,000",
       luxury: "₹30,000 - ₹50,000",
@@ -37,12 +37,12 @@ const indianDestinations = [
   {
     state: "Kerala",
     image: "/Destination/Domestic/main/Kerala-main.jpg",
-    description: "Discover the serene backwaters, lush tea plantations, and rich cultural heritage of God's Own Country.",
+    description: "Discover the serene backwaters and rich cultural heritage.",
     bestTime: "October to March",
-    places: ["Munnar", "Alleppey", "Kochi", "Thekkady"],
-    food: ["Appam with Stew", "Kerala Parotta", "Fish Curry", "Puttu"],
-    tips: ["Book houseboat in advance", "Try Ayurvedic treatments", "Visit during monsoon for lush greenery", "Experience Kathakali"],
-    majorTours: ["Backwater Cruise", "Tea Plantation Tour", "Cultural Heritage Tour"],
+    places: ["Munnar", "Alleppey", "Kochi"],
+    food: ["Appam with Stew", "Kerala Parotta", "Fish Curry"],
+    tips: ["Book houseboat in advance", "Try Ayurvedic treatments"],
+    majorTours: ["Backwater Cruise", "Tea Plantation Tour"],
     budgets: {
       budgeted: "₹12,000 - ₹20,000",
       luxury: "₹25,000 - ₹40,000",
@@ -130,12 +130,12 @@ const internationalDestinations = [
   {
     country: "Thailand",
     image: "/Destination/International/Main/Thailand-main.jpg",
-    description: "Experience the perfect blend of culture, cuisine, and tropical beauty in the Land of Smiles.",
+    description: "Experience the perfect blend of culture and tropical beauty.",
     bestTime: "November to February",
-    places: ["Bangkok", "Phuket", "Chiang Mai", "Krabi"],
-    food: ["Pad Thai", "Tom Yum", "Green Curry", "Mango Sticky Rice"],
-    tips: ["Visit during cool season", "Try street food", "Book temples early", "Respect local customs"],
-    majorTours: ["Bangkok City Tour", "Island Hopping", "Cultural Experience"],
+    places: ["Bangkok", "Phuket", "Chiang Mai"],
+    food: ["Pad Thai", "Tom Yum", "Green Curry"],
+    tips: ["Visit during cool season", "Try street food"],
+    majorTours: ["Bangkok City Tour", "Island Hopping"],
     budgets: {
       budgeted: "₹25,000 - ₹40,000",
       luxury: "₹45,000 - ₹70,000",
@@ -219,390 +219,103 @@ const internationalDestinations = [
   }
 ];
 
-const Destinations = () => {
+export default function DestinationsPage() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeTab, setActiveTab] = useState("all");
-
-  const filteredIndianDestinations = indianDestinations.filter(dest => 
-    dest.state.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    dest.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    dest.places.some(place => place.toLowerCase().includes(searchQuery.toLowerCase()))
-  );
-
-  const filteredInternationalDestinations = internationalDestinations.filter(dest => 
-    dest.country.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    dest.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    dest.places.some(place => place.toLowerCase().includes(searchQuery.toLowerCase()))
-  );
-
-  const clearSearch = () => {
-    setSearchQuery("");
-  };
+  const [filteredIndianDestinations, setFilteredIndianDestinations] = useState(indianDestinations);
+  const [filteredInternationalDestinations, setFilteredInternationalDestinations] = useState(internationalDestinations);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    const query = searchQuery.toLowerCase();
+    
+    setFilteredIndianDestinations(
+      indianDestinations.filter(dest => 
+        dest.state.toLowerCase().includes(query) ||
+        dest.description.toLowerCase().includes(query) ||
+        dest.places.some(place => place.toLowerCase().includes(query))
+      )
+    );
+
+    setFilteredInternationalDestinations(
+      internationalDestinations.filter(dest => 
+        dest.country.toLowerCase().includes(query) ||
+        dest.description.toLowerCase().includes(query) ||
+        dest.places.some(place => place.toLowerCase().includes(query))
+      )
+    );
+  }, [searchQuery]);
 
   return (
-    <div className="container mx-auto px-4 pt-24 pb-16">
+    <div className="container py-8">
       <BackButton />
-      <section className="max-w-3xl mx-auto text-center mb-12">
-          <span className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-secondary/30 text-secondary-foreground mb-3">
-            Explore
-          </span>
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Discover Beautiful Destinations
-          </h1>
-          <p className="text-xl text-muted-foreground mb-8">
-            From the vibrant streets of India to exotic international locations
-          </p>
-          
-          {/* Search */}
-          <div className="relative max-w-md mx-auto">
-            <Input
-              type="text"
-              placeholder="Search destinations..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10 pr-10"
-            />
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            {searchQuery && (
-              <button 
-                onClick={clearSearch}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2"
-              >
-                <X className="h-4 w-4 text-muted-foreground hover:text-foreground" />
-              </button>
-            )}
-          </div>
-      </section>
+      <SectionHeading
+        title="Explore Destinations"
+        description="Discover amazing places around the world"
+      />
+      
+      <div className="relative mb-6">
+        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+        <Input
+          placeholder="Search destinations..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="pl-10 pr-10"
+        />
+        {searchQuery && (
+          <Button
+            variant="ghost"
+            size="icon"
+            className="absolute right-1 top-1/2 -translate-y-1/2"
+            onClick={() => setSearchQuery("")}
+          >
+            <X className="h-4 w-4" />
+          </Button>
+        )}
+      </div>
 
-        {/* Main Content */}
-        <Tabs defaultValue="india" className="w-full">
-          <div className="flex justify-center mb-8">
-            <TabsList>
-              <TabsTrigger value="india">India</TabsTrigger>
-              <TabsTrigger value="international">International</TabsTrigger>
-            </TabsList>
-          </div>
+      <Tabs defaultValue="domestic" className="space-y-4">
+        <TabsList>
+          <TabsTrigger value="domestic">Domestic</TabsTrigger>
+          <TabsTrigger value="international">International</TabsTrigger>
+        </TabsList>
 
-          {/* India Tab */}
-          <TabsContent value="india" className="mt-0">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-              {filteredIndianDestinations.map((dest, index) => (
-                <div key={index} className="relative group overflow-hidden rounded-xl card-hover bg-card shadow-sm border border-border/50">
-                  <img 
-                    src={dest.image} 
-                    alt={dest.state} 
-                    className="w-full h-48 object-cover transition-all duration-500 group-hover:scale-105"
-                  />
-                  <div className="p-5">
-                    <h3 className="text-lg font-semibold mb-2">{dest.state}</h3>
-                    <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{dest.description}</p>
-                    <p className="text-xs text-muted-foreground mb-3">
-                      <span className="font-medium">Best time to visit:</span> {dest.bestTime}
-                    </p>
-                    <div className="flex justify-between items-center">
-                      <DestinationQueryForm 
-                        destinationName={dest.state} 
-                        buttonText="Enquire Now"
-                      />
-                    <Link href={`/destinations/${dest.state.toLowerCase().replace(/\s+/g, '-')}`}>
-                      <Button 
-                        variant="outline" 
-                        size="sm" 
-                        className="border-primary/20 hover:border-primary hover:bg-primary/5"
-                      >
-                        View Details
-                      </Button>
-                    </Link>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="space-y-6">
-              <SectionHeading
-                title="Explore Indian Destinations"
-                subtitle="Detailed information about our popular Indian destinations"
-                align="left"
+        <TabsContent value="domestic" className="space-y-4">
+          <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+            {filteredIndianDestinations.map((destination, index) => (
+              <DestinationCard
+                key={index}
+                title={destination.state}
+                image={destination.image}
+                description={destination.description}
+                bestTime={destination.bestTime}
+                places={destination.places}
+                food={destination.food}
+                tips={destination.tips}
+                majorTours={destination.majorTours}
+                budgets={destination.budgets}
               />
-
-              <Accordion type="single" collapsible className="w-full">
-                {filteredIndianDestinations.map((dest, index) => (
-                  <AccordionItem 
-                    key={index} 
-                    value={`item-${index}`}
-                    id={`accordion-${index}`}
-                    className="border border-border/50 rounded-lg mb-4 overflow-hidden"
-                  >
-                    <AccordionTrigger className="text-xl px-4 hover:bg-muted/30">
-                      {dest.state}
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6 p-4">
-                        <div className="md:col-span-1">
-                          <img 
-                            src={dest.image} 
-                            alt={dest.state} 
-                            className="w-full h-full object-cover rounded-lg"
-                          />
-                          <div className="mt-4 flex justify-center">
-                            <DestinationQueryForm 
-                              destinationName={dest.state} 
-                              buttonText="Plan Your Trip" 
-                              buttonVariant="default"
-                              className="w-full"
-                            />
-                          </div>
-                        </div>
-                        <div className="md:col-span-2 space-y-4">
-                          <p className="text-muted-foreground">{dest.description}</p>
-                          
-                          <div>
-                            <h4 className="font-semibold mb-2">Best Time to Visit</h4>
-                            <p>{dest.bestTime}</p>
-                          </div>
-                          
-                          <div>
-                            <h4 className="font-semibold mb-2">Places of Interest</h4>
-                            <ul className="list-disc list-inside space-y-1">
-                              {dest.places.map((place, idx) => (
-                                <li key={idx}>{place}</li>
-                              ))}
-                            </ul>
-                          </div>
-                          
-                          <div>
-                            <h4 className="font-semibold mb-2">Local Food to Try</h4>
-                            <div className="flex flex-wrap gap-2">
-                              {dest.food.map((item, idx) => (
-                                <Badge key={idx} variant="secondary">
-                                  {item}
-                                </Badge>
-                              ))}
-                            </div>
-                          </div>
-                          
-                          <div>
-                            <h4 className="font-semibold mb-2">Exploration Tips</h4>
-                            <ul className="list-disc list-inside space-y-1">
-                              {dest.tips.map((tip, idx) => (
-                                <li key={idx}>{tip}</li>
-                              ))}
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="mt-6 space-y-4 px-4">
-                        <h4 className="font-semibold text-lg">Major Tours</h4>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                          {dest.majorTours.map((tour, idx) => (
-                            <div key={idx} className="p-4 border border-border rounded-lg hover:border-primary/50 transition-colors">
-                              <h5 className="font-medium mb-2">{tour}</h5>
-                              <Button variant="link" className="p-0 h-auto text-primary">
-                                View Details
-                              </Button>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div className="mt-6 px-4 pb-4">
-                        <h4 className="font-semibold text-lg mb-4">Budget Tiers</h4>
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                          <div className="p-4 border border-border rounded-lg bg-blue-50/50 dark:bg-blue-900/10">
-                            <h5 className="font-medium text-blue-700 dark:text-blue-300 mb-2">Budgeted</h5>
-                            <p className="text-lg font-semibold">{dest.budgets.budgeted}</p>
-                            <p className="text-sm text-muted-foreground">Economy options</p>
-                          </div>
-                          <div className="p-4 border border-border rounded-lg bg-purple-50/50 dark:bg-purple-900/10">
-                            <h5 className="font-medium text-purple-700 dark:text-purple-300 mb-2">Luxury</h5>
-                            <p className="text-lg font-semibold">{dest.budgets.luxury}</p>
-                            <p className="text-sm text-muted-foreground">High-end experiences</p>
-                          </div>
-                        <div className="p-4 border border-border rounded-lg bg-green-50/50 dark:bg-green-900/10">
-                          <h5 className="font-medium text-green-700 dark:text-green-300 mb-2">Premier</h5>
-                            <p className="text-lg font-semibold">{dest.budgets.premier}</p>
-                          <p className="text-sm text-muted-foreground">Exclusive experiences</p>
-                          </div>
-                        </div>
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </div>
-          </TabsContent>
-
-          {/* International Tab */}
-          <TabsContent value="international" className="mt-0">
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-2xl font-bold">International Destinations</h2>
-            <Button
-              variant="outline"
-              onClick={() => setActiveTab("all")}
-              className="flex items-center gap-2"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Back to All Destinations
-            </Button>
+            ))}
           </div>
+        </TabsContent>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-              {filteredInternationalDestinations.map((dest, index) => (
-                <div key={index} className="relative group overflow-hidden rounded-xl card-hover bg-card shadow-sm border border-border/50">
-                  <img 
-                    src={dest.image} 
-                    alt={dest.country} 
-                    className="w-full h-48 object-cover transition-all duration-500 group-hover:scale-105"
-                  />
-                  <div className="p-5">
-                    <h3 className="text-lg font-semibold mb-2">{dest.country}</h3>
-                    <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{dest.description}</p>
-                    <p className="text-xs text-muted-foreground mb-3">
-                      <span className="font-medium">Best time to visit:</span> {dest.bestTime}
-                    </p>
-                    <div className="flex justify-between items-center">
-                      <DestinationQueryForm 
-                        destinationName={dest.country} 
-                        buttonText="Enquire Now"
-                      />
-                    <Link href={`/destinations/${dest.country.toLowerCase().replace(/\s+/g, '-')}`}>
-                      <Button 
-                        variant="outline" 
-                        size="sm" 
-                        className="border-primary/20 hover:border-primary hover:bg-primary/5"
-                      >
-                        View Details
-                      </Button>
-                    </Link>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="space-y-6">
-              <SectionHeading
-                title="Explore International Destinations"
-                subtitle="Detailed information about our popular international destinations"
-                align="left"
+        <TabsContent value="international" className="space-y-4">
+          <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+            {filteredInternationalDestinations.map((destination, index) => (
+              <DestinationCard
+                key={index}
+                title={destination.country}
+                image={destination.image}
+                description={destination.description}
+                bestTime={destination.bestTime}
+                places={destination.places}
+                food={destination.food}
+                tips={destination.tips}
+                majorTours={destination.majorTours}
+                budgets={destination.budgets}
               />
-
-              <Accordion type="single" collapsible className="w-full">
-                {filteredInternationalDestinations.map((dest, index) => (
-                  <AccordionItem 
-                    key={index} 
-                    value={`item-int-${index}`}
-                    id={`accordion-int-${index}`}
-                    className="border border-border/50 rounded-lg mb-4 overflow-hidden"
-                  >
-                    <AccordionTrigger className="text-xl px-4 hover:bg-muted/30">
-                      {dest.country}
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6 p-4">
-                        <div className="md:col-span-1">
-                          <img 
-                            src={dest.image} 
-                            alt={dest.country} 
-                            className="w-full h-full object-cover rounded-lg"
-                          />
-                          <div className="mt-4 flex justify-center">
-                            <DestinationQueryForm 
-                              destinationName={dest.country} 
-                              buttonText="Plan Your Trip" 
-                              buttonVariant="default"
-                              className="w-full"
-                            />
-                          </div>
-                        </div>
-                        <div className="md:col-span-2 space-y-4">
-                          <p className="text-muted-foreground">{dest.description}</p>
-                          
-                          <div>
-                            <h4 className="font-semibold mb-2">Best Time to Visit</h4>
-                            <p>{dest.bestTime}</p>
-                          </div>
-                          
-                          <div>
-                            <h4 className="font-semibold mb-2">Places of Interest</h4>
-                            <ul className="list-disc list-inside space-y-1">
-                              {dest.places.map((place, idx) => (
-                                <li key={idx}>{place}</li>
-                              ))}
-                            </ul>
-                          </div>
-                          
-                          <div>
-                            <h4 className="font-semibold mb-2">Local Food to Try</h4>
-                            <div className="flex flex-wrap gap-2">
-                              {dest.food.map((item, idx) => (
-                                <Badge key={idx} variant="secondary">
-                                  {item}
-                                </Badge>
-                              ))}
-                            </div>
-                          </div>
-                          
-                          <div>
-                            <h4 className="font-semibold mb-2">Exploration Tips</h4>
-                            <ul className="list-disc list-inside space-y-1">
-                              {dest.tips.map((tip, idx) => (
-                                <li key={idx}>{tip}</li>
-                              ))}
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="mt-6 space-y-4 px-4">
-                        <h4 className="font-semibold text-lg">Major Tours</h4>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                          {dest.majorTours.map((tour, idx) => (
-                            <div key={idx} className="p-4 border border-border rounded-lg hover:border-primary/50 transition-colors">
-                              <h5 className="font-medium mb-2">{tour}</h5>
-                              <Button variant="link" className="p-0 h-auto text-primary">
-                                View Details
-                              </Button>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div className="mt-6 px-4 pb-4">
-                        <h4 className="font-semibold text-lg mb-4">Budget Tiers</h4>
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                          <div className="p-4 border border-border rounded-lg bg-blue-50/50 dark:bg-blue-900/10">
-                            <h5 className="font-medium text-blue-700 dark:text-blue-300 mb-2">Budgeted</h5>
-                            <p className="text-lg font-semibold">{dest.budgets.budgeted}</p>
-                            <p className="text-sm text-muted-foreground">Economy options</p>
-                          </div>
-                          <div className="p-4 border border-border rounded-lg bg-purple-50/50 dark:bg-purple-900/10">
-                            <h5 className="font-medium text-purple-700 dark:text-purple-300 mb-2">Luxury</h5>
-                            <p className="text-lg font-semibold">{dest.budgets.luxury}</p>
-                            <p className="text-sm text-muted-foreground">High-end experiences</p>
-                          </div>
-                        <div className="p-4 border border-border rounded-lg bg-green-50/50 dark:bg-green-900/10">
-                          <h5 className="font-medium text-green-700 dark:text-green-300 mb-2">Premier</h5>
-                            <p className="text-lg font-semibold">{dest.budgets.premier}</p>
-                          <p className="text-sm text-muted-foreground">Exclusive experiences</p>
-                          </div>
-                        </div>
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </div>
-          </TabsContent>
-        </Tabs>
+            ))}
+          </div>
+        </TabsContent>
+      </Tabs>
     </div>
   );
-};
-
-export default Destinations;
+}

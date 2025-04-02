@@ -1,17 +1,13 @@
-import type { AppProps } from 'next/app'
-import '@/styles/globals.css'
-import { useEffect, useState } from 'react'
+import { AppProps } from 'next/app';
+import { ThemeProvider } from "@/components/theme-provider";
+import Layout from "@/components/layout";
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [isClient, setIsClient] = useState(false)
-
-  useEffect(() => {
-    setIsClient(true)
-  }, [])
-
-  if (!isClient) {
-    return null
-  }
-
-  return <Component {...pageProps} />
+  return (
+    <ThemeProvider defaultTheme="system" storageKey="vite-react-theme">
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </ThemeProvider>
+  );
 } 
