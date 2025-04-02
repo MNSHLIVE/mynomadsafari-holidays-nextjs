@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { Button, buttonVariants } from '@/components/ui/button';
+import { Button } from '@/components/ui/button';
 import { X } from 'lucide-react';
 import type { VariantProps } from 'class-variance-authority';
 
@@ -27,98 +27,99 @@ interface Destination {
 }
 
 interface DestinationModalProps {
+  destination: Destination;
   isOpen: boolean;
   onClose: () => void;
-  destination: Destination;
 }
 
-export function DestinationModal({ isOpen, onClose, destination }: DestinationModalProps) {
+export function DestinationModal({ destination, isOpen, onClose }: DestinationModalProps) {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-4xl">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold">{destination.title} Tour Details</DialogTitle>
+          <DialogTitle>{destination.title}</DialogTitle>
         </DialogHeader>
         
-        {/* Itinerary Section */}
-        <div className="mt-6">
-          <h3 className="text-xl font-semibold mb-4">Detailed Itinerary</h3>
-          <div className="space-y-4">
-            {destination.itinerary.map((day, index) => (
-              <div key={index} className="bg-gray-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-primary">{day.day}</h4>
-                <h5 className="font-medium mt-1">{day.title}</h5>
-                <p className="text-gray-600 mt-1">{day.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Highlights Section */}
-        <div className="mt-8">
-          <h3 className="text-xl font-semibold mb-4">Tour Highlights</h3>
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
-            {destination.highlights.map((highlight, index) => (
-              <li key={index} className="flex items-start gap-2">
-                <span className="text-primary">•</span>
-                {highlight}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Inclusions & Exclusions */}
-        <div className="mt-8 grid md:grid-cols-2 gap-6">
-          <div>
-            <h3 className="text-xl font-semibold mb-4">Inclusions</h3>
-            <ul className="space-y-2">
-              {destination.inclusions.map((item, index) => (
-                <li key={index} className="flex items-start gap-2">
-                  <span className="text-primary">✓</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-xl font-semibold mb-4">Exclusions</h3>
-            <ul className="space-y-2">
-              {destination.exclusions.map((item, index) => (
-                <li key={index} className="flex items-start gap-2">
-                  <span className="text-destructive">✕</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        {/* Important Notes */}
-        <div className="mt-8">
-          <h3 className="text-xl font-semibold mb-4">Important Notes</h3>
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <ul className="space-y-2">
-              {destination.importantNotes.map((note, index) => (
-                <li key={index} className="flex items-start gap-2">
-                  <span className="text-primary">ℹ</span>
-                  {note}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        {/* Close Button */}
-        <Button
+        <Button 
           onClick={onClose}
-          size={'icon' as ButtonSize}
-          variant={'ghost' as ButtonVariant}
-          className="absolute top-4 right-4"
+          className="absolute right-4 top-4"
           type="button"
+          variant="ghost"
+          size="icon"
         >
           <X className="h-4 w-4" />
           <span className="sr-only">Close</span>
         </Button>
+
+        <div className="grid gap-6">
+          <div className="relative h-[300px] w-full overflow-hidden rounded-lg">
+            <img
+              src={destination.imageSrc}
+              alt={destination.title}
+              className="h-full w-full object-cover"
+            />
+          </div>
+
+          <div>
+            <p className="text-muted-foreground">{destination.description}</p>
+          </div>
+
+          {destination.placesToSee && (
+            <div>
+              <h3 className="text-lg font-semibold mb-2">Places to See</h3>
+              <ul className="grid gap-2">
+                {destination.placesToSee.map((place, index) => (
+                  <li key={index} className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                    {place}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {destination.foodRecommendations && (
+            <div>
+              <h3 className="text-lg font-semibold mb-2">Must-Try Foods</h3>
+              <ul className="grid gap-2">
+                {destination.foodRecommendations.map((food, index) => (
+                  <li key={index} className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                    {food}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {destination.tips && (
+            <div>
+              <h3 className="text-lg font-semibold mb-2">Travel Tips</h3>
+              <ul className="grid gap-2">
+                {destination.tips.map((tip, index) => (
+                  <li key={index} className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                    {tip}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {destination.majorTours && (
+            <div>
+              <h3 className="text-lg font-semibold mb-2">Popular Tours</h3>
+              <ul className="grid gap-2">
+                {destination.majorTours.map((tour, index) => (
+                  <li key={index} className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                    {tour}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
       </DialogContent>
     </Dialog>
   );
