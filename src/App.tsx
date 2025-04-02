@@ -9,7 +9,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import Layout from "@/components/layout";
 import Index from "./pages/Index";
 import AboutUs from "./pages/AboutUs";
-import Destinations from "./pages/Destinations";
+import Destinations from "./pages/destinations";
 import Tours from "./pages/Tours";
 import Contact from "./pages/Contact";
 import Blog from "./pages/Blog";
@@ -20,7 +20,7 @@ import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
 import Refund from "./pages/Refund";
 import Faq from "./pages/Faq";
-import DestinationDetail from "./pages/DestinationDetail";
+import DestinationDetail from "./pages/destination-detail";
 import ReligiousTours from "./pages/ReligiousTours";
 import CalculateTourPage from "@/pages/calculate-tour";
 
