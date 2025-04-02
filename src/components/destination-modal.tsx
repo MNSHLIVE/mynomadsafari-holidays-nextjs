@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
+import { Destination } from "@/types/destination";
 
 interface DestinationModalProps {
   destination: Destination;
@@ -22,9 +23,17 @@ export default function DestinationModal({ destination, isOpen, onClose }: Desti
           <DialogTitle className="text-2xl font-bold text-center">
             {destination.title}
           </DialogTitle>
+          <p className="text-center text-muted-foreground">
+            {destination.state || destination.country}
+          </p>
         </DialogHeader>
         <ScrollArea className="h-[calc(90vh-120px)] pr-4">
           <div className="space-y-8">
+            {/* Description */}
+            <div>
+              <p className="text-muted-foreground">{destination.description}</p>
+            </div>
+
             {/* Itinerary Section */}
             <div>
               <h2 className="text-xl font-bold mb-4">Detailed Day-by-Day Itinerary</h2>
@@ -44,7 +53,26 @@ export default function DestinationModal({ destination, isOpen, onClose }: Desti
               </div>
             </div>
 
-            {/* Highlights Section */}
+            {/* Best Time */}
+            <div>
+              <h2 className="text-xl font-bold mb-4">Best Time to Visit</h2>
+              <p>{destination.bestTime}</p>
+            </div>
+
+            {/* Places */}
+            <div>
+              <h2 className="text-xl font-bold mb-4">Places to Visit</h2>
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {destination.places.map((place, index) => (
+                  <li key={index} className="flex items-start gap-2">
+                    <span className="text-primary">•</span>
+                    {place}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Highlights */}
             <div>
               <h2 className="text-xl font-bold mb-4">Tour Highlights</h2>
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -52,6 +80,45 @@ export default function DestinationModal({ destination, isOpen, onClose }: Desti
                   <li key={index} className="flex items-start gap-2">
                     <span className="text-primary">•</span>
                     {highlight}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Food */}
+            <div>
+              <h2 className="text-xl font-bold mb-4">Local Cuisine</h2>
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {destination.food.map((item, index) => (
+                  <li key={index} className="flex items-start gap-2">
+                    <span className="text-primary">•</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Tips */}
+            <div>
+              <h2 className="text-xl font-bold mb-4">Travel Tips</h2>
+              <ul className="space-y-2">
+                {destination.tips.map((tip, index) => (
+                  <li key={index} className="flex items-start gap-2">
+                    <span className="text-primary">ℹ</span>
+                    {tip}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Major Tours */}
+            <div>
+              <h2 className="text-xl font-bold mb-4">Popular Tours</h2>
+              <ul className="space-y-2">
+                {destination.majorTours.map((tour, index) => (
+                  <li key={index} className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    {tour}
                   </li>
                 ))}
               </ul>
@@ -95,6 +162,25 @@ export default function DestinationModal({ destination, isOpen, onClose }: Desti
                     </li>
                   ))}
                 </ul>
+              </div>
+            </div>
+
+            {/* Budgets */}
+            <div>
+              <h2 className="text-xl font-bold mb-4">Tour Packages</h2>
+              <div className="grid md:grid-cols-3 gap-4">
+                <div className="bg-card p-4 rounded-lg">
+                  <h3 className="font-semibold mb-2">Budget</h3>
+                  <p>{destination.budgets.budgeted}</p>
+                </div>
+                <div className="bg-card p-4 rounded-lg">
+                  <h3 className="font-semibold mb-2">Luxury</h3>
+                  <p>{destination.budgets.luxury}</p>
+                </div>
+                <div className="bg-card p-4 rounded-lg">
+                  <h3 className="font-semibold mb-2">Premier</h3>
+                  <p>{destination.budgets.premier}</p>
+                </div>
               </div>
             </div>
 

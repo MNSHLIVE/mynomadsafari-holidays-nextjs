@@ -20,7 +20,6 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: false
   },
-  swcMinify: true,
   experimental: {
     forceSwcTransforms: true
   }
