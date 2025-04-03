@@ -1,45 +1,26 @@
 {
   "version": 2,
-  "framework": "nextjs",
   "buildCommand": "next build",
-  "devCommand": "next dev",
-  "installCommand": "npm install",
-  "regions": ["iad1"],
+  "outputDirectory": "out",
+  "cleanUrls": true,
+  "trailingSlash": true,
   "headers": [
     {
-      "source": "/fonts/(.*)",
+      "source": "/(.*)",
       "headers": [
         {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
-    },
-    {
-      "source": "/_next/static/(.*)",
-      "headers": [
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
         {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
         }
       ]
-    }
-  ],
-  "outputDirectory": "out",
-  "routes": [
-    {
-      "src": "/_next/static/(.*)",
-      "headers": { "cache-control": "public,max-age=31536000,immutable" },
-      "continue": true
-    },
-    {
-      "src": "/static/(.*)",
-      "headers": { "cache-control": "public,max-age=31536000,immutable" },
-      "continue": true
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
     }
   ]
 } 
