@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  output: 'standalone',
+  output: 'server',
+  distDir: '.next',
   images: {
     domains: ['localhost'],
     remotePatterns: [
