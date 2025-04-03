@@ -126,7 +126,7 @@ const PackageCalculator = ({ className }: PackageCalculatorProps) => {
     } else if (rooms > 1 && adults <= 2) {
       setRooms(1);
     }
-  }, [adults]);
+  }, [adults, rooms]);
 
   useEffect(() => {
     if (calculatorType === "domestic") {

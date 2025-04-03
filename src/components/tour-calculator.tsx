@@ -137,7 +137,7 @@ const TourCalculator = ({ className, onSubmit }: TourCalculatorProps) => {
     } else if (rooms > 1 && adults <= 2) {
       setRooms(1);
     }
-  }, [adults]);
+  }, [adults, rooms]);
 
   useEffect(() => {
     // Update distance for domestic tours
