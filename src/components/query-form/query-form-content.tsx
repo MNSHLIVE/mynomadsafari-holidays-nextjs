@@ -76,7 +76,7 @@ export const QueryFormContent = ({ destinationName, onClose }: QueryFormContentP
             </div>
             <TravelerSelector 
               adults={adults}
-              children={children}
+              numChildren={children}
               setAdults={setAdults}
               setChildren={setChildren}
             />

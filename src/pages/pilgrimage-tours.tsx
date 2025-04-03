@@ -8,7 +8,7 @@ const pilgrimageTours = [
     description: "Visit the four sacred shrines: Yamunotri, Gangotri, Kedarnath, and Badrinath. Experience the spiritual journey of a lifetime.",
     image: "/Destination/Domestic/Tours/Pilgrimage/Hindu/CharDham/CharDham-Main.jpg",
     duration: "12 Days",
-    price: 45000,
+    basePrice: 45000,
     highlights: [
       "Visit all four sacred shrines",
       "Professional guide",
@@ -22,7 +22,7 @@ const pilgrimageTours = [
     description: "Embark on a sacred journey to the holy shrines of Badrinath and Kedarnath in the majestic Himalayas.",
     image: "/Destination/Domestic/Tours/Pilgrimage/Hindu/BadrinathKedarnath/BadrinathKedarnath-Main.jpg",
     duration: "8 Days",
-    price: 35000,
+    basePrice: 35000,
     highlights: [
       "Visit both sacred shrines",
       "Helicopter service available",
@@ -36,7 +36,7 @@ const pilgrimageTours = [
     description: "Experience the spiritual essence of India with Ganga Aarti, temple visits, and holy dip in the sacred rivers.",
     image: "/Destination/Domestic/Tours/Pilgrimage/Hindu/VaranasiPrayagraj/VaranasiPrayagraj-Main.jpg",
     duration: "5 Days",
-    price: 25000,
+    basePrice: 25000,
     highlights: [
       "Morning Ganga Aarti",
       "Temple visits",

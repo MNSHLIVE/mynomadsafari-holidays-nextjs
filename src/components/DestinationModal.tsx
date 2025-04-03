@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { X } from 'lucide-react';
@@ -50,10 +51,12 @@ const DestinationModal: React.FC<DestinationModalProps> = ({ destination, isOpen
         <div className="grid gap-6">
           {destination.imageSrc && (
             <div className="relative h-[300px] w-full overflow-hidden rounded-lg">
-              <img
+              <Image
                 src={destination.imageSrc}
                 alt={destination.title}
-                className="h-full w-full object-cover"
+                fill
+                className="object-cover"
+                priority
               />
             </div>
           )}

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -56,11 +57,15 @@ const MainNav = () => {
               href="/" 
               className="text-xl font-bold text-primary flex items-center space-x-3"
             >
-              <img 
-                src="/MNSH-LOGO/3e515213-741f-498e-add3-8b8f70b7fe4c.png" 
-                alt="My Nomadsafari Holidays" 
-                className="h-10 w-auto"
-              />
+              <div className="relative h-10 w-32">
+                <Image 
+                  src="/MNSH-LOGO/3e515213-741f-498e-add3-8b8f70b7fe4c.png" 
+                  alt="My Nomadsafari Holidays" 
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
               <span className="text-lg md:text-xl font-medium">
                 My Nomadsafari Holidays
               </span>

@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 interface Tour {
   id: number;
@@ -25,7 +26,7 @@ export function TourCard({ tour }: TourCardProps) {
     console.log('Attempting to load image:', tour.image);
   }, [tour.image]);
 
-  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+  const handleImageError = () => {
     console.error('Image failed to load:', tour.image);
     // Log the full URL that was attempted
     console.error('Full URL attempted:', window.location.origin + tour.image);
@@ -36,10 +37,11 @@ export function TourCard({ tour }: TourCardProps) {
     <div className="rounded-lg overflow-hidden shadow-lg bg-white">
       <div className="relative h-48">
         {!imageError ? (
-          <img
+          <Image
             src={tour.image}
             alt={tour.title}
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
             onError={handleImageError}
             loading="lazy"
           />

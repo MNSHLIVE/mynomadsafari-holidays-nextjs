@@ -1,18 +1,17 @@
-
 import { Users } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 interface TravelerSelectorProps {
   adults: number;
-  children: number;
+  numChildren: number;
   setAdults: (value: number) => void;
   setChildren: (value: number) => void;
 }
 
 export const TravelerSelector = ({ 
   adults, 
-  children, 
+  numChildren, 
   setAdults, 
   setChildren 
 }: TravelerSelectorProps) => {
@@ -37,7 +36,7 @@ export const TravelerSelector = ({
           min="0"
           max="10"
           placeholder="Children"
-          value={children}
+          value={numChildren}
           onChange={(e) => setChildren(parseInt(e.target.value) || 0)}
           onClick={(e) => (e.target as HTMLInputElement).select()}
         />

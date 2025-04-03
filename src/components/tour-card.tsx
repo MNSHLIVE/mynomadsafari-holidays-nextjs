@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Clock, MapPin, Calendar, IndianRupee, FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -112,14 +113,15 @@ const TourCard = ({
             "absolute inset-0 bg-gray-200",
             isLoaded ? "hidden" : "block"
           )} />
-          <img
+          <Image
             src={imageSrc}
             alt={title}
+            fill
             className={cn(
-              "h-full w-full object-cover transition-all duration-500 group-hover:scale-105",
+              "object-cover transition-all duration-500 group-hover:scale-105",
               isLoaded ? "block" : "invisible"
             )}
-            onLoad={() => setIsLoaded(true)}
+            onLoadingComplete={() => setIsLoaded(true)}
             onError={() => setError("Failed to load image")}
             loading="lazy"
           />

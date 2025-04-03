@@ -86,7 +86,7 @@ const Contact = () => {
           </span>
         <h1 className="text-4xl font-bold mb-4">Contact Us</h1>
         <p className="text-muted-foreground">
-            We'd love to hear from you. Let us know how we can help with your travel plans.
+            We&apos;d love to hear from you. Let us know how we can help with your travel plans.
           </p>
         </div>
 

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Image from "next/image";
 import SectionHeading from "@/components/section-heading";
 import TourCard from "@/components/tour-card";
 import CTASection from "@/components/cta-section";
@@ -6,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Calendar, MapPin, Users, Plane, Check, ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import BackButton from "@/components/back-button";
 
 const domesticGroupTours = [
   {
@@ -109,16 +111,7 @@ const GroupTours = () => {
 
   return (
     <div className="container mx-auto px-4 pt-24 pb-16">
-      <div className="flex items-center mb-6">
-        <Button 
-          variant="ghost" 
-          className="flex items-center gap-2"
-          onClick={handleBack}
-        >
-          <ArrowLeft className="h-4 w-4" />
-          Back
-        </Button>
-      </div>
+      <BackButton />
 
       <div className="max-w-3xl mx-auto text-center mb-12">
         <span className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-secondary/30 text-secondary-foreground mb-3">
@@ -195,7 +188,7 @@ const GroupTours = () => {
         <TabsContent value="domestic" className="mt-0">
           <SectionHeading
             title="Domestic Group Tours"
-            subtitle="Explore India with like-minded travelers"
+            subtitle="Explore India with our guided group packages"
             align="center"
           />
           
@@ -203,10 +196,11 @@ const GroupTours = () => {
             {domesticGroupTours.map((tour) => (
               <div key={tour.id} className="group overflow-hidden rounded-xl card-hover relative flex flex-col bg-card shadow-sm border border-border/50">
                 <div className="relative h-48 overflow-hidden">
-                  <img
+                  <Image
                     src={tour.imageSrc}
                     alt={tour.title}
-                    className="h-full w-full object-cover transition-all duration-500 group-hover:scale-105"
+                    fill
+                    className="object-cover transition-all duration-500 group-hover:scale-105"
                   />
                   <div className="absolute top-3 left-3">
                     <span className="text-xs font-medium px-2 py-1 rounded-full bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300">
@@ -268,10 +262,11 @@ const GroupTours = () => {
             {internationalGroupTours.map((tour) => (
               <div key={tour.id} className="group overflow-hidden rounded-xl card-hover relative flex flex-col bg-card shadow-sm border border-border/50">
                 <div className="relative h-48 overflow-hidden">
-                  <img
+                  <Image
                     src={tour.imageSrc}
                     alt={tour.title}
-                    className="h-full w-full object-cover transition-all duration-500 group-hover:scale-105"
+                    fill
+                    className="object-cover transition-all duration-500 group-hover:scale-105"
                   />
                   <div className="absolute top-3 left-3">
                     <span className="text-xs font-medium px-2 py-1 rounded-full bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300">
