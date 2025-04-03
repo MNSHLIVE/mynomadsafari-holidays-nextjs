@@ -1,5 +1,6 @@
 import SectionHeading from "@/components/section-heading";
 import CTASection from "@/components/cta-section";
+import Image from "next/image";
 import { Check, Award, Users, Clock, Globe } from "lucide-react";
 import { cn } from "@/lib/utils";
 import BackButton from "@/components/back-button";
@@ -55,11 +56,14 @@ const AboutUs = () => {
             </div>
           </div>
           <div className="order-1 md:order-2 relative">
-            <img
-              src="https://images.unsplash.com/photo-1516689935744-2a213f28f940?q=80&w=800"
-              alt="Travel Expert"
-              className="rounded-xl shadow-lg w-full"
-            />
+            <div className="relative w-full h-[400px]">
+              <Image
+                src="https://images.unsplash.com/photo-1516689935744-2a213f28f940?q=80&w=800"
+                alt="Travel Expert"
+                fill
+                className="rounded-xl shadow-lg object-cover"
+              />
+            </div>
             <div className="absolute -bottom-5 -right-5 bg-primary text-white p-4 rounded-lg shadow-lg hidden md:block">
               <p className="font-bold">10+ Years</p>
               <p className="text-sm">of Experience</p>
@@ -99,11 +103,12 @@ const AboutUs = () => {
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div>
-            <img
+          <div className="relative w-full h-[400px]">
+            <Image
               src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=800"
               alt="Travel Journey"
-              className="rounded-xl shadow-lg w-full"
+              fill
+              className="rounded-xl shadow-lg object-cover"
             />
           </div>
           <div className="space-y-6">

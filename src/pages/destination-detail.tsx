@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Image from "next/image";
 import { indianDestinations, internationalDestinations } from "@/components/home/home-data";
 import { Button } from "@/components/ui/button";
 import { Calendar, MapPin, IndianRupee, Clock } from "lucide-react";
@@ -35,10 +36,12 @@ const DestinationDetail = () => {
       <BackButton />
       {/* Hero Section */}
       <div className="relative h-[400px] rounded-xl overflow-hidden mb-8">
-        <img
+        <Image
           src={destination.imageSrc}
           alt={destination.title}
-          className="w-full h-full object-cover"
+          fill
+          className="object-cover"
+          priority
         />
         <div className="absolute inset-0 bg-black/50" />
         <div className="absolute inset-0 flex items-center justify-center">

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Calendar } from "lucide-react";
 
@@ -38,14 +39,15 @@ const BlogCard = ({
           "absolute inset-0 bg-gray-200",
           isLoaded ? "hidden" : "block"
         )} />
-        <img
+        <Image
           src={imageSrc}
           alt={title}
+          fill
           className={cn(
-            "h-full w-full object-cover transition-all duration-500 group-hover:scale-105",
+            "object-cover transition-all duration-500 group-hover:scale-105",
             isLoaded ? "block" : "invisible"
           )}
-          onLoad={() => setIsLoaded(true)}
+          onLoadingComplete={() => setIsLoaded(true)}
         />
       </div>
       

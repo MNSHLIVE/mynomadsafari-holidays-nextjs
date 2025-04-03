@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -58,11 +59,15 @@ const HeroSlider = ({ slides, interval = 5000, className }: HeroSliderProps) => 
           )}
         >
           <div className="absolute inset-0 bg-black/50 z-10" />
-          <img
-            src={slide.imageSrc}
-            alt={slide.title}
-            className="w-full h-full object-cover"
-          />
+          <div className="absolute inset-0">
+            <Image
+              src={slide.imageSrc}
+              alt={slide.title}
+              fill
+              className="object-cover"
+              priority={index === 0}
+            />
+          </div>
 
           <div className="absolute inset-0 z-20 flex items-center">
             <div className="max-w-3xl mx-auto text-center text-white pt-20 md:pt-0 animate-fade-in">

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -42,14 +43,15 @@ const DestinationCard = ({
           "absolute inset-0 bg-gray-200",
           isLoaded ? "hidden" : "block"
         )} />
-        <img
+        <Image
           src={imageSrc}
           alt={title}
+          fill
           className={cn(
-            "h-full w-full object-cover transition-all duration-500 group-hover:scale-105",
+            "object-cover transition-all duration-500 group-hover:scale-105",
             isLoaded ? "block" : "invisible"
           )}
-          onLoad={() => setIsLoaded(true)}
+          onLoadingComplete={() => setIsLoaded(true)}
         />
       </div>
       <div className="flex flex-col flex-grow p-5">

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
 import { Search, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import BackButton from "@/components/back-button";
@@ -158,10 +159,11 @@ const Blog = () => {
                   className="group overflow-hidden rounded-xl relative flex flex-col bg-card border border-border/50 shadow-sm card-hover h-full"
                 >
                   <div className="relative h-60 overflow-hidden">
-                    <img
+                    <Image
                       src={post.imageSrc}
                       alt={post.title}
-                      className="h-full w-full object-cover transition-all duration-500 group-hover:scale-105"
+                      fill
+                      className="object-cover transition-all duration-500 group-hover:scale-105"
                     />
                     <div className="absolute top-4 left-4">
                       <Badge variant="secondary" className="bg-primary text-primary-foreground">
@@ -324,10 +326,11 @@ const Blog = () => {
                     className="group overflow-hidden rounded-xl relative flex flex-col bg-card border border-border/50 shadow-sm card-hover h-full"
                   >
                     <div className="relative h-60 overflow-hidden">
-                      <img
+                      <Image
                         src={post.imageSrc}
                         alt={post.title}
-                        className="h-full w-full object-cover transition-all duration-500 group-hover:scale-105"
+                        fill
+                        className="object-cover transition-all duration-500 group-hover:scale-105"
                       />
                     </div>
                     

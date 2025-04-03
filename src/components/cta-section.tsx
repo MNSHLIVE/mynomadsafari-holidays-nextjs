@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -33,11 +34,15 @@ const CTASection = ({
       {imageSrc && (
         <>
           <div className="absolute inset-0 bg-black/50 z-0" />
-          <img
-            src={imageSrc}
-            alt="Background"
-            className="absolute inset-0 w-full h-full object-cover z-[-1]"
-          />
+          <div className="absolute inset-0 z-[-1]">
+            <Image
+              src={imageSrc}
+              alt="Background"
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
         </>
       )}
 

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Facebook, Instagram, Twitter, Mail, Phone, MapPin } from "lucide-react";
@@ -24,11 +25,15 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <img 
-                src="/MNSH-LOGO/3e515213-741f-498e-add3-8b8f70b7fe4c.png" 
-                alt="My Nomadsafari Holidays" 
-                className="h-10 w-auto"
-              />
+              <div className="relative h-10 w-32">
+                <Image 
+                  src="/MNSH-LOGO/3e515213-741f-498e-add3-8b8f70b7fe4c.png" 
+                  alt="My Nomadsafari Holidays" 
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
             </div>
             <p className="text-sm text-muted-foreground">
               Your one-stop travel expert helping you explore the world your way since 2010.

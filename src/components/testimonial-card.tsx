@@ -1,5 +1,5 @@
-
 import { Quote } from "lucide-react";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface TestimonialCardProps {
@@ -28,15 +28,18 @@ const TestimonialCard = ({
     >
       <Quote className="h-8 w-8 text-primary/30 mb-4" />
       
-      <p className="text-foreground/90 mb-6 flex-grow">"{quote}"</p>
+      <p className="text-foreground/90 mb-6 flex-grow">&ldquo;{quote}&rdquo;</p>
       
       <div className="flex items-center mt-auto">
         {avatarSrc ? (
-          <img 
-            src={avatarSrc} 
-            alt={author} 
-            className="w-10 h-10 rounded-full mr-3"
-          />
+          <div className="relative w-10 h-10 mr-3">
+            <Image 
+              src={avatarSrc} 
+              alt={author} 
+              fill
+              className="rounded-full object-cover"
+            />
+          </div>
         ) : (
           <div className="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center mr-3">
             {author.charAt(0)}
