@@ -4,6 +4,11 @@
   "outputDirectory": "out",
   "cleanUrls": true,
   "trailingSlash": true,
+  "git": {
+    "deploymentEnabled": {
+      "main": true
+    }
+  },
   "headers": [
     {
       "source": "/(.*)",
