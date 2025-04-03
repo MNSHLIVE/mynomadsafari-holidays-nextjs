@@ -3,18 +3,12 @@
   "framework": "nextjs",
   "buildCommand": "next build",
   "devCommand": "next dev",
-  "outputDirectory": "out",
-  "cleanUrls": true,
-  "routes": [
+  "installCommand": "npm install",
+  "regions": ["iad1"],
+  "builds": [
     {
-      "src": "/_next/static/(.*)",
-      "headers": { "cache-control": "public,max-age=31536000,immutable" },
-      "continue": true
-    },
-    {
-      "src": "/static/(.*)",
-      "headers": { "cache-control": "public,max-age=31536000,immutable" },
-      "continue": true
+      "src": "next.config.js",
+      "use": "@vercel/next"
     }
   ]
 } 
