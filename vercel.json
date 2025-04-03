@@ -5,10 +5,18 @@
   "devCommand": "next dev",
   "installCommand": "npm install",
   "regions": ["iad1"],
-  "builds": [
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/" }
+  ],
+  "headers": [
     {
-      "src": "next.config.js",
-      "use": "@vercel/next"
+      "source": "/_next/static/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     }
   ]
 } 
