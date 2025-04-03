@@ -1,11 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  output: 'export',
+  output: 'standalone',
   distDir: '.next',
-  trailingSlash: true,
   images: {
-    unoptimized: true,
     domains: ['localhost'],
     remotePatterns: [
       {
