@@ -25,9 +25,6 @@ const nextConfig = {
   },
   eslint: {
     ignoreDuringBuilds: false
-  },
-  experimental: {
-    forceSwcTransforms: true
   }
 }
 
