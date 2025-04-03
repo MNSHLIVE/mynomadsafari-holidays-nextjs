@@ -32,11 +32,11 @@ const MainNav = () => {
 
   const navLinks = [
     { href: "/", label: "Home" },
-    { href: "/about", label: "About Us" },
+    { href: "/about-us", label: "About Us" },
     { href: "/destinations", label: "Destinations" },
     { href: "/visa", label: "Visa" },
     { href: "/tours", label: "Tours" },
-    { href: "/contact", label: "Contact Us" },
+    { href: "/contact-us", label: "Contact Us" },
     { href: "/blog", label: "Blog" },
   ];
 
@@ -74,19 +74,19 @@ const MainNav = () => {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "text-sm font-medium transition-all duration-300 relative group py-2 px-3 rounded-md hover:bg-primary/10",
+                  "text-sm font-medium transition-all duration-300 relative group py-2 px-3 rounded-md",
                   router.asPath === link.href 
                     ? "text-primary bg-primary/10" 
-                    : "text-foreground/80 hover:text-primary"
+                    : "text-foreground/80 hover:text-primary hover:bg-primary/5"
                 )}
               >
                 {link.label}
                 <span 
                   className={cn(
-                    "absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 transition-transform duration-300 bg-primary rounded-full",
+                    "absolute bottom-0 left-0 w-full h-0.5 bg-primary transform origin-left transition-transform duration-300",
                     router.asPath === link.href 
                       ? "scale-x-100" 
-                      : "group-hover:scale-x-100"
+                      : "scale-x-0 group-hover:scale-x-100"
                   )}
                 />
               </Link>

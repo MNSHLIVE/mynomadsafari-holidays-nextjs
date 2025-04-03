@@ -304,18 +304,18 @@ const TourCalculator = ({ className, onSubmit }: TourCalculatorProps) => {
                             <Button
                               variant="outline"
                               className="w-full justify-start text-left font-normal"
-                              id="travelDate"
                             >
-                              {travelDate ? format(travelDate, "PPP") : "Select a date"}
+                              <Calendar className="mr-2 h-4 w-4" />
+                              {travelDate ? format(travelDate, "PPP") : <span>Pick a date</span>}
                             </Button>
                           </PopoverTrigger>
-                          <PopoverContent className="w-auto p-0" align="start">
+                          <PopoverContent className="w-auto p-0 bg-background">
                             <CalendarComponent
                               mode="single"
                               selected={travelDate}
                               onSelect={setTravelDate}
                               initialFocus
-                              disabled={(date) => date < new Date()}
+                              className="rounded-md border bg-background p-3"
                             />
                           </PopoverContent>
                         </Popover>
