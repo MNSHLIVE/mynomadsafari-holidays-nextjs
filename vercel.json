@@ -1,6 +1,8 @@
 {
   "version": 2,
+  "buildCommand": "next build",
   "outputDirectory": "out",
+  "framework": "nextjs",
   "cleanUrls": true,
   "trailingSlash": true,
   "git": {
