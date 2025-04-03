@@ -2,15 +2,19 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
 export function middleware(request: NextRequest) {
-  // Clone the request url
-  const url = request.nextUrl.clone()
-
-  // Get pathname of request (e.g. /blog-slug)
   const { pathname } = request.nextUrl
 
-  // Get hostname of request (e.g. demo.vercel.pub)
-  const hostname = request.headers.get('host')
+  // Return early if it's a static file or API route
+  if (
+    pathname.startsWith('/_next') || // Static files
+    pathname.startsWith('/api') || // API routes
+    pathname.startsWith('/static') || // Static assets
+    pathname.match(/^\/[^/]+\.[^/]+$/) // Root files like favicon.ico
+  ) {
+    return NextResponse.next()
+  }
 
+  // Handle all other routes normally
   return NextResponse.next()
 }
 
