@@ -1,9 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  output: 'export',
   images: {
-    unoptimized: true,
+    domains: ['*'],
     remotePatterns: [
       {
         protocol: 'https',
@@ -25,8 +24,6 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true
   },
-  // Add basePath if you're not using a custom domain
-  basePath: '',
   // Configure page extensions
   pageExtensions: ['tsx', 'ts', 'jsx', 'js']
 }
