@@ -56,14 +56,14 @@ const MainNav = () => {
           <div className="flex items-center">
             <Link 
               href="/" 
-              className="text-xl font-bold text-primary flex items-center space-x-3 hover:opacity-90 transition-opacity"
+              className="text-xl font-bold flex items-center space-x-3 hover:opacity-90 transition-opacity"
             >
               <img 
                 src="/MNSH-LOGO/3e515213-741f-498e-add3-8b8f70b7fe4c.png" 
                 alt="My Nomadsafari Holidays" 
                 className="h-10 w-auto"
               />
-              <span className="text-lg md:text-xl font-medium">
+              <span className="text-lg md:text-xl font-medium" style={{ color: 'rgb(130, 185, 75)' }}>
                 My Nomadsafari Holidays
               </span>
             </Link>

@@ -89,7 +89,13 @@ const HeroSlider = ({ slides, interval = 5000, className }: HeroSliderProps) => 
                 <Button 
                   asChild 
                   size="lg" 
-                  className="bg-primary hover:bg-primary/90 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 z-[3]"
+                  className="text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 z-[3]"
+                  style={{ 
+                    backgroundColor: 'rgb(130, 185, 75)',
+                    '&:hover': {
+                      backgroundColor: 'rgba(130, 185, 75, 0.9)'
+                    }
+                  }}
                 >
                   <Link href="/calculate-tour">
                     Calculate Your Trip
@@ -99,7 +105,7 @@ const HeroSlider = ({ slides, interval = 5000, className }: HeroSliderProps) => 
                   asChild 
                   size="lg" 
                   variant="outline" 
-                  className="border-2 border-white text-white hover:bg-white hover:text-primary font-semibold shadow-lg hover:shadow-xl transition-all duration-300 z-[3]"
+                  className="border-2 border-white text-white hover:bg-white hover:text-[rgb(130,185,75)] font-semibold shadow-lg hover:shadow-xl transition-all duration-300 z-[3]"
                 >
                   <Link href="/destinations">
                     Know More

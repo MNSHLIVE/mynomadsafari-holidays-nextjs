@@ -11,27 +11,27 @@ interface ServiceItemProps {
 
 const services: ServiceItemProps[] = [
   {
-    icon: <Globe className="h-8 w-8 text-primary" />,
+    icon: <Globe className="h-8 w-8" style={{ color: 'rgb(130, 185, 75)' }} />,
     title: "Destination Planning",
     description: "Customized itineraries tailored to your preferences, time constraints, and budget."
   },
   {
-    icon: <Compass className="h-8 w-8 text-primary" />,
+    icon: <Compass className="h-8 w-8" style={{ color: 'rgb(130, 185, 75)' }} />,
     title: "Tour Packages",
     description: "All-inclusive tour packages for popular destinations, with various budget options."
   },
   {
-    icon: <MapPin className="h-8 w-8 text-primary" />,
+    icon: <MapPin className="h-8 w-8" style={{ color: 'rgb(130, 185, 75)' }} />,
     title: "Visa Assistance",
     description: "Expert guidance on visa requirements and application process for different countries."
   },
   {
-    icon: <Shield className="h-8 w-8 text-primary" />,
+    icon: <Shield className="h-8 w-8" style={{ color: 'rgb(130, 185, 75)' }} />,
     title: "Travel Insurance",
     description: "Comprehensive travel insurance options to ensure a safe and secure journey."
   },
   {
-    icon: <Headphones className="h-8 w-8 text-primary" />,
+    icon: <Headphones className="h-8 w-8" style={{ color: 'rgb(130, 185, 75)' }} />,
     title: "24/7 Support",
     description: "Round-the-clock customer support during your trip for any assistance you need."
   }
