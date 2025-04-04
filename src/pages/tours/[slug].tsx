@@ -3,7 +3,7 @@
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { Clock, MapPin, Calendar, IndianRupee, Users } from 'lucide-react';
+import { Clock, MapPin, Calendar, IndianRupee, Users, UtensilsCrossed, ShoppingBag, Landmark, Hotel, Utensils, Car, HeartPulse } from 'lucide-react';
 import { tours } from '@/data/tours';
 import BackButton from '@/components/back-button';
 import DestinationQueryForm from '@/components/destination-query-form';
@@ -99,12 +99,63 @@ export default function TourDetail() {
 
           {tour.itinerary && (
             <div className="mb-8">
-              <h2 className="text-2xl font-semibold mb-4">Itinerary</h2>
+              <h2 className="text-2xl font-semibold mb-4">Detailed Day-by-Day Itinerary</h2>
               <div className="space-y-6">
                 {tour.itinerary.map((day, index) => (
                   <div key={index} className="border-l-2 border-primary/30 pl-4">
                     <h3 className="font-semibold mb-2">Day {day.day}: {day.title}</h3>
                     <p className="text-muted-foreground">{day.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {tour.localCuisine && (
+            <div className="mb-8">
+              <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
+                <UtensilsCrossed className="w-6 h-6 text-primary" />
+                Local Cuisine to Experience
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {tour.localCuisine.map((item, index) => (
+                  <div key={index} className="flex items-center gap-2">
+                    <span className="text-primary">•</span>
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {tour.shoppingGuide && (
+            <div className="mb-8">
+              <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
+                <ShoppingBag className="w-6 h-6 text-primary" />
+                Shopping Guide
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {tour.shoppingGuide.map((item, index) => (
+                  <div key={index} className="flex items-center gap-2">
+                    <span className="text-primary">•</span>
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {tour.culturalExperiences && (
+            <div className="mb-8">
+              <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
+                <Landmark className="w-6 h-6 text-primary" />
+                Cultural Experiences
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {tour.culturalExperiences.map((item, index) => (
+                  <div key={index} className="flex items-center gap-2">
+                    <span className="text-primary">•</span>
+                    <span>{item}</span>
                   </div>
                 ))}
               </div>
@@ -121,6 +172,113 @@ export default function TourDetail() {
                     <span>{item}</span>
                   </div>
                 ))}
+              </div>
+            </div>
+          )}
+
+          {tour.durationOptions && (
+            <div className="mb-8">
+              <h2 className="text-2xl font-semibold mb-4">Tour Duration Options</h2>
+              <div className="grid grid-cols-1 gap-4">
+                {tour.durationOptions.map((option, index) => (
+                  <div key={index} className="border rounded-lg p-4 hover:border-primary transition-colors">
+                    <div className="flex justify-between items-start mb-2">
+                      <div>
+                        <h3 className="font-semibold text-lg">{option.title}</h3>
+                        <p className="text-muted-foreground text-sm">{option.days}</p>
+                      </div>
+                      <div className="text-right">
+                        <div className="flex items-center justify-end">
+                          <IndianRupee className="w-4 h-4 text-primary" />
+                          <span className="font-semibold">{option.price.toLocaleString('en-IN')}</span>
+                        </div>
+                        <p className="text-sm text-muted-foreground">per person</p>
+                      </div>
+                    </div>
+                    <p className="text-sm mb-2">{option.suitableFor}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {option.cities.map((city, cityIndex) => (
+                        <span 
+                          key={cityIndex}
+                          className="bg-primary/10 text-primary text-sm px-2 py-1 rounded-full"
+                        >
+                          {city}
+                        </span>
+                      ))}
+                    </div>
+                    <p className="text-sm text-muted-foreground mt-2">
+                      <Hotel className="w-4 h-4 inline-block mr-1" />
+                      {option.accommodation}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {tour.internationalGuestPerks && (
+            <div className="mb-8">
+              <h2 className="text-2xl font-semibold mb-4">Special Arrangements for International Guests</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <h3 className="font-semibold flex items-center gap-2">
+                    <Hotel className="w-5 h-5 text-primary" />
+                    Premium Accommodations
+                  </h3>
+                  <ul className="space-y-1">
+                    {tour.internationalGuestPerks.accommodation.map((perk, index) => (
+                      <li key={index} className="flex items-center gap-2 text-sm">
+                        <span className="text-primary">✓</span>
+                        {perk}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                
+                <div className="space-y-2">
+                  <h3 className="font-semibold flex items-center gap-2">
+                    <Utensils className="w-5 h-5 text-primary" />
+                    Dining Excellence
+                  </h3>
+                  <ul className="space-y-1">
+                    {tour.internationalGuestPerks.dining.map((perk, index) => (
+                      <li key={index} className="flex items-center gap-2 text-sm">
+                        <span className="text-primary">✓</span>
+                        {perk}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="space-y-2">
+                  <h3 className="font-semibold flex items-center gap-2">
+                    <Car className="w-5 h-5 text-primary" />
+                    Premium Transport
+                  </h3>
+                  <ul className="space-y-1">
+                    {tour.internationalGuestPerks.transport.map((perk, index) => (
+                      <li key={index} className="flex items-center gap-2 text-sm">
+                        <span className="text-primary">✓</span>
+                        {perk}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="space-y-2">
+                  <h3 className="font-semibold flex items-center gap-2">
+                    <HeartPulse className="w-5 h-5 text-primary" />
+                    24/7 Support
+                  </h3>
+                  <ul className="space-y-1">
+                    {tour.internationalGuestPerks.support.map((perk, index) => (
+                      <li key={index} className="flex items-center gap-2 text-sm">
+                        <span className="text-primary">✓</span>
+                        {perk}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
           )}
