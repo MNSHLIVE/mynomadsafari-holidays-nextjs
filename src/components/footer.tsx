@@ -34,6 +34,7 @@ const Footer = () => {
                   priority
                 />
               </div>
+              <span className="text-lg font-semibold text-foreground">My Nomadsafari Holidays</span>
             </div>
             <p className="text-sm text-muted-foreground">
               Your one-stop travel expert helping you explore the world your way since 2010.
