@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -45,7 +47,7 @@ const MainNav = () => {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300",
         isScrolled 
-          ? "bg-background/90 backdrop-blur-md shadow-sm" 
+          ? "bg-background/95 backdrop-blur-md border-b" 
           : "bg-transparent"
       )}
     >
@@ -54,7 +56,7 @@ const MainNav = () => {
           <div className="flex items-center">
             <Link 
               href="/" 
-              className="text-xl font-bold text-primary flex items-center space-x-3"
+              className="text-xl font-bold text-primary flex items-center space-x-3 hover:opacity-90 transition-opacity"
             >
               <img 
                 src="/MNSH-LOGO/3e515213-741f-498e-add3-8b8f70b7fe4c.png" 
@@ -68,22 +70,22 @@ const MainNav = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex md:items-center md:space-x-6">
+          <div className="hidden md:flex md:items-center md:space-x-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "text-sm font-medium transition-all duration-300 relative group py-2 px-3 rounded-md",
+                  "relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-md group",
                   router.asPath === link.href 
                     ? "text-primary bg-primary/10" 
-                    : "text-foreground/80 hover:text-primary hover:bg-primary/5"
+                    : "text-foreground hover:text-primary hover:bg-primary/5"
                 )}
               >
                 {link.label}
                 <span 
                   className={cn(
-                    "absolute bottom-0 left-0 w-full h-0.5 bg-primary transform origin-left transition-transform duration-300",
+                    "absolute bottom-0 left-0 w-full h-0.5 bg-primary transform origin-left transition-transform duration-300 rounded-full",
                     router.asPath === link.href 
                       ? "scale-x-100" 
                       : "scale-x-0 group-hover:scale-x-100"
@@ -91,7 +93,9 @@ const MainNav = () => {
                 />
               </Link>
             ))}
-            <ThemeToggle />
+            <div className="pl-2">
+              <ThemeToggle />
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -100,10 +104,14 @@ const MainNav = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="md:hidden"
+              className="md:hidden hover:bg-primary/5"
               onClick={() => setIsOpen(!isOpen)}
             >
-              <Menu className="h-6 w-6" />
+              {isOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
               <span className="sr-only">Toggle menu</span>
             </Button>
           </div>
@@ -112,17 +120,17 @@ const MainNav = () => {
 
       {/* Mobile Navigation */}
       {isOpen && (
-        <div className="md:hidden bg-background/95 backdrop-blur-sm animate-fade-in">
+        <div className="md:hidden bg-background/95 backdrop-blur-sm border-b animate-in fade-in slide-in-from-top duration-300">
           <div className="container mx-auto px-4 pt-2 pb-6 space-y-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "block py-3 px-4 rounded-md text-base font-medium transition-colors",
+                  "block py-3 px-4 rounded-md text-base font-medium transition-all duration-300",
                   router.asPath === link.href 
                     ? "bg-primary/10 text-primary" 
-                    : "hover:bg-muted"
+                    : "hover:bg-primary/5 hover:text-primary active:bg-primary/10"
                 )}
               >
                 {link.label}

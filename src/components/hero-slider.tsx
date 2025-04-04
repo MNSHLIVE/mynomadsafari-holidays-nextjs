@@ -1,8 +1,11 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 interface HeroSliderProps {
   slides: Array<{
@@ -58,7 +61,7 @@ const HeroSlider = ({ slides, interval = 5000, className }: HeroSliderProps) => 
             currentSlide === index ? "opacity-100" : "opacity-0"
           )}
         >
-          <div className="absolute inset-0 bg-black/50 z-10" />
+          <div className="absolute inset-0 bg-black/50 z-[1]" />
           <div className="absolute inset-0">
             <Image
               src={slide.imageSrc}
@@ -69,7 +72,7 @@ const HeroSlider = ({ slides, interval = 5000, className }: HeroSliderProps) => 
             />
           </div>
 
-          <div className="absolute inset-0 z-20 flex items-center">
+          <div className="absolute inset-0 z-[2] flex items-center">
             <div className="max-w-3xl mx-auto text-center text-white pt-20 md:pt-0 animate-fade-in">
               <span className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-primary/30 mb-4">
                 Discover the World with Us
@@ -83,18 +86,25 @@ const HeroSlider = ({ slides, interval = 5000, className }: HeroSliderProps) => 
                 </p>
               )}
               <div className="flex flex-wrap justify-center gap-4">
-                <Link
-                  href="/calculate-tour"
-                  className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-11 rounded-md px-8 py-2"
+                <Button 
+                  asChild 
+                  size="lg" 
+                  className="bg-primary hover:bg-primary/90 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 z-[3]"
                 >
-                  Calculate Your Trip
-                </Link>
-                <Link 
-                  href="/destinations" 
-                  className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-white/10 text-white hover:bg-white/20 h-11 rounded-md px-8 py-2"
+                  <Link href="/calculate-tour">
+                    Calculate Your Trip
+                  </Link>
+                </Button>
+                <Button 
+                  asChild 
+                  size="lg" 
+                  variant="outline" 
+                  className="border-2 border-white text-white hover:bg-white hover:text-primary font-semibold shadow-lg hover:shadow-xl transition-all duration-300 z-[3]"
                 >
-                  Know More
-                </Link>
+                  <Link href="/destinations">
+                    Know More
+                  </Link>
+                </Button>
               </div>
             </div>
           </div>
@@ -102,21 +112,25 @@ const HeroSlider = ({ slides, interval = 5000, className }: HeroSliderProps) => 
       ))}
 
       {/* Navigation arrows */}
-      <button
+      <Button
+        variant="ghost"
+        size="icon"
         onClick={goToPrevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-30 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-[4] rounded-full bg-white/10 text-white hover:bg-white/20"
       >
         <ChevronLeft className="h-6 w-6" />
-      </button>
-      <button
+      </Button>
+      <Button
+        variant="ghost"
+        size="icon"
         onClick={goToNextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-30 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-[4] rounded-full bg-white/10 text-white hover:bg-white/20"
       >
         <ChevronRight className="h-6 w-6" />
-      </button>
+      </Button>
 
       {/* Slide indicators */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 flex gap-2">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-[4] flex gap-2">
         {slides.map((_, index) => (
           <button
             key={index}

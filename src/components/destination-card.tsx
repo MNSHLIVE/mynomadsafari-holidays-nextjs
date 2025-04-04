@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -29,7 +31,7 @@ const DestinationCard = ({
   return (
     <div 
       className={cn(
-        "group overflow-hidden rounded-xl card-hover relative flex flex-col bg-card shadow-sm",
+        "group overflow-hidden rounded-xl card-hover relative flex flex-col bg-card shadow-sm border border-border/50",
         className
       )}
     >
@@ -64,15 +66,18 @@ const DestinationCard = ({
             <span className="font-medium">Best time to visit:</span> {bestTime}
           </p>
         )}
-        <Link href={link} className="mt-auto">
+        <div className="mt-auto">
           <Button 
             variant="default" 
             className="w-full group bg-primary hover:bg-primary/90"
+            asChild
           >
-            <span>Explore</span>
-            <ArrowRight className="h-4 w-4 ml-2 transition-transform group-hover:translate-x-1" />
+            <Link href={link}>
+              <span>Explore</span>
+              <ArrowRight className="h-4 w-4 ml-2 transition-transform group-hover:translate-x-1" />
+            </Link>
           </Button>
-        </Link>
+        </div>
       </div>
     </div>
   );

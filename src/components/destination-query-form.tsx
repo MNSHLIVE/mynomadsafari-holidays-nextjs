@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,6 +12,7 @@ import {
 } from "@/components/ui/dialog";
 import { QueryFormContent } from "./query-form/query-form-content";
 import ClientOnly from "./client-only";
+import { cn } from "@/lib/utils";
 
 interface DestinationQueryFormProps {
   destinationName: string;
@@ -30,7 +33,13 @@ const DestinationQueryForm = ({
     <ClientOnly>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button variant={buttonVariant} className={className}>
+          <Button 
+            variant={buttonVariant} 
+            className={cn(
+              "w-full text-lg py-6 shadow-lg hover:shadow-xl transition-all duration-300",
+              className
+            )}
+          >
             {buttonText}
           </Button>
         </DialogTrigger>

@@ -100,6 +100,8 @@ const TourCard = ({
     }
   };
 
+  const defaultLink = `/tours/${title.toLowerCase().replace(/\s+/g, '-')}`;
+
   return (
     <ClientOnly>
       <div 
@@ -190,7 +192,7 @@ const TourCard = ({
               className="w-full bg-primary hover:bg-primary/90"
               asChild
             >
-              <Link href={link}>View Details</Link>
+              <Link href={link || defaultLink}>View Details</Link>
             </Button>
           </div>
         </div>

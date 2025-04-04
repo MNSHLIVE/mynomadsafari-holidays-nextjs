@@ -51,7 +51,7 @@ function useThemeEffect({
 export function ThemeProvider({
   children,
   defaultTheme = "system",
-  storageKey = "vite-ui-theme",
+  storageKey = "theme",
   ...props
 }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>(() => {
@@ -63,7 +63,14 @@ export function ThemeProvider({
 
   const value = {
     theme,
-    setTheme,
+    setTheme: (theme: Theme) => {
+      setTheme(theme);
+      try {
+        localStorage.setItem(storageKey, theme);
+      } catch (e) {
+        console.error("Failed to save theme to localStorage:", e);
+      }
+    },
   };
 
   return (
