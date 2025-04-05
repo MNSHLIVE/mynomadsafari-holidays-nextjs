@@ -19,12 +19,12 @@ export interface Destination {
 }
 
 export interface Tour {
-  id: string | number;
+  id: string;
   title: string;
   imageSrc: string;
   location: string;
   duration: string;
-  price: number | string;
+  price: string | number;
   bestTime: string;
   packageType: "Budgeted" | "Luxury" | "Premier";
   country?: string;
@@ -1073,15 +1073,3 @@ export const destinations = {
     }
   ]
 };
-
-// Combine all tours into a single array
-export const tours: Tour[] = [
-  ...popularTours.map(tour => ({
-    ...tour,
-    id: tour.title.toLowerCase().replace(/\s+/g, '-')
-  })),
-  ...religiousTours.map(tour => ({
-    ...tour,
-    id: tour.title.toLowerCase().replace(/\s+/g, '-')
-  }))
-];
