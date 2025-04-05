@@ -275,8 +275,13 @@ export const hillStations = [
 ];
 
 // Filter tours for different sections
-export const popularTours = Array.isArray(tours) ? tours.filter(tour => tour && tour.title).slice(0, 3) : [];
-export const religiousTours = Array.isArray(tours) ? tours.filter(tour => tour.packageType === "Premier").slice(0, 3) : [];
+export const popularTours: Tour[] = Array.isArray(tours) 
+  ? tours.filter(tour => tour && tour.title && tour.packageType === "Luxury").slice(0, 3)
+  : [];
+
+export const religiousTours: Tour[] = Array.isArray(tours)
+  ? tours.filter(tour => tour && tour.title && tour.packageType === "Premier").slice(0, 3)
+  : [];
 
 export const testimonials = [
   {
