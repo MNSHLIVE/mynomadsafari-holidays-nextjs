@@ -24,7 +24,7 @@ export interface Tour {
   imageSrc: string;
   location: string;
   duration: string;
-  price: string | number;
+  price: string | number;  // Allow both string and number for price
   bestTime: string;
   packageType: "Budgeted" | "Luxury" | "Premier";
   country?: string;
@@ -313,8 +313,9 @@ export const hillStations = [
   },
 ];
 
-export const popularTours = [
+export const popularTours: Tour[] = [
   {
+    id: "golden-triangle-tour",
     imageSrc: "/Destination/Home/Featured-Tours/Golden-Triangle.jpg",
     title: "Golden Triangle Tour",
     location: "Delhi, Agra, Jaipur",
@@ -322,8 +323,11 @@ export const popularTours = [
     price: "Starting from ₹21,000",
     bestTime: "October - March",
     packageType: "Budgeted" as const,
+    country: "India",
+    region: "North India"
   },
   {
+    id: "kerala-backwaters-luxury",
     imageSrc: "/Destination/Home/Featured-Tours/Kerala-Backwaters.jpg",
     title: "Kerala Backwaters Luxury",
     location: "Kochi, Munnar, Alleppey",
@@ -331,8 +335,11 @@ export const popularTours = [
     price: "Starting from ₹35,000",
     bestTime: "September - March",
     packageType: "Luxury" as const,
+    country: "India",
+    region: "South India"
   },
   {
+    id: "premier-rajasthan-heritage",
     imageSrc: "/Destination/Home/Featured-Tours/Rajasthan-Heritage.jpg",
     title: "Premier Rajasthan Heritage",
     location: "Jaipur, Udaipur, Jodhpur",
@@ -340,11 +347,14 @@ export const popularTours = [
     price: "Starting from ₹75,000",
     bestTime: "October - March",
     packageType: "Premier" as const,
-  },
+    country: "India",
+    region: "North India"
+  }
 ];
 
-export const religiousTours = [
+export const religiousTours: Tour[] = [
   {
+    id: "char-dham-yatra",
     imageSrc: "/Destination/Home/Religious-Tours/Char-Dham.jpg",
     title: "Char Dham Yatra",
     location: "Uttarakhand, India",
@@ -353,13 +363,16 @@ export const religiousTours = [
     bestTime: "May - June, September - October",
     packageType: "Premier" as const,
     description: "A spiritual journey to the four sacred Hindu temples in the Himalayas: Yamunotri, Gangotri, Kedarnath, and Badrinath.",
+    country: "India",
+    region: "North India",
     itinerary: [
       {day: 1, title: "Arrival in Haridwar", description: "Welcome at Haridwar and transfer to hotel. Evening Ganga Aarti at Har Ki Pauri."},
       {day: 2, title: "Haridwar to Yamunotri", description: "Drive to Janki Chatti and trek to Yamunotri temple. Return to Barkot for overnight stay."},
-      {day: 3, title: "Barkot to Gangotri", description: "Drive to Gangotri through scenic Himalayan landscapes. Visit Gangotri Temple."},
+      {day: 3, title: "Barkot to Gangotri", description: "Drive to Gangotri through scenic Himalayan landscapes. Visit Gangotri Temple."}
     ]
   },
   {
+    id: "varanasi-spiritual-tour",
     imageSrc: "/Destination/Home/Religious-Tours/Varanasi-Spiritual.jpg",
     title: "Varanasi Spiritual Tour",
     location: "Uttar Pradesh, India",
@@ -368,13 +381,16 @@ export const religiousTours = [
     bestTime: "October - March",
     packageType: "Budgeted" as const,
     description: "Experience the spiritual essence of India's oldest city with morning boat rides on the Ganges and evening aartis.",
+    country: "India",
+    region: "North India",
     itinerary: [
       {day: 1, title: "Arrival in Varanasi", description: "Welcome at Varanasi Airport/Railway Station and transfer to hotel. Evening Ganga Aarti."},
       {day: 2, title: "Morning Boat Ride & Temples", description: "Early morning boat ride on the Ganges to witness sunrise. Visit important temples."},
-      {day: 3, title: "Sarnath Excursion", description: "Day trip to Sarnath where Buddha gave his first sermon. Visit the Dhamek Stupa."},
+      {day: 3, title: "Sarnath Excursion", description: "Day trip to Sarnath where Buddha gave his first sermon. Visit the Dhamek Stupa."}
     ]
   },
   {
+    id: "golden-temple-amritsar",
     imageSrc: "/Destination/Home/Religious-Tours/Golden-Temple.jpg",
     title: "Golden Temple & Amritsar",
     location: "Punjab, India",
@@ -383,12 +399,14 @@ export const religiousTours = [
     bestTime: "October - March",
     packageType: "Budgeted" as const,
     description: "Visit the magnificent Golden Temple and experience the vibrant Punjabi culture in Amritsar.",
+    country: "India",
+    region: "North India",
     itinerary: [
       {day: 1, title: "Arrival in Amritsar", description: "Welcome at Amritsar and transfer to hotel. Evening visit to Golden Temple for Palki Ceremony."},
       {day: 2, title: "Golden Temple & Wagah Border", description: "Morning visit to Golden Temple. Afternoon visit to Wagah Border for the Retreat Ceremony."},
-      {day: 3, title: "Amritsar City Tour", description: "Visit Jallianwala Bagh, Durgiana Temple, and local markets. Departure from Amritsar."},
+      {day: 3, title: "Amritsar City Tour", description: "Visit Jallianwala Bagh, Durgiana Temple, and local markets. Departure from Amritsar."}
     ]
-  },
+  }
 ];
 
 export const testimonials = [
