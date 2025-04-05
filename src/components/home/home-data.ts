@@ -1,4 +1,4 @@
-import { Tour } from "@/data/tours";
+import { Tour, tours } from "@/data/tours";
 
 // TypeScript interfaces
 export interface HeroSlide {
@@ -30,13 +30,6 @@ export interface BlogPost {
   author: string;
   category: string;
 }
-
-// Import tours from the main tours data
-import { tours } from "@/data/tours";
-
-// Filter tours for different sections
-export const popularTours = tours.slice(0, 3);
-export const religiousTours = tours.filter(tour => tour.packageType === "Premier").slice(0, 3);
 
 // Shared data for home page components
 export const heroSlides: HeroSlide[] = [
@@ -280,6 +273,10 @@ export const hillStations = [
     bestTime: "October - June",
   },
 ];
+
+// Filter tours for different sections
+export const popularTours = Array.isArray(tours) ? tours.filter(tour => tour && tour.title).slice(0, 3) : [];
+export const religiousTours = Array.isArray(tours) ? tours.filter(tour => tour.packageType === "Premier").slice(0, 3) : [];
 
 export const testimonials = [
   {
