@@ -28,19 +28,29 @@ import { Tour } from "@/components/home/home-data";
 import TourItineraryModal from "./tour-itinerary-modal";
 
 interface TourCardProps {
-  tour: Tour;
+  tour?: Tour;
   className?: string;
 }
 
-const TourCard = ({ tour, className }: TourCardProps) => {
+const defaultTour: Tour = {
+  id: "default-tour",
+  title: "Tour Package",
+  imageSrc: "/placeholder.jpg",
+  location: "Location TBD",
+  duration: "Duration TBD",
+  price: "Price TBD",
+  bestTime: "Best time TBD",
+  packageType: "Budgeted",
+  description: "Tour description coming soon",
+};
+
+const TourCard = ({ tour = defaultTour, className }: TourCardProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Handle undefined tour data
-  if (!tour) {
-    return null;
-  }
+  // Use the tour data or fallback to default
+  const safeTour = tour || defaultTour;
 
   if (error) {
     return (
@@ -52,8 +62,8 @@ const TourCard = ({ tour, className }: TourCardProps) => {
 
   const getItineraryPreview = () => {
     try {
-      if (!tour.itinerary || !Array.isArray(tour.itinerary) || tour.itinerary.length === 0) return null;
-      return tour.itinerary[0];
+      if (!safeTour.itinerary || !Array.isArray(safeTour.itinerary) || safeTour.itinerary.length === 0) return null;
+      return safeTour.itinerary[0];
     } catch (e) {
       setError("Failed to load itinerary preview");
       return null;
@@ -69,7 +79,7 @@ const TourCard = ({ tour, className }: TourCardProps) => {
     return price;
   };
 
-  const tourUrl = `/tours/${tour.title.toLowerCase().replace(/\s+/g, '-')}`;
+  const tourUrl = `/tours/${safeTour.title.toLowerCase().replace(/\s+/g, '-')}`;
 
   return (
     <div 
@@ -84,8 +94,8 @@ const TourCard = ({ tour, className }: TourCardProps) => {
           isLoaded ? "hidden" : "block"
         )} />
         <Image
-          src={tour.imageSrc}
-          alt={tour.title}
+          src={safeTour.imageSrc}
+          alt={safeTour.title}
           fill
           className={cn(
             "object-cover transition-all duration-500 group-hover:scale-105",
@@ -98,41 +108,41 @@ const TourCard = ({ tour, className }: TourCardProps) => {
         <div className="absolute top-2 right-2">
           <span className={cn(
             "px-2 py-1 text-xs rounded-full",
-            tour.packageType === "Budgeted" && "bg-blue-100 text-blue-700",
-            tour.packageType === "Luxury" && "bg-purple-100 text-purple-700",
-            tour.packageType === "Premier" && "bg-amber-100 text-amber-700"
+            safeTour.packageType === "Budgeted" && "bg-blue-100 text-blue-700",
+            safeTour.packageType === "Luxury" && "bg-purple-100 text-purple-700",
+            safeTour.packageType === "Premier" && "bg-amber-100 text-amber-700"
           )}>
-            {tour.packageType}
+            {safeTour.packageType}
           </span>
         </div>
       </div>
 
       <div className="p-5 flex flex-col flex-grow">
-        <h3 className="text-lg font-semibold mb-2 line-clamp-1">{tour.title}</h3>
+        <h3 className="text-lg font-semibold mb-2 line-clamp-1">{safeTour.title}</h3>
         
         <div className="grid grid-cols-2 gap-2 mb-3 text-xs text-muted-foreground">
-          {tour.location && (
+          {safeTour.location && (
             <div className="flex items-center">
               <MapPin className="w-3 h-3 mr-1 text-primary" />
-              <span className="truncate">{tour.location}</span>
+              <span className="truncate">{safeTour.location}</span>
             </div>
           )}
-          {tour.duration && (
+          {safeTour.duration && (
             <div className="flex items-center">
               <Clock className="w-3 h-3 mr-1 text-primary" />
-              <span>{tour.duration}</span>
+              <span>{safeTour.duration}</span>
             </div>
           )}
-          {tour.bestTime && (
+          {safeTour.bestTime && (
             <div className="flex items-center col-span-2">
               <Calendar className="w-3 h-3 mr-1 text-primary" />
-              <span>Best time: {tour.bestTime}</span>
+              <span>Best time: {safeTour.bestTime}</span>
             </div>
           )}
         </div>
 
-        {tour.description && (
-          <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{tour.description}</p>
+        {safeTour.description && (
+          <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{safeTour.description}</p>
         )}
 
         {itineraryPreview && (
@@ -151,13 +161,13 @@ const TourCard = ({ tour, className }: TourCardProps) => {
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center">
               <IndianRupee className="w-4 h-4 mr-1 text-primary" />
-              <span className="font-semibold">{formatPrice(tour.price)}</span>
+              <span className="font-semibold">{formatPrice(safeTour.price)}</span>
             </div>
             <span className="text-xs text-muted-foreground">per person</span>
           </div>
 
           <div className="flex gap-2">
-            {tour.itinerary && tour.itinerary.length > 0 && (
+            {safeTour.itinerary && safeTour.itinerary.length > 0 && (
               <Button 
                 variant="outline" 
                 className="flex-1"
@@ -175,9 +185,9 @@ const TourCard = ({ tour, className }: TourCardProps) => {
         </div>
       </div>
 
-      {tour.itinerary && tour.itinerary.length > 0 && (
+      {safeTour.itinerary && safeTour.itinerary.length > 0 && (
         <TourItineraryModal
-          tour={tour}
+          tour={safeTour}
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
         />
