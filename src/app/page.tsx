@@ -21,142 +21,181 @@ import {
   religiousTours,
   testimonials,
   blogPosts,
-  type Tour,
-  type Destination,
-  type BlogPost
 } from "@/components/home/home-data";
 
-export default function Home() {
+// Make this an async server component
+export default async function Home() {
+  // Ensure all data is available before rendering
+  if (!popularTours?.length || !religiousTours?.length) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="min-h-screen">
-      <ClientOnly>
-        <HeroSlider slides={heroSlides} />
-      </ClientOnly>
+      {/* Hero Section */}
+      <div className="relative">
+        {heroSlides && heroSlides.length > 0 && (
+          <ClientOnly>
+            <HeroSlider slides={heroSlides} />
+          </ClientOnly>
+        )}
+      </div>
 
-      <ClientOnly>
-        <ServicesSection />
-      </ClientOnly>
+      {/* Services Section */}
+      <div className="relative">
+        <ClientOnly>
+          <ServicesSection />
+        </ClientOnly>
+      </div>
 
-      <ClientOnly>
-        <TravelCategories />
-      </ClientOnly>
+      {/* Travel Categories */}
+      <div className="relative">
+        <ClientOnly>
+          <TravelCategories />
+        </ClientOnly>
+      </div>
 
       {/* Featured Tours Section */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4">
-          <SectionHeading
-            title="Featured Tours"
-            subtitle="Discover our most popular travel experiences"
-            align="center"
-          />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-            {popularTours.map((tour) => (
-              <ClientOnly key={tour.id}>
-                <TourCard
-                  tour={tour}
-                  className="h-full"
-                />
-              </ClientOnly>
-            ))}
+      {popularTours && popularTours.length > 0 && (
+        <section className="py-16 bg-background">
+          <div className="container mx-auto px-4">
+            <SectionHeading
+              title="Featured Tours"
+              subtitle="Discover our most popular travel experiences"
+              align="center"
+            />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+              {popularTours.map((tour) => (
+                <div key={tour.id} className="h-full">
+                  <ClientOnly>
+                    <TourCard tour={tour} className="h-full" />
+                  </ClientOnly>
+                </div>
+              ))}
+            </div>
+            <div className="text-center mt-8">
+              <Button asChild>
+                <Link href="/tours">View All Tours</Link>
+              </Button>
+            </div>
           </div>
-          <div className="text-center mt-8">
-            <Button asChild>
-              <Link href="/tours">View All Tours</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Religious Tours Section */}
-      <section className="py-16 bg-secondary/5">
-        <div className="container mx-auto px-4">
-          <SectionHeading
-            title="Religious Tours"
-            subtitle="Embark on a spiritual journey"
-            align="center"
-          />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-            {religiousTours.map((tour) => (
-              <ClientOnly key={tour.id}>
-                <TourCard
-                  tour={tour}
-                  className="h-full"
-                />
-              </ClientOnly>
-            ))}
+      {religiousTours && religiousTours.length > 0 && (
+        <section className="py-16 bg-secondary/5">
+          <div className="container mx-auto px-4">
+            <SectionHeading
+              title="Religious Tours"
+              subtitle="Embark on a spiritual journey"
+              align="center"
+            />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+              {religiousTours.map((tour) => (
+                <div key={tour.id} className="h-full">
+                  <ClientOnly>
+                    <TourCard tour={tour} className="h-full" />
+                  </ClientOnly>
+                </div>
+              ))}
+            </div>
+            <div className="text-center mt-8">
+              <Button asChild>
+                <Link href="/tours/religious">View All Religious Tours</Link>
+              </Button>
+            </div>
           </div>
-          <div className="text-center mt-8">
-            <Button asChild>
-              <Link href="/tours/religious">View All Religious Tours</Link>
-            </Button>
-          </div>
+        </section>
+      )}
+
+      {/* Destinations Sections */}
+      {popularDestinations && popularDestinations.length > 0 && (
+        <div className="relative">
+          <ClientOnly>
+            <DestinationsSection
+              title="Popular Destinations"
+              subtitle="Explore our handpicked destinations for your next adventure"
+              tag="Featured Destinations"
+              destinations={popularDestinations}
+              viewAllLink="/destinations"
+              viewAllText="View All Destinations"
+            />
+          </ClientOnly>
         </div>
-      </section>
+      )}
 
-      {/* Popular Destinations */}
-      <ClientOnly>
-        <DestinationsSection
-          title="Popular Destinations"
-          subtitle="Explore our handpicked destinations for your next adventure"
-          tag="Featured Destinations"
-          destinations={popularDestinations}
-          viewAllLink="/destinations"
-          viewAllText="View All Destinations"
-        />
-      </ClientOnly>
+      {religiousDestinations && religiousDestinations.length > 0 && (
+        <div className="relative">
+          <ClientOnly>
+            <DestinationsSection
+              title="Popular Religious Places"
+              subtitle="Embark on a spiritual journey to these sacred destinations"
+              tag="Religious Tourism"
+              destinations={religiousDestinations}
+              viewAllLink="/destinations?category=pilgrimage"
+              viewAllText="Explore Religious Tours"
+              bgColor="bg-muted/30 py-16"
+            />
+          </ClientOnly>
+        </div>
+      )}
 
-      {/* Religious Destinations */}
-      <ClientOnly>
-        <DestinationsSection
-          title="Popular Religious Places"
-          subtitle="Embark on a spiritual journey to these sacred destinations"
-          tag="Religious Tourism"
-          destinations={religiousDestinations}
-          viewAllLink="/destinations?category=pilgrimage"
-          viewAllText="Explore Religious Tours"
-          bgColor="bg-muted/30 py-16"
-        />
-      </ClientOnly>
+      {internationalDestinations && internationalDestinations.length > 0 && (
+        <div className="relative">
+          <ClientOnly>
+            <DestinationsSection
+              title="International Destinations"
+              subtitle="Explore exotic locations around the world with our expertly crafted packages"
+              tag="Global Expeditions"
+              destinations={internationalDestinations}
+              viewAllLink="/destinations?category=international"
+              viewAllText="Explore International Destinations"
+              bgColor="bg-muted/30 py-16"
+            />
+          </ClientOnly>
+        </div>
+      )}
 
-      {/* International Destinations */}
-      <ClientOnly>
-        <DestinationsSection
-          title="International Destinations"
-          subtitle="Explore exotic locations around the world with our expertly crafted packages"
-          tag="Global Expeditions"
-          destinations={internationalDestinations}
-          viewAllLink="/destinations?category=international"
-          viewAllText="Explore International Destinations"
-          bgColor="bg-muted/30 py-16"
-        />
-      </ClientOnly>
-
-      {/* Hill Stations Section */}
-      <ClientOnly>
-        <DestinationsSection
-          title="Popular Hill Stations"
-          subtitle="Escape to the serene mountains and breathtaking landscapes"
-          tag="Mountain Retreats"
-          destinations={hillStations}
-          viewAllLink="/destinations?category=hillstations"
-          viewAllText="Explore Hill Stations"
-        />
-      </ClientOnly>
+      {hillStations && hillStations.length > 0 && (
+        <div className="relative">
+          <ClientOnly>
+            <DestinationsSection
+              title="Popular Hill Stations"
+              subtitle="Escape to the serene mountains and breathtaking landscapes"
+              tag="Mountain Retreats"
+              destinations={hillStations}
+              viewAllLink="/destinations?category=hillstations"
+              viewAllText="Explore Hill Stations"
+            />
+          </ClientOnly>
+        </div>
+      )}
 
       {/* Testimonials Section */}
-      <ClientOnly>
-        <TestimonialsSection testimonials={testimonials} />
-      </ClientOnly>
+      {testimonials && testimonials.length > 0 && (
+        <div className="relative">
+          <ClientOnly>
+            <TestimonialsSection testimonials={testimonials} />
+          </ClientOnly>
+        </div>
+      )}
 
       {/* Recent Blog Posts */}
-      <ClientOnly>
-        <BlogSection posts={blogPosts} />
-      </ClientOnly>
+      {blogPosts && blogPosts.length > 0 && (
+        <div className="relative">
+          <ClientOnly>
+            <BlogSection posts={blogPosts} />
+          </ClientOnly>
+        </div>
+      )}
 
       {/* WhatsApp Button */}
-      <ClientOnly>
-        <WhatsAppButton />
-      </ClientOnly>
+      <div className="relative">
+        <ClientOnly>
+          <WhatsAppButton />
+        </ClientOnly>
+      </div>
     </div>
   );
 } 
