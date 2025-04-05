@@ -29,55 +29,106 @@ export const metadata = {
   description: 'Explore the world your way with personalized travel experiences, expert planning, and unforgettable adventures.',
 };
 
-// Default data for safety
-const defaultTour = {
-  id: "default-tour",
-  title: "Tour Package",
-  imageSrc: "/placeholder.jpg",
-  location: "Location TBD",
-  duration: "Duration TBD",
-  price: "Price TBD",
-  bestTime: "Best time TBD",
-  packageType: "Budgeted" as const,
-  description: "Tour description coming soon",
+// Fallback data for safety
+const FALLBACK_DATA = {
+  heroSlides: [{
+    imageSrc: "/placeholder.jpg",
+    title: "Your One-Stop Travel Expert",
+    subtitle: "Explore the world your way"
+  }],
+  popularDestinations: [{
+    imageSrc: "/placeholder.jpg",
+    title: "Popular Destination",
+    description: "Experience amazing destinations",
+    bestTime: "All year round"
+  }],
+  religiousDestinations: [{
+    imageSrc: "/placeholder.jpg",
+    title: "Religious Destination",
+    description: "Experience spiritual journeys",
+    bestTime: "All year round"
+  }],
+  internationalDestinations: [{
+    imageSrc: "/placeholder.jpg",
+    title: "International Destination",
+    description: "Explore the world",
+    bestTime: "All year round"
+  }],
+  hillStations: [{
+    imageSrc: "/placeholder.jpg",
+    title: "Hill Station",
+    description: "Experience mountain beauty",
+    bestTime: "All year round"
+  }],
+  popularTours: [{
+    id: "default-tour",
+    title: "Popular Tour Package",
+    imageSrc: "/placeholder.jpg",
+    location: "Location TBD",
+    duration: "Duration TBD",
+    price: "Price TBD",
+    bestTime: "Best time TBD",
+    packageType: "Budgeted" as const,
+    description: "Experience amazing destinations"
+  }],
+  religiousTours: [{
+    id: "default-religious-tour",
+    title: "Religious Tour Package",
+    imageSrc: "/placeholder.jpg",
+    location: "Location TBD",
+    duration: "Duration TBD",
+    price: "Price TBD",
+    bestTime: "Best time TBD",
+    packageType: "Budgeted" as const,
+    description: "Experience spiritual journeys"
+  }],
+  testimonials: [{
+    quote: "Amazing experience with NomadSafari Holidays",
+    author: "Happy Traveler",
+    role: "Verified Customer",
+    rating: 5
+  }],
+  blogPosts: [{
+    id: "default-post",
+    title: "Travel Blog",
+    excerpt: "Explore amazing destinations",
+    imageSrc: "/placeholder.jpg",
+    date: new Date().toISOString(),
+    author: "Travel Expert",
+    tags: ["Travel", "Adventure"]
+  }]
 };
 
 // Helper function to ensure data arrays exist
-const ensureArray = <T extends any>(data: T[] | undefined | null, defaultItem?: T): T[] => {
+const ensureArray = <T extends any>(data: T[] | undefined | null, fallback: T[]): T[] => {
   if (!data || !Array.isArray(data) || data.length === 0) {
-    return defaultItem ? [defaultItem] : [];
+    return fallback;
   }
   return data;
 };
 
 export default function Home() {
   // Ensure all data arrays exist with proper fallbacks
-  const safeTours = {
-    popular: ensureArray(popularTours, defaultTour),
-    religious: ensureArray(religiousTours, defaultTour),
+  const safeData = {
+    heroSlides: ensureArray(heroSlides, FALLBACK_DATA.heroSlides),
+    popularDestinations: ensureArray(popularDestinations, FALLBACK_DATA.popularDestinations),
+    religiousDestinations: ensureArray(religiousDestinations, FALLBACK_DATA.religiousDestinations),
+    internationalDestinations: ensureArray(internationalDestinations, FALLBACK_DATA.internationalDestinations),
+    hillStations: ensureArray(hillStations, FALLBACK_DATA.hillStations),
+    popularTours: ensureArray(popularTours, FALLBACK_DATA.popularTours),
+    religiousTours: ensureArray(religiousTours, FALLBACK_DATA.religiousTours),
+    testimonials: ensureArray(testimonials, FALLBACK_DATA.testimonials),
+    blogPosts: ensureArray(blogPosts, FALLBACK_DATA.blogPosts)
   };
-
-  const safeDestinations = {
-    popular: ensureArray(popularDestinations),
-    religious: ensureArray(religiousDestinations),
-    international: ensureArray(internationalDestinations),
-    hillStations: ensureArray(hillStations),
-  };
-
-  const safeHeroSlides = ensureArray(heroSlides);
-  const safeTestimonials = ensureArray(testimonials);
-  const safeBlogPosts = ensureArray(blogPosts);
 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      {safeHeroSlides.length > 0 && (
-        <div className="relative">
-          <ClientOnly>
-            <HeroSlider slides={safeHeroSlides} />
-          </ClientOnly>
-        </div>
-      )}
+      <div className="relative">
+        <ClientOnly>
+          <HeroSlider slides={safeData.heroSlides} />
+        </ClientOnly>
+      </div>
 
       {/* Services Section */}
       <div className="relative">
@@ -94,139 +145,123 @@ export default function Home() {
       </div>
 
       {/* Featured Tours Section */}
-      {safeTours.popular.length > 0 && (
-        <section className="py-16 bg-background">
-          <div className="container mx-auto px-4">
-            <SectionHeading
-              title="Featured Tours"
-              subtitle="Discover our most popular travel experiences"
-              align="center"
-            />
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-              {safeTours.popular.map((tour) => (
-                <div key={tour.id} className="h-full">
-                  <ClientOnly>
-                    <TourCard tour={tour} className="h-full" />
-                  </ClientOnly>
-                </div>
-              ))}
-            </div>
-            <div className="text-center mt-8">
-              <Button asChild>
-                <Link href="/tours">View All Tours</Link>
-              </Button>
-            </div>
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4">
+          <SectionHeading
+            title="Featured Tours"
+            subtitle="Discover our most popular travel experiences"
+            align="center"
+          />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+            {safeData.popularTours.map((tour) => (
+              <div key={tour.id} className="h-full">
+                <ClientOnly>
+                  <TourCard tour={tour} className="h-full" />
+                </ClientOnly>
+              </div>
+            ))}
           </div>
-        </section>
-      )}
+          <div className="text-center mt-8">
+            <Button asChild>
+              <Link href="/tours">View All Tours</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
 
       {/* Religious Tours Section */}
-      {safeTours.religious.length > 0 && (
-        <section className="py-16 bg-secondary/5">
-          <div className="container mx-auto px-4">
-            <SectionHeading
-              title="Religious Tours"
-              subtitle="Embark on a spiritual journey"
-              align="center"
-            />
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-              {safeTours.religious.map((tour) => (
-                <div key={tour.id} className="h-full">
-                  <ClientOnly>
-                    <TourCard tour={tour} className="h-full" />
-                  </ClientOnly>
-                </div>
-              ))}
-            </div>
-            <div className="text-center mt-8">
-              <Button asChild>
-                <Link href="/tours/religious">View All Religious Tours</Link>
-              </Button>
-            </div>
+      <section className="py-16 bg-secondary/5">
+        <div className="container mx-auto px-4">
+          <SectionHeading
+            title="Religious Tours"
+            subtitle="Embark on a spiritual journey"
+            align="center"
+          />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+            {safeData.religiousTours.map((tour) => (
+              <div key={tour.id} className="h-full">
+                <ClientOnly>
+                  <TourCard tour={tour} className="h-full" />
+                </ClientOnly>
+              </div>
+            ))}
           </div>
-        </section>
-      )}
+          <div className="text-center mt-8">
+            <Button asChild>
+              <Link href="/tours/religious">View All Religious Tours</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
 
       {/* Destinations Sections */}
-      {safeDestinations.popular.length > 0 && (
-        <div className="relative">
-          <ClientOnly>
-            <DestinationsSection
-              title="Popular Destinations"
-              subtitle="Explore our handpicked destinations for your next adventure"
-              tag="Featured Destinations"
-              destinations={safeDestinations.popular}
-              viewAllLink="/destinations"
-              viewAllText="View All Destinations"
-            />
-          </ClientOnly>
-        </div>
-      )}
+      <div className="relative">
+        <ClientOnly>
+          <DestinationsSection
+            title="Popular Destinations"
+            subtitle="Explore our handpicked destinations for your next adventure"
+            tag="Featured Destinations"
+            destinations={safeData.popularDestinations}
+            viewAllLink="/destinations"
+            viewAllText="View All Destinations"
+          />
+        </ClientOnly>
+      </div>
 
-      {safeDestinations.religious.length > 0 && (
-        <div className="relative">
-          <ClientOnly>
-            <DestinationsSection
-              title="Popular Religious Places"
-              subtitle="Embark on a spiritual journey to these sacred destinations"
-              tag="Religious Tourism"
-              destinations={safeDestinations.religious}
-              viewAllLink="/destinations?category=pilgrimage"
-              viewAllText="Explore Religious Tours"
-              bgColor="bg-muted/30 py-16"
-            />
-          </ClientOnly>
-        </div>
-      )}
+      <div className="relative">
+        <ClientOnly>
+          <DestinationsSection
+            title="Popular Religious Places"
+            subtitle="Embark on a spiritual journey to these sacred destinations"
+            tag="Religious Tourism"
+            destinations={safeData.religiousDestinations}
+            viewAllLink="/destinations?category=pilgrimage"
+            viewAllText="Explore Religious Tours"
+            bgColor="bg-muted/30 py-16"
+          />
+        </ClientOnly>
+      </div>
 
-      {safeDestinations.international.length > 0 && (
-        <div className="relative">
-          <ClientOnly>
-            <DestinationsSection
-              title="International Destinations"
-              subtitle="Explore exotic locations around the world with our expertly crafted packages"
-              tag="Global Expeditions"
-              destinations={safeDestinations.international}
-              viewAllLink="/destinations?category=international"
-              viewAllText="Explore International Destinations"
-              bgColor="bg-muted/30 py-16"
-            />
-          </ClientOnly>
-        </div>
-      )}
+      <div className="relative">
+        <ClientOnly>
+          <DestinationsSection
+            title="International Destinations"
+            subtitle="Explore exotic locations around the world with our expertly crafted packages"
+            tag="Global Expeditions"
+            destinations={safeData.internationalDestinations}
+            viewAllLink="/destinations?category=international"
+            viewAllText="Explore International Destinations"
+            bgColor="bg-muted/30 py-16"
+          />
+        </ClientOnly>
+      </div>
 
-      {safeDestinations.hillStations.length > 0 && (
-        <div className="relative">
-          <ClientOnly>
-            <DestinationsSection
-              title="Popular Hill Stations"
-              subtitle="Escape to the serene mountains and breathtaking landscapes"
-              tag="Mountain Retreats"
-              destinations={safeDestinations.hillStations}
-              viewAllLink="/destinations?category=hillstations"
-              viewAllText="Explore Hill Stations"
-            />
-          </ClientOnly>
-        </div>
-      )}
+      <div className="relative">
+        <ClientOnly>
+          <DestinationsSection
+            title="Popular Hill Stations"
+            subtitle="Escape to the serene mountains and breathtaking landscapes"
+            tag="Mountain Retreats"
+            destinations={safeData.hillStations}
+            viewAllLink="/destinations?category=hillstations"
+            viewAllText="Explore Hill Stations"
+          />
+        </ClientOnly>
+      </div>
 
       {/* Testimonials Section */}
-      {safeTestimonials.length > 0 && (
-        <div className="relative">
-          <ClientOnly>
-            <TestimonialsSection testimonials={safeTestimonials} />
-          </ClientOnly>
-        </div>
-      )}
+      <div className="relative">
+        <ClientOnly>
+          <TestimonialsSection testimonials={safeData.testimonials} />
+        </ClientOnly>
+      </div>
 
       {/* Recent Blog Posts */}
-      {safeBlogPosts.length > 0 && (
-        <div className="relative">
-          <ClientOnly>
-            <BlogSection posts={safeBlogPosts} />
-          </ClientOnly>
-        </div>
-      )}
+      <div className="relative">
+        <ClientOnly>
+          <BlogSection posts={safeData.blogPosts} />
+        </ClientOnly>
+      </div>
 
       {/* WhatsApp Button */}
       <div className="relative">
