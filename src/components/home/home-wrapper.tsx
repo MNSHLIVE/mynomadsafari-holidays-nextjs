@@ -155,7 +155,7 @@ const FALLBACK_DATA: SafeData = {
 };
 
 // Helper function to ensure data arrays exist and convert price to string
-const ensureArray = <T extends any>(data: T[] | undefined | null, fallback: T[]): T[] => {
+const ensureArray = <T extends Record<string, any>>(data: T[] | undefined | null, fallback: T[]): T[] => {
   if (!data || !Array.isArray(data) || data.length === 0) {
     return fallback;
   }
@@ -163,8 +163,8 @@ const ensureArray = <T extends any>(data: T[] | undefined | null, fallback: T[])
   if (data.length > 0 && 'price' in data[0]) {
     return data.map(item => ({
       ...item,
-      price: String(item.price)
-    })) as T[];
+      price: typeof item.price === 'number' ? item.price.toString() : item.price
+    }));
   }
   return data;
 };
@@ -175,16 +175,28 @@ export default function HomeWrapper() {
 
   useEffect(() => {
     try {
+      // Convert imported types to our safe types
       const data: SafeData = {
-        heroSlides: ensureArray(heroSlides, FALLBACK_DATA.heroSlides),
-        popularDestinations: ensureArray(popularDestinations, FALLBACK_DATA.popularDestinations),
-        religiousDestinations: ensureArray(religiousDestinations, FALLBACK_DATA.religiousDestinations),
-        internationalDestinations: ensureArray(internationalDestinations, FALLBACK_DATA.internationalDestinations),
-        hillStations: ensureArray(hillStations, FALLBACK_DATA.hillStations),
-        popularTours: ensureArray(popularTours, FALLBACK_DATA.popularTours),
-        religiousTours: ensureArray(religiousTours, FALLBACK_DATA.religiousTours),
-        testimonials: ensureArray(testimonials, FALLBACK_DATA.testimonials),
-        blogPosts: ensureArray(blogPosts, FALLBACK_DATA.blogPosts)
+        heroSlides: ensureArray<HeroSlide>(heroSlides as HeroSlide[], FALLBACK_DATA.heroSlides),
+        popularDestinations: ensureArray<Destination>(popularDestinations as Destination[], FALLBACK_DATA.popularDestinations),
+        religiousDestinations: ensureArray<Destination>(religiousDestinations as Destination[], FALLBACK_DATA.religiousDestinations),
+        internationalDestinations: ensureArray<Destination>(internationalDestinations as Destination[], FALLBACK_DATA.internationalDestinations),
+        hillStations: ensureArray<Destination>(hillStations as Destination[], FALLBACK_DATA.hillStations),
+        popularTours: ensureArray<Tour>(popularTours.map(tour => ({
+          ...tour,
+          price: typeof tour.price === 'number' ? tour.price.toString() : tour.price,
+          packageType: "Budgeted"
+        })) as Tour[], FALLBACK_DATA.popularTours),
+        religiousTours: ensureArray<Tour>(religiousTours.map(tour => ({
+          ...tour,
+          price: typeof tour.price === 'number' ? tour.price.toString() : tour.price,
+          packageType: "Budgeted"
+        })) as Tour[], FALLBACK_DATA.religiousTours),
+        testimonials: ensureArray<Testimonial>(testimonials as Testimonial[], FALLBACK_DATA.testimonials),
+        blogPosts: ensureArray<BlogPost>(blogPosts.map(post => ({
+          ...post,
+          id: post.id || `post-${Date.now()}-${Math.random().toString(36).slice(2)}`
+        })) as BlogPost[], FALLBACK_DATA.blogPosts)
       };
       setSafeData(data);
     } catch (error) {
