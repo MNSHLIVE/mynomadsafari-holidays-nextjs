@@ -23,23 +23,61 @@ import {
   blogPosts,
 } from "@/components/home/home-data";
 
-// Make this an async server component
-export default async function Home() {
-  // Ensure all data is available before rendering
-  if (!popularTours?.length || !religiousTours?.length) {
-    return <div>Loading...</div>;
+// Metadata for the home page
+export const metadata = {
+  title: 'My NomadSafari Holidays - Your One-Stop Travel Expert',
+  description: 'Explore the world your way with personalized travel experiences, expert planning, and unforgettable adventures.',
+};
+
+// Default data for safety
+const defaultTour = {
+  id: "default-tour",
+  title: "Tour Package",
+  imageSrc: "/placeholder.jpg",
+  location: "Location TBD",
+  duration: "Duration TBD",
+  price: "Price TBD",
+  bestTime: "Best time TBD",
+  packageType: "Budgeted" as const,
+  description: "Tour description coming soon",
+};
+
+// Helper function to ensure data arrays exist
+const ensureArray = <T extends any>(data: T[] | undefined | null, defaultItem?: T): T[] => {
+  if (!data || !Array.isArray(data) || data.length === 0) {
+    return defaultItem ? [defaultItem] : [];
   }
+  return data;
+};
+
+export default function Home() {
+  // Ensure all data arrays exist with proper fallbacks
+  const safeTours = {
+    popular: ensureArray(popularTours, defaultTour),
+    religious: ensureArray(religiousTours, defaultTour),
+  };
+
+  const safeDestinations = {
+    popular: ensureArray(popularDestinations),
+    religious: ensureArray(religiousDestinations),
+    international: ensureArray(internationalDestinations),
+    hillStations: ensureArray(hillStations),
+  };
+
+  const safeHeroSlides = ensureArray(heroSlides);
+  const safeTestimonials = ensureArray(testimonials);
+  const safeBlogPosts = ensureArray(blogPosts);
 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <div className="relative">
-        {heroSlides && heroSlides.length > 0 && (
+      {safeHeroSlides.length > 0 && (
+        <div className="relative">
           <ClientOnly>
-            <HeroSlider slides={heroSlides} />
+            <HeroSlider slides={safeHeroSlides} />
           </ClientOnly>
-        )}
-      </div>
+        </div>
+      )}
 
       {/* Services Section */}
       <div className="relative">
@@ -56,7 +94,7 @@ export default async function Home() {
       </div>
 
       {/* Featured Tours Section */}
-      {popularTours && popularTours.length > 0 && (
+      {safeTours.popular.length > 0 && (
         <section className="py-16 bg-background">
           <div className="container mx-auto px-4">
             <SectionHeading
@@ -65,7 +103,7 @@ export default async function Home() {
               align="center"
             />
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-              {popularTours.map((tour) => (
+              {safeTours.popular.map((tour) => (
                 <div key={tour.id} className="h-full">
                   <ClientOnly>
                     <TourCard tour={tour} className="h-full" />
@@ -83,7 +121,7 @@ export default async function Home() {
       )}
 
       {/* Religious Tours Section */}
-      {religiousTours && religiousTours.length > 0 && (
+      {safeTours.religious.length > 0 && (
         <section className="py-16 bg-secondary/5">
           <div className="container mx-auto px-4">
             <SectionHeading
@@ -92,7 +130,7 @@ export default async function Home() {
               align="center"
             />
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-              {religiousTours.map((tour) => (
+              {safeTours.religious.map((tour) => (
                 <div key={tour.id} className="h-full">
                   <ClientOnly>
                     <TourCard tour={tour} className="h-full" />
@@ -110,14 +148,14 @@ export default async function Home() {
       )}
 
       {/* Destinations Sections */}
-      {popularDestinations && popularDestinations.length > 0 && (
+      {safeDestinations.popular.length > 0 && (
         <div className="relative">
           <ClientOnly>
             <DestinationsSection
               title="Popular Destinations"
               subtitle="Explore our handpicked destinations for your next adventure"
               tag="Featured Destinations"
-              destinations={popularDestinations}
+              destinations={safeDestinations.popular}
               viewAllLink="/destinations"
               viewAllText="View All Destinations"
             />
@@ -125,14 +163,14 @@ export default async function Home() {
         </div>
       )}
 
-      {religiousDestinations && religiousDestinations.length > 0 && (
+      {safeDestinations.religious.length > 0 && (
         <div className="relative">
           <ClientOnly>
             <DestinationsSection
               title="Popular Religious Places"
               subtitle="Embark on a spiritual journey to these sacred destinations"
               tag="Religious Tourism"
-              destinations={religiousDestinations}
+              destinations={safeDestinations.religious}
               viewAllLink="/destinations?category=pilgrimage"
               viewAllText="Explore Religious Tours"
               bgColor="bg-muted/30 py-16"
@@ -141,14 +179,14 @@ export default async function Home() {
         </div>
       )}
 
-      {internationalDestinations && internationalDestinations.length > 0 && (
+      {safeDestinations.international.length > 0 && (
         <div className="relative">
           <ClientOnly>
             <DestinationsSection
               title="International Destinations"
               subtitle="Explore exotic locations around the world with our expertly crafted packages"
               tag="Global Expeditions"
-              destinations={internationalDestinations}
+              destinations={safeDestinations.international}
               viewAllLink="/destinations?category=international"
               viewAllText="Explore International Destinations"
               bgColor="bg-muted/30 py-16"
@@ -157,14 +195,14 @@ export default async function Home() {
         </div>
       )}
 
-      {hillStations && hillStations.length > 0 && (
+      {safeDestinations.hillStations.length > 0 && (
         <div className="relative">
           <ClientOnly>
             <DestinationsSection
               title="Popular Hill Stations"
               subtitle="Escape to the serene mountains and breathtaking landscapes"
               tag="Mountain Retreats"
-              destinations={hillStations}
+              destinations={safeDestinations.hillStations}
               viewAllLink="/destinations?category=hillstations"
               viewAllText="Explore Hill Stations"
             />
@@ -173,19 +211,19 @@ export default async function Home() {
       )}
 
       {/* Testimonials Section */}
-      {testimonials && testimonials.length > 0 && (
+      {safeTestimonials.length > 0 && (
         <div className="relative">
           <ClientOnly>
-            <TestimonialsSection testimonials={testimonials} />
+            <TestimonialsSection testimonials={safeTestimonials} />
           </ClientOnly>
         </div>
       )}
 
       {/* Recent Blog Posts */}
-      {blogPosts && blogPosts.length > 0 && (
+      {safeBlogPosts.length > 0 && (
         <div className="relative">
           <ClientOnly>
-            <BlogSection posts={blogPosts} />
+            <BlogSection posts={safeBlogPosts} />
           </ClientOnly>
         </div>
       )}
