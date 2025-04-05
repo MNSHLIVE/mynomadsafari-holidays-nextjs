@@ -24,7 +24,7 @@ import {
 } from "@/components/ui/card";
 import DestinationQueryForm from "./destination-query-form";
 import ClientOnly from "./client-only";
-import { Tour } from "@/data/tours";
+import { Tour } from "@/components/home/home-data";
 import TourItineraryModal from "./tour-itinerary-modal";
 
 interface TourCardProps {

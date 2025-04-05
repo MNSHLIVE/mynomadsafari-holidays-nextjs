@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import { Tour } from '../data/tours';
+import { Tour } from '../components/home/home-data';
 import fs from 'fs';
 import path from 'path';
 

@@ -1,4 +1,4 @@
-import { Tour } from "@/data/tours";
+import { Tour } from "@/components/home/home-data";
 
 interface EmailTemplateProps {
   customerName: string;

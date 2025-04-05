@@ -1,5 +1,3 @@
-import { Tour, tours } from "@/data/tours";
-
 // TypeScript interfaces
 export interface HeroSlide {
   imageSrc: string;
@@ -18,6 +16,47 @@ export interface Destination {
   foodRecommendations?: string[];
   tips?: string[];
   majorTours?: string[];
+}
+
+export interface Tour {
+  id: string | number;
+  title: string;
+  imageSrc: string;
+  location: string;
+  duration: string;
+  price: number | string;
+  bestTime: string;
+  packageType: "Budgeted" | "Luxury" | "Premier";
+  country?: string;
+  region?: string;
+  description?: string;
+  activities?: string[];
+  included?: string[];
+  groupSize?: string;
+  highlight?: string;
+  itinerary?: Array<{
+    day: number;
+    title: string;
+    description: string;
+    imageSrc?: string;
+  }>;
+  localCuisine?: string[];
+  shoppingGuide?: string[];
+  culturalExperiences?: string[];
+  durationOptions?: Array<{
+    days: string;
+    title: string;
+    price: number;
+    cities: string[];
+    suitableFor: string;
+    accommodation: string;
+  }>;
+  internationalGuestPerks?: {
+    accommodation: string[];
+    dining: string[];
+    transport: string[];
+    support: string[];
+  };
 }
 
 export interface BlogPost {
@@ -274,16 +313,82 @@ export const hillStations = [
   },
 ];
 
-export const popularTours: Tour[] = [
-  tours[0], // Dubai Family Delight
-  tours[1], // Singapore Complete Experience
-  tours[2], // Goa Cultural Delight
+export const popularTours = [
+  {
+    imageSrc: "/Destination/Home/Featured-Tours/Golden-Triangle.jpg",
+    title: "Golden Triangle Tour",
+    location: "Delhi, Agra, Jaipur",
+    duration: "6 Days",
+    price: "Starting from ₹21,000",
+    bestTime: "October - March",
+    packageType: "Budgeted" as const,
+  },
+  {
+    imageSrc: "/Destination/Home/Featured-Tours/Kerala-Backwaters.jpg",
+    title: "Kerala Backwaters Luxury",
+    location: "Kochi, Munnar, Alleppey",
+    duration: "7 Days",
+    price: "Starting from ₹35,000",
+    bestTime: "September - March",
+    packageType: "Luxury" as const,
+  },
+  {
+    imageSrc: "/Destination/Home/Featured-Tours/Rajasthan-Heritage.jpg",
+    title: "Premier Rajasthan Heritage",
+    location: "Jaipur, Udaipur, Jodhpur",
+    duration: "10 Days",
+    price: "Starting from ₹75,000",
+    bestTime: "October - March",
+    packageType: "Premier" as const,
+  },
 ];
 
-export const religiousTours: Tour[] = [
-  tours[3], // Royal Rajasthan Explorer
-  tours[4] || tours[0], // Fallback to first tour if not enough tours
-  tours[5] || tours[1], // Fallback to second tour if not enough tours
+export const religiousTours = [
+  {
+    imageSrc: "/Destination/Home/Religious-Tours/Char-Dham.jpg",
+    title: "Char Dham Yatra",
+    location: "Uttarakhand, India",
+    duration: "12 Days",
+    price: "64000",
+    bestTime: "May - June, September - October",
+    packageType: "Premier" as const,
+    description: "A spiritual journey to the four sacred Hindu temples in the Himalayas: Yamunotri, Gangotri, Kedarnath, and Badrinath.",
+    itinerary: [
+      {day: 1, title: "Arrival in Haridwar", description: "Welcome at Haridwar and transfer to hotel. Evening Ganga Aarti at Har Ki Pauri."},
+      {day: 2, title: "Haridwar to Yamunotri", description: "Drive to Janki Chatti and trek to Yamunotri temple. Return to Barkot for overnight stay."},
+      {day: 3, title: "Barkot to Gangotri", description: "Drive to Gangotri through scenic Himalayan landscapes. Visit Gangotri Temple."},
+    ]
+  },
+  {
+    imageSrc: "/Destination/Home/Religious-Tours/Varanasi-Spiritual.jpg",
+    title: "Varanasi Spiritual Tour",
+    location: "Uttar Pradesh, India",
+    duration: "4 Days",
+    price: "21332",
+    bestTime: "October - March",
+    packageType: "Budgeted" as const,
+    description: "Experience the spiritual essence of India's oldest city with morning boat rides on the Ganges and evening aartis.",
+    itinerary: [
+      {day: 1, title: "Arrival in Varanasi", description: "Welcome at Varanasi Airport/Railway Station and transfer to hotel. Evening Ganga Aarti."},
+      {day: 2, title: "Morning Boat Ride & Temples", description: "Early morning boat ride on the Ganges to witness sunrise. Visit important temples."},
+      {day: 3, title: "Sarnath Excursion", description: "Day trip to Sarnath where Buddha gave his first sermon. Visit the Dhamek Stupa."},
+    ]
+  },
+  {
+    imageSrc: "/Destination/Home/Religious-Tours/Golden-Temple.jpg",
+    title: "Golden Temple & Amritsar",
+    location: "Punjab, India",
+    duration: "3 Days",
+    price: "15999",
+    bestTime: "October - March",
+    packageType: "Budgeted" as const,
+    description: "Visit the magnificent Golden Temple and experience the vibrant Punjabi culture in Amritsar.",
+    itinerary: [
+      {day: 1, title: "Arrival in Amritsar", description: "Welcome at Amritsar and transfer to hotel. Evening visit to Golden Temple for Palki Ceremony."},
+      {day: 2, title: "Golden Temple & Wagah Border", description: "Morning visit to Golden Temple. Afternoon visit to Wagah Border for the Retreat Ceremony."},
+      {day: 3, title: "Amritsar City Tour", description: "Visit Jallianwala Bagh, Durgiana Temple, and local markets. Departure from Amritsar."},
+    ]
+  },
 ];
 
 export const testimonials = [
@@ -968,3 +1073,15 @@ export const destinations = {
     }
   ]
 };
+
+// Combine all tours into a single array
+export const tours: Tour[] = [
+  ...popularTours.map(tour => ({
+    ...tour,
+    id: tour.title.toLowerCase().replace(/\s+/g, '-')
+  })),
+  ...religiousTours.map(tour => ({
+    ...tour,
+    id: tour.title.toLowerCase().replace(/\s+/g, '-')
+  }))
+];

@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Clock, MapPin, Calendar, IndianRupee, Users, UtensilsCrossed, ShoppingBag, Landmark, Hotel, Utensils, Car, HeartPulse } from 'lucide-react';
-import { tours } from '@/data/tours';
+import { tours } from '@/components/home/home-data';
 import BackButton from '@/components/back-button';
 import DestinationQueryForm from '@/components/destination-query-form';
 
