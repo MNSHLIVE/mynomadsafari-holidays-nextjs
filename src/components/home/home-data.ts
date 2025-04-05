@@ -31,9 +31,6 @@ export interface BlogPost {
   category: string;
 }
 
-// Re-export Tour type
-export type { Tour };
-
 // Shared data for home page components
 export const heroSlides: HeroSlide[] = [
   {
@@ -201,20 +198,51 @@ export const internationalDestinations = [
     foodRecommendations: [
       "Nasi Goreng",
       "Babi Guling",
-      "Satay Lilit",
-      "Bebek Betutu"
+      "Gado Gado",
+      "Bakso"
     ],
     tips: [
       "Respect temple dress codes",
       "Carry light clothes",
-      "Book activities in advance",
+      "Book accommodations in advance",
       "Learn basic Indonesian phrases"
     ],
     majorTours: [
-      "Cultural Heritage Tour",
-      "Beach Hopping Tour",
+      "Cultural Tour",
+      "Beach Tour",
       "Adventure Tour",
-      "Spa & Wellness Tour"
+      "Wellness Tour"
+    ]
+  },
+  {
+    imageSrc: "/Destination/Home/International/Dubai-international.jpg",
+    title: "Dubai",
+    country: "Dubai",
+    description: "Experience the perfect blend of luxury, adventure, and cultural heritage in this modern metropolis.",
+    bestTime: "November - March",
+    placesToSee: [
+      "Burj Khalifa",
+      "Dubai Mall",
+      "Palm Jumeirah",
+      "Desert Safari"
+    ],
+    foodRecommendations: [
+      "Shawarma",
+      "Hummus",
+      "Arabic Coffee",
+      "Kunafa"
+    ],
+    tips: [
+      "Respect local customs",
+      "Dress modestly",
+      "Book desert safari in advance",
+      "Stay hydrated"
+    ],
+    majorTours: [
+      "City Explorer Tour",
+      "Desert Adventure Tour",
+      "Shopping Tour",
+      "Cultural Tour"
     ]
   }
 ];
@@ -246,9 +274,17 @@ export const hillStations = [
   },
 ];
 
-// Filter tours for popular and religious categories
-export const popularTours = tours.filter(tour => tour.packageType === "Premier").slice(0, 3);
-export const religiousTours = tours.filter(tour => tour.packageType === "Luxury").slice(0, 3);
+export const popularTours: Tour[] = [
+  tours[0], // Dubai Family Delight
+  tours[1], // Singapore Complete Experience
+  tours[2], // Goa Cultural Delight
+];
+
+export const religiousTours: Tour[] = [
+  tours[3], // Royal Rajasthan Explorer
+  tours[4] || tours[0], // Fallback to first tour if not enough tours
+  tours[5] || tours[1], // Fallback to second tour if not enough tours
+];
 
 export const testimonials = [
   {
