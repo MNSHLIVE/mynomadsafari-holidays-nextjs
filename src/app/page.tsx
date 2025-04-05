@@ -26,7 +26,7 @@ import {
 // Metadata for the home page
 export const metadata = {
   title: 'My NomadSafari Holidays - Your One-Stop Travel Expert',
-  description: 'Explore the world your way with personalized travel experiences, expert planning, and unforgettable adventures.',
+  description: 'Plan your perfect adventure with My NomadSafari Holidays. We offer expertly curated tours, religious pilgrimages, and international travel experiences. Start your journey today!',
 };
 
 // Fallback data for safety
