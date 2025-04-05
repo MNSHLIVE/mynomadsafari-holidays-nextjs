@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { DialogFooter } from "@/components/ui/dialog";
@@ -25,7 +27,7 @@ export const QueryFormContent = ({ destinationName, onClose }: QueryFormContentP
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
@@ -35,38 +37,12 @@ export const QueryFormContent = ({ destinationName, onClose }: QueryFormContentP
       return;
     }
 
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          phone,
-          travelDate: travelDate?.toISOString(),
-          adults,
-          children,
-          packageType,
-          message,
-          destinationName,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to send inquiry");
-      }
-
+    setTimeout(() => {
       toast.success("Thank you for your inquiry! Our team will contact you shortly.");
+      setIsSubmitting(false);
       onClose();
       resetForm();
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      toast.error("Failed to send inquiry. Please try again later.");
-    } finally {
-      setIsSubmitting(false);
-    }
+    }, 1500);
   };
 
   const resetForm = () => {

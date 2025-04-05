@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 const MainNav = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const router = useRouter();
+  const pathname = usePathname();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -30,7 +30,7 @@ const MainNav = () => {
   useEffect(() => {
     // Close mobile menu when route changes
     setIsOpen(false);
-  }, [router.asPath]);
+  }, [pathname]);
 
   const navLinks = [
     { href: "/", label: "Home" },
@@ -77,7 +77,7 @@ const MainNav = () => {
                 href={link.href}
                 className={cn(
                   "relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-md group",
-                  router.asPath === link.href 
+                  pathname === link.href 
                     ? "text-primary bg-primary/10" 
                     : "text-foreground hover:text-primary hover:bg-primary/5"
                 )}
@@ -86,7 +86,7 @@ const MainNav = () => {
                 <span 
                   className={cn(
                     "absolute bottom-0 left-0 w-full h-0.5 bg-primary transform origin-left transition-transform duration-300 rounded-full",
-                    router.asPath === link.href 
+                    pathname === link.href 
                       ? "scale-x-100" 
                       : "scale-x-0 group-hover:scale-x-100"
                   )}
@@ -128,7 +128,7 @@ const MainNav = () => {
                 href={link.href}
                 className={cn(
                   "block py-3 px-4 rounded-md text-base font-medium transition-all duration-300",
-                  router.asPath === link.href 
+                  pathname === link.href 
                     ? "bg-primary/10 text-primary" 
                     : "hover:bg-primary/5 hover:text-primary active:bg-primary/10"
                 )}

@@ -18,7 +18,7 @@ export interface Tour {
     day: number;
     title: string;
     description: string;
-    image: string;
+    imageSrc: string;
   }>;
   localCuisine?: string[];
   shoppingGuide?: string[];
@@ -58,13 +58,13 @@ export const tours: Tour[] = [
     groupSize: "Family Package (4 persons)",
     highlight: "Door-to-Door Service",
     itinerary: [
-      { day: 1, title: "Arrival in Dubai", description: "Welcome to Dubai! Our representative will meet you at the airport and transfer you to your hotel. Evening at leisure.", image: "/Destination/International/Tours/Dubai/Dubai-Family-Delight.jpg" },
-      { day: 2, title: "Dubai City Tour", description: "Full-day city tour including visits to Dubai Museum, Gold Souk, and Jumeirah Beach.", image: "/Destination/International/Tours/Dubai/Dubai-City-Tour.jpg" },
-      { day: 3, title: "Desert Safari", description: "Morning at leisure. Afternoon desert safari with BBQ dinner and entertainment.", image: "/Destination/International/Tours/Dubai/Desert-Safari.jpg" },
-      { day: 4, title: "Burj Khalifa & Dubai Mall", description: "Visit the world's tallest building and enjoy shopping at Dubai Mall.", image: "/Destination/International/Tours/Dubai/Burj-Khalifa-Dubai-Mall.jpg" },
-      { day: 5, title: "Abu Dhabi Tour", description: "Full-day Abu Dhabi city tour including Sheikh Zayed Mosque and Ferrari World.", image: "/Destination/International/Tours/Abu-Dhabi/Abu-Dhabi-Tour.jpg" },
-      { day: 6, title: "Aquaventure & Palm", description: "Full day at Atlantis Aquaventure Waterpark. Evening Palm Jumeirah tour.", image: "/Destination/International/Tours/Dubai/Aquaventure-Palm-Jumeirah.jpg" },
-      { day: 7, title: "Departure", description: "After breakfast, transfer to airport for your return flight.", image: "/Destination/International/Tours/Dubai/Departure.jpg" }
+      { day: 1, title: "Arrival in Dubai", description: "Welcome to Dubai! Our representative will meet you at the airport and transfer you to your hotel. Evening at leisure.", imageSrc: "/Destination/International/Tours/Dubai/Dubai-Family-Delight.jpg" },
+      { day: 2, title: "Dubai City Tour", description: "Full-day city tour including visits to Dubai Museum, Gold Souk, and Jumeirah Beach.", imageSrc: "/Destination/International/Tours/Dubai/Dubai-City-Tour.jpg" },
+      { day: 3, title: "Desert Safari", description: "Morning at leisure. Afternoon desert safari with BBQ dinner and entertainment.", imageSrc: "/Destination/International/Tours/Dubai/Desert-Safari.jpg" },
+      { day: 4, title: "Burj Khalifa & Dubai Mall", description: "Visit the world's tallest building and enjoy shopping at Dubai Mall.", imageSrc: "/Destination/International/Tours/Dubai/Burj-Khalifa-Dubai-Mall.jpg" },
+      { day: 5, title: "Abu Dhabi Tour", description: "Full-day Abu Dhabi city tour including Sheikh Zayed Mosque and Ferrari World.", imageSrc: "/Destination/International/Tours/Abu-Dhabi/Abu-Dhabi-Tour.jpg" },
+      { day: 6, title: "Aquaventure & Palm", description: "Full day at Atlantis Aquaventure Waterpark. Evening Palm Jumeirah tour.", imageSrc: "/Destination/International/Tours/Dubai/Aquaventure-Palm-Jumeirah.jpg" },
+      { day: 7, title: "Departure", description: "After breakfast, transfer to airport for your return flight.", imageSrc: "/Destination/International/Tours/Dubai/Departure.jpg" }
     ]
   },
   {
@@ -84,12 +84,12 @@ export const tours: Tour[] = [
     groupSize: "Up to 6 people",
     highlight: "Door-to-Door Service",
     itinerary: [
-      { day: 1, title: "Arrive in Singapore", description: "Arrive at Changi Airport and transfer to your hotel. Evening at leisure to explore the nearby area.", image: "/Destination/International/Tours/Singapore/Arrive-Singapore.jpg" },
-      { day: 2, title: "City Tour", description: "Explore Singapore's highlights including Merlion Park, Gardens by the Bay, and Marina Bay Sands.", image: "/Destination/International/Tours/Singapore/City-Tour.jpg" },
-      { day: 3, title: "Universal Studios", description: "Full day at Universal Studios Singapore with access to all attractions and shows.", image: "/Destination/International/Tours/Singapore/Universal-Studios.jpg" },
-      { day: 4, title: "Sentosa Island", description: "Enjoy the beaches and attractions of Sentosa Island, including the S.E.A. Aquarium and cable car ride.", image: "/Destination/International/Tours/Sentosa-Island.jpg" },
-      { day: 5, title: "Shopping & Cultural Tour", description: "Visit Chinatown, Little India, and enjoy shopping at Orchard Road.", image: "/Destination/International/Tours/Singapore/Shopping-Cultural-Tour.jpg" },
-      { day: 6, title: "Departure", description: "Check out and transfer to Changi Airport for your return flight.", image: "/Destination/International/Tours/Singapore/Departure.jpg" }
+      { day: 1, title: "Arrive in Singapore", description: "Arrive at Changi Airport and transfer to your hotel. Evening at leisure to explore the nearby area.", imageSrc: "/Destination/International/Tours/Singapore/Arrive-Singapore.jpg" },
+      { day: 2, title: "City Tour", description: "Explore Singapore's highlights including Merlion Park, Gardens by the Bay, and Marina Bay Sands.", imageSrc: "/Destination/International/Tours/Singapore/City-Tour.jpg" },
+      { day: 3, title: "Universal Studios", description: "Full day at Universal Studios Singapore with access to all attractions and shows.", imageSrc: "/Destination/International/Tours/Singapore/Universal-Studios.jpg" },
+      { day: 4, title: "Sentosa Island", description: "Enjoy the beaches and attractions of Sentosa Island, including the S.E.A. Aquarium and cable car ride.", imageSrc: "/Destination/International/Tours/Sentosa-Island.jpg" },
+      { day: 5, title: "Shopping & Cultural Tour", description: "Visit Chinatown, Little India, and enjoy shopping at Orchard Road.", imageSrc: "/Destination/International/Tours/Singapore/Shopping-Cultural-Tour.jpg" },
+      { day: 6, title: "Departure", description: "Check out and transfer to Changi Airport for your return flight.", imageSrc: "/Destination/International/Tours/Singapore/Departure.jpg" }
     ]
   },
   {
@@ -130,31 +130,31 @@ export const tours: Tour[] = [
         day: 1,
         title: "Warm Welcome to Goa",
         description: "Your journey begins with our friendly driver greeting you at Goa Airport/Railway Station with a traditional welcome. Enjoy a comfortable drive to your boutique resort in North Goa, watching the coastal landscape unfold. After check-in and refreshments, visit the iconic Calangute Beach for a serene sunset. End your day with a specially arranged Goan seafood dinner at a family-run beach shack, where the owner shares stories about local fishing traditions.",
-        image: "/Destination/Domestic/Goa/Warm-Welcome-Goa.jpg"
+        imageSrc: "/Destination/Domestic/Goa/Warm-Welcome-Goa.jpg"
       },
       {
         day: 2,
         title: "Heritage & Spice Discovery",
         description: "After breakfast, your driver takes you to a traditional spice plantation. Experience a guided tour followed by a home-cooked Goan lunch served on banana leaves. In the afternoon, explore Old Goa's UNESCO heritage churches with our expert local guide. Visit a traditional Portuguese-era mansion to understand Goan architecture. Evening at the vibrant Mapusa market, where our guide helps you select authentic Goan spices, cashews, and local handicrafts as souvenirs for your loved ones.",
-        image: "/Destination/Domestic/Goa/Heritage-Spice-Discovery.jpg"
+        imageSrc: "/Destination/Domestic/Goa/Heritage-Spice-Discovery.jpg"
       },
       {
         day: 3,
         title: "Local Life & Culinary Delights",
         description: "Start your day at a local fish market with our guide, selecting fresh catch for your cooking class. Join a Goan family to learn traditional recipes like fish curry, xacuti, and bebinca. After lunch, explore hidden beaches of South Goa in your private car. Evening features a sunset river cruise with live Goan folk music. Dinner at a heritage Portuguese restaurant featuring fusion cuisine.",
-        image: "/Destination/Domestic/Goa/Local-Life-Culinary-Delights.jpg"
+        imageSrc: "/Destination/Domestic/Goa/Local-Life-Culinary-Delights.jpg"
       },
       {
         day: 4,
         title: "Culture & Countryside",
         description: "Morning visit to a traditional potter's village to try your hand at pottery. Drive through scenic countryside to Sahakari spice farm for a unique dining experience. Afternoon at Dudhsagar Waterfall (seasonal) or local butterfly conservatory. Evening food trail in Panjim's Latin Quarter, sampling local delicacies like chorizo pao, ros omelette, and feni tasting. Special cultural performance of Goan folk dance arranged at dinner.",
-        image: "/Destination/Domestic/Goa/Culture-Countryside.jpg"
+        imageSrc: "/Destination/Domestic/Goa/Culture-Countryside.jpg"
       },
       {
         day: 5,
         title: "Relaxed Farewell",
         description: "Leisurely morning at resort. Visit Anjuna flea market (if Wednesday) or local boutiques for last-minute shopping. Our guide helps you pick authentic Goan souvenirs - Portuguese tiles, traditional jewelry, or Goan coconut vinegar. After lunch, our driver ensures a comfortable transfer to the airport/railway station, concluding your memorable Goan experience.",
-        image: "/Destination/Domestic/Goa/Relaxed-Farewell.jpg"
+        imageSrc: "/Destination/Domestic/Goa/Relaxed-Farewell.jpg"
       }
     ],
     localCuisine: [
@@ -238,49 +238,49 @@ export const tours: Tour[] = [
         day: 1,
         title: "Arrival in Delhi",
         description: "Welcome to India! Our representative will greet you at Delhi Airport with a traditional welcome. Transfer to your heritage hotel. Evening visit to Qutub Minar and Humayun's Tomb. Dinner at a renowned Indian restaurant featuring live classical music.",
-        image: "/Destination/Domestic/Rajasthan/Arrival-Delhi.jpg"
+        imageSrc: "/Destination/Domestic/Rajasthan/Arrival-Delhi.jpg"
       },
       {
         day: 2,
         title: "Delhi to Agra",
         description: "Morning drive to Agra. Visit the magnificent Taj Mahal during sunset. Evening exploration of Agra Fort with our expert historian guide. Special dinner featuring Mughlai cuisine at hotel's rooftop restaurant.",
-        image: "/Destination/Domestic/Rajasthan/Delhi-Agra.jpg"
+        imageSrc: "/Destination/Domestic/Rajasthan/Delhi-Agra.jpg"
       },
       {
         day: 3,
         title: "Agra to Jaipur",
         description: "Early morning Taj Mahal visit at sunrise (optional). Drive to Jaipur via Fatehpur Sikri. Evening arrival in Jaipur with welcome ceremony at hotel. Night tour of illuminated City Palace with royal family stories.",
-        image: "/Destination/Domestic/Rajasthan/Agra-Jaipur.jpg"
+        imageSrc: "/Destination/Domestic/Rajasthan/Agra-Jaipur.jpg"
       },
       {
         day: 4,
         title: "Jaipur Exploration",
         description: "Morning visit to Amber Fort with elephant ride. Afternoon city tour including City Palace, Jantar Mantar, and Hawa Mahal. Evening cooking class with a royal family, learning traditional Rajasthani recipes.",
-        image: "/Destination/Domestic/Rajasthan/Jaipur-Exploration.jpg"
+        imageSrc: "/Destination/Domestic/Rajasthan/Jaipur-Exploration.jpg"
       },
       {
         day: 5,
         title: "Jaipur to Jodhpur",
         description: "Scenic drive to Jodhpur. Visit Mehrangarh Fort and explore the blue city. Evening walk through old city markets with shopping for traditional textiles and spices. Dinner at a heritage haveli.",
-        image: "/Destination/Domestic/Rajasthan/Jaipur-Jodhpur.jpg"
+        imageSrc: "/Destination/Domestic/Rajasthan/Jaipur-Jodhpur.jpg"
       },
       {
         day: 6,
         title: "Jodhpur Experience",
         description: "Morning village safari to Bishnoi villages. Afternoon visit to Umaid Bhawan Palace. Evening zip-lining tour over Mehrangarh Fort. Special dinner in the desert with folk performances.",
-        image: "/Destination/Domestic/Rajasthan/Jodhpur-Experience.jpg"
+        imageSrc: "/Destination/Domestic/Rajasthan/Jodhpur-Experience.jpg"
       },
       {
         day: 7,
         title: "Jodhpur to Udaipur",
         description: "Drive to Udaipur via Ranakpur Temples. Afternoon boat ride on Lake Pichola. Evening cultural performance at Bagore Ki Haveli followed by dinner at a lakeside restaurant.",
-        image: "/Destination/Domestic/Rajasthan/Jodhpur-Udaipur.jpg"
+        imageSrc: "/Destination/Domestic/Rajasthan/Jodhpur-Udaipur.jpg"
       },
       {
         day: 8,
         title: "Udaipur and Departure",
         description: "Morning visit to City Palace and vintage car museum. Afternoon at leisure for spa or shopping. Evening transfer to airport for departure flight.",
-        image: "/Destination/Domestic/Rajasthan/Udaipur-Departure.jpg"
+        imageSrc: "/Destination/Domestic/Rajasthan/Udaipur-Departure.jpg"
       }
     ],
     included: [
@@ -381,31 +381,31 @@ export const tours: Tour[] = [
         day: 1,
         title: "Delhi Arrival & Heritage",
         description: "Welcome at Delhi airport. Visit Qutub Minar, Humayun's Tomb, and India Gate. Evening Old Delhi food trail in Chandni Chowk.",
-        image: "/Destination/Domestic/GoldenTriangle/Delhi-Arrival-Heritage.jpg"
+        imageSrc: "/Destination/Domestic/GoldenTriangle/Delhi-Arrival-Heritage.jpg"
       },
       {
         day: 2,
         title: "Delhi to Agra",
         description: "Morning drive to Agra. Afternoon Taj Mahal visit at sunset. Evening Mohabbat the Taj show.",
-        image: "/Destination/Domestic/GoldenTriangle/Delhi-Agra.jpg"
+        imageSrc: "/Destination/Domestic/GoldenTriangle/Delhi-Agra.jpg"
       },
       {
         day: 3,
         title: "Agra to Jaipur",
         description: "Sunrise Taj Mahal visit (optional). Drive to Jaipur via Fatehpur Sikri. Evening local market visit.",
-        image: "/Destination/Domestic/GoldenTriangle/Agra-Jaipur.jpg"
+        imageSrc: "/Destination/Domestic/GoldenTriangle/Agra-Jaipur.jpg"
       },
       {
         day: 4,
         title: "Jaipur Exploration",
         description: "Amber Fort visit with elephant ride. City Palace, Hawa Mahal, and local crafts exploration.",
-        image: "/Destination/Domestic/GoldenTriangle/Jaipur-Exploration.jpg"
+        imageSrc: "/Destination/Domestic/GoldenTriangle/Jaipur-Exploration.jpg"
       },
       {
         day: 5,
         title: "Return to Delhi",
         description: "Morning at leisure. Afternoon drive to Delhi. Evening departure.",
-        image: "/Destination/Domestic/GoldenTriangle/Return-Delhi.jpg"
+        imageSrc: "/Destination/Domestic/GoldenTriangle/Return-Delhi.jpg"
       }
     ]
   },
@@ -442,37 +442,37 @@ export const tours: Tour[] = [
         day: 1,
         title: "Cochin Welcome",
         description: "Arrival in Cochin. Heritage walk in Fort Kochi. Evening Kathakali dance show.",
-        image: "/Destination/Domestic/Kerala/Cochin-Welcome.jpg"
+        imageSrc: "/Destination/Domestic/Kerala/Cochin-Welcome.jpg"
       },
       {
         day: 2,
         title: "Munnar Hills",
         description: "Drive to Munnar. Tea plantation visit and tea tasting. Spice garden tour.",
-        image: "/Destination/Domestic/Kerala/Munnar-Hills.jpg"
+        imageSrc: "/Destination/Domestic/Kerala/Munnar-Hills.jpg"
       },
       {
         day: 3,
         title: "Thekkady Wildlife",
         description: "Transfer to Thekkady. Periyar Wildlife Sanctuary boat ride. Spice plantation tour.",
-        image: "/Destination/Domestic/Kerala/Thekkady-Wildlife.jpg"
+        imageSrc: "/Destination/Domestic/Kerala/Thekkady-Wildlife.jpg"
       },
       {
         day: 4,
         title: "Alleppey Houseboat",
         description: "Board luxury houseboat in Alleppey. Backwater cruise with all meals.",
-        image: "/Destination/Domestic/Kerala/Alleppey-Houseboat.jpg"
+        imageSrc: "/Destination/Domestic/Kerala/Alleppey-Houseboat.jpg"
       },
       {
         day: 5,
         title: "Kovalam Beach",
         description: "Drive to Kovalam. Beach leisure. Evening ayurvedic massage.",
-        image: "/Destination/Domestic/Kerala/Kovalam-Beach.jpg"
+        imageSrc: "/Destination/Domestic/Kerala/Kovalam-Beach.jpg"
       },
       {
         day: 6,
         title: "Departure",
         description: "Morning yoga session. Transfer to Trivandrum airport.",
-        image: "/Destination/Domestic/Kerala/Departure.jpg"
+        imageSrc: "/Destination/Domestic/Kerala/Departure.jpg"
       }
     ]
   },
@@ -501,31 +501,31 @@ export const tours: Tour[] = [
         day: 1,
         title: "Delhi to Haridwar",
         description: "Arrival in Delhi. Transfer to Haridwar. Evening Ganga Aarti.",
-        image: "/Destination/Domestic/Religious/Delhi-Haridwar.jpg"
+        imageSrc: "/Destination/Domestic/Religious/Delhi-Haridwar.jpg"
       },
       {
         day: 2,
         title: "Yamunotri Yatra",
         description: "Drive to Janki Chatti. Trek to Yamunotri temple. Evening aarti.",
-        image: "/Destination/Domestic/Religious/Yamunotri-Yatra.jpg"
+        imageSrc: "/Destination/Domestic/Religious/Yamunotri-Yatra.jpg"
       },
       {
         day: 3,
         title: "Gangotri Darshan",
         description: "Travel to Gangotri. Temple darshan and Ganga puja.",
-        image: "/Destination/Domestic/Religious/Gangotri-Darshan.jpg"
+        imageSrc: "/Destination/Domestic/Religious/Gangotri-Darshan.jpg"
       },
       {
         day: 4,
         title: "Kedarnath Journey",
         description: "Drive to Sonprayag. Helicopter or trek to Kedarnath.",
-        image: "/Destination/Domestic/Religious/Kedarnath-Journey.jpg"
+        imageSrc: "/Destination/Domestic/Religious/Kedarnath-Journey.jpg"
       },
       {
         day: 5,
         title: "Badrinath Visit",
         description: "Travel to Badrinath. Temple darshan and Mana village visit.",
-        image: "/Destination/Domestic/Religious/Badrinath-Visit.jpg"
+        imageSrc: "/Destination/Domestic/Religious/Badrinath-Visit.jpg"
       }
     ]
   },
@@ -554,25 +554,25 @@ export const tours: Tour[] = [
         day: 1,
         title: "Sacred Welcome",
         description: "Arrival in Varanasi. Evening Ganga Aarti at Dashashwamedh Ghat.",
-        image: "/Destination/Domestic/Religious/Sacred-Welcome.jpg"
+        imageSrc: "/Destination/Domestic/Religious/Sacred-Welcome.jpg"
       },
       {
         day: 2,
         title: "Spiritual Morning",
         description: "Sunrise boat ride. Temple tour including Kashi Vishwanath.",
-        image: "/Destination/Domestic/Religious/Spiritual-Morning.jpg"
+        imageSrc: "/Destination/Domestic/Religious/Spiritual-Morning.jpg"
       },
       {
         day: 3,
         title: "Sarnath Excursion",
         description: "Visit Buddhist site Sarnath. Evening cultural program.",
-        image: "/Destination/Domestic/Religious/Sarnath-Excursion.jpg"
+        imageSrc: "/Destination/Domestic/Religious/Sarnath-Excursion.jpg"
       },
       {
         day: 4,
         title: "Farewell",
         description: "Morning boat ride. Departure transfer.",
-        image: "/Destination/Domestic/Religious/Farewell.jpg"
+        imageSrc: "/Destination/Domestic/Religious/Farewell.jpg"
       }
     ]
   },
@@ -609,19 +609,19 @@ export const tours: Tour[] = [
         day: 1,
         title: "Sacred Arrival",
         description: "Arrival and transfer to hotel. Evening visit to Golden Temple for Palki Sahib ceremony. Dinner at Langar Hall.",
-        image: "/Destination/Domestic/Religious/Sacred-Arrival.jpg"
+        imageSrc: "/Destination/Domestic/Religious/Sacred-Arrival.jpg"
       },
       {
         day: 2,
         title: "Heritage & Patriotism",
         description: "Early morning Golden Temple visit. Heritage walk through old city. Afternoon Wagah Border ceremony. Evening food trail in Hall Bazaar.",
-        image: "/Destination/Domestic/Religious/Heritage-Patriotism.jpg"
+        imageSrc: "/Destination/Domestic/Religious/Heritage-Patriotism.jpg"
       },
       {
         day: 3,
         title: "Cultural Immersion",
         description: "Visit Jallianwala Bagh, Durgiana Temple, and local markets. Evening departure.",
-        image: "/Destination/Domestic/Religious/Cultural-Immersion.jpg"
+        imageSrc: "/Destination/Domestic/Religious/Cultural-Immersion.jpg"
       }
     ]
   },
@@ -658,43 +658,43 @@ export const tours: Tour[] = [
         day: 1,
         title: "Tropical Welcome",
         description: "Arrival in Bali. Transfer to Seminyak. Welcome dinner on beach.",
-        image: "/Destination/International/Bali/Tropical-Welcome.jpg"
+        imageSrc: "/Destination/International/Bali/Tropical-Welcome.jpg"
       },
       {
         day: 2,
         title: "Ubud Culture",
         description: "Monkey Forest, rice terraces, and art galleries tour.",
-        image: "/Destination/International/Bali/Ubud-Culture.jpg"
+        imageSrc: "/Destination/International/Bali/Ubud-Culture.jpg"
       },
       {
         day: 3,
         title: "Temple Trail",
         description: "Visit Tanah Lot and Uluwatu temples. Evening fire dance show.",
-        image: "/Destination/International/Bali/Temple-Trail.jpg"
+        imageSrc: "/Destination/International/Bali/Temple-Trail.jpg"
       },
       {
         day: 4,
         title: "Island Adventure",
         description: "Nusa Penida tour with snorkeling and beach visits.",
-        image: "/Destination/International/Bali/Island-Adventure.jpg"
+        imageSrc: "/Destination/International/Bali/Island-Adventure.jpg"
       },
       {
         day: 5,
         title: "Wellness Day",
         description: "Yoga session, spa treatment, and cooking class.",
-        image: "/Destination/International/Bali/Wellness-Day.jpg"
+        imageSrc: "/Destination/International/Bali/Wellness-Day.jpg"
       },
       {
         day: 6,
         title: "Water Sports",
         description: "Beach activities in Nusa Dua. Sunset dinner cruise.",
-        image: "/Destination/International/Bali/Water-Sports.jpg"
+        imageSrc: "/Destination/International/Bali/Water-Sports.jpg"
       },
       {
         day: 7,
         title: "Farewell",
         description: "Free morning. Departure transfer.",
-        image: "/Destination/International/Bali/Farewell.jpg"
+        imageSrc: "/Destination/International/Bali/Farewell.jpg"
       }
     ]
   },
@@ -731,43 +731,43 @@ export const tours: Tour[] = [
         day: 1,
         title: "Bangkok Arrival",
         description: "Welcome to Thailand. Evening Chao Phraya dinner cruise.",
-        image: "/Destination/International/Thailand/Bangkok-Arrival.jpg"
+        imageSrc: "/Destination/International/Thailand/Bangkok-Arrival.jpg"
       },
       {
         day: 2,
         title: "Bangkok Temples",
         description: "Visit Grand Palace, Wat Phra Kaew, Wat Arun. Evening street food tour.",
-        image: "/Destination/International/Thailand/Bangkok-Temples.jpg"
+        imageSrc: "/Destination/International/Thailand/Bangkok-Temples.jpg"
       },
       {
         day: 3,
         title: "Bangkok Markets",
         description: "Morning floating market tour. Evening free for shopping.",
-        image: "/Destination/International/Thailand/Bangkok-Markets.jpg"
+        imageSrc: "/Destination/International/Thailand/Bangkok-Markets.jpg"
       },
       {
         day: 4,
         title: "Phuket Paradise",
         description: "Flight to Phuket. Evening beach dinner and fire show.",
-        image: "/Destination/International/Thailand/Phuket-Paradise.jpg"
+        imageSrc: "/Destination/International/Thailand/Phuket-Paradise.jpg"
       },
       {
         day: 5,
         title: "Phi Phi Islands",
         description: "Full-day island hopping tour with snorkeling.",
-        image: "/Destination/International/Thailand/Phi-Phi-Islands.jpg"
+        imageSrc: "/Destination/International/Thailand/Phi-Phi-Islands.jpg"
       },
       {
         day: 6,
         title: "Phuket Leisure",
         description: "Morning cooking class. Afternoon spa. Evening Old Town tour.",
-        image: "/Destination/International/Thailand/Phuket-Leisure.jpg"
+        imageSrc: "/Destination/International/Thailand/Phuket-Leisure.jpg"
       },
       {
         day: 7,
         title: "Farewell",
         description: "Free morning for shopping. Departure transfer.",
-        image: "/Destination/International/Thailand/Farewell.jpg"
+        imageSrc: "/Destination/International/Thailand/Farewell.jpg"
       }
     ]
   },
@@ -804,49 +804,49 @@ export const tours: Tour[] = [
         day: 1,
         title: "Hanoi Welcome",
         description: "Arrival in Hanoi. Evening water puppet show and welcome dinner.",
-        image: "/Destination/International/Vietnam/Hanoi-Welcome.jpg"
+        imageSrc: "/Destination/International/Vietnam/Hanoi-Welcome.jpg"
       },
       {
         day: 2,
         title: "Hanoi Heritage",
         description: "Visit Ho Chi Minh Complex, Temple of Literature, Old Quarter walking tour.",
-        image: "/Destination/International/Vietnam/Hanoi-Heritage.jpg"
+        imageSrc: "/Destination/International/Vietnam/Hanoi-Heritage.jpg"
       },
       {
         day: 3,
         title: "Ha Long Bay",
         description: "Cruise through limestone karsts. Kayaking and cave exploration.",
-        image: "/Destination/International/Vietnam/Ha-Long-Bay.jpg"
+        imageSrc: "/Destination/International/Vietnam/Ha-Long-Bay.jpg"
       },
       {
         day: 4,
         title: "Ha Long - Hanoi",
         description: "Sunrise Tai Chi. Return to Hanoi. Evening food tour.",
-        image: "/Destination/International/Vietnam/Ha-Long-Hanoi.jpg"
+        imageSrc: "/Destination/International/Vietnam/Ha-Long-Hanoi.jpg"
       },
       {
         day: 5,
         title: "Ho Chi Minh City",
         description: "Flight to Ho Chi Minh. City tour including War Museum, Notre Dame Cathedral.",
-        image: "/Destination/International/Vietnam/Ho-Chi-Minh-City.jpg"
+        imageSrc: "/Destination/International/Vietnam/Ho-Chi-Minh-City.jpg"
       },
       {
         day: 6,
         title: "Mekong Delta",
         description: "Day trip to Mekong Delta. Visit floating markets and local villages.",
-        image: "/Destination/International/Vietnam/Mekong-Delta.jpg"
+        imageSrc: "/Destination/International/Vietnam/Mekong-Delta.jpg"
       },
       {
         day: 7,
         title: "Cu Chi Experience",
         description: "Morning Cu Chi Tunnels tour. Afternoon cooking class.",
-        image: "/Destination/International/Vietnam/Cu-Chi-Experience.jpg"
+        imageSrc: "/Destination/International/Vietnam/Cu-Chi-Experience.jpg"
       },
       {
         day: 8,
         title: "Departure",
         description: "Morning market visit. Afternoon departure.",
-        image: "/Destination/International/Vietnam/Departure.jpg"
+        imageSrc: "/Destination/International/Vietnam/Departure.jpg"
       }
     ]
   },
@@ -883,37 +883,37 @@ export const tours: Tour[] = [
         day: 1,
         title: "KL Welcome",
         description: "Arrival in Kuala Lumpur. Evening Petronas Towers visit and city lights tour.",
-        image: "/Destination/International/Malaysia/KL-Welcome.jpg"
+        imageSrc: "/Destination/International/Malaysia/KL-Welcome.jpg"
       },
       {
         day: 2,
         title: "KL Exploration",
         description: "City tour including Batu Caves, National Monument, and Central Market.",
-        image: "/Destination/International/Malaysia/KL-Exploration.jpg"
+        imageSrc: "/Destination/International/Malaysia/KL-Exploration.jpg"
       },
       {
         day: 3,
         title: "Malacca Heritage",
         description: "Day trip to Malacca. Visit Dutch Square, Christ Church, and Jonker Street.",
-        image: "/Destination/International/Malaysia/Malacca-Heritage.jpg"
+        imageSrc: "/Destination/International/Malaysia/Malacca-Heritage.jpg"
       },
       {
         day: 4,
         title: "Langkawi Paradise",
         description: "Flight to Langkawi. Cable car ride and Sky Bridge visit.",
-        image: "/Destination/International/Malaysia/Langkawi-Paradise.jpg"
+        imageSrc: "/Destination/International/Malaysia/Langkawi-Paradise.jpg"
       },
       {
         day: 5,
         title: "Island Adventure",
         description: "Island hopping tour. Eagle feeding, swimming, and beach activities.",
-        image: "/Destination/International/Malaysia/Island-Adventure.jpg"
+        imageSrc: "/Destination/International/Malaysia/Island-Adventure.jpg"
       },
       {
         day: 6,
         title: "Farewell",
         description: "Morning at leisure. Departure transfer.",
-        image: "/Destination/International/Malaysia/Farewell.jpg"
+        imageSrc: "/Destination/International/Malaysia/Farewell.jpg"
       }
     ]
   },
@@ -950,61 +950,61 @@ export const tours: Tour[] = [
         day: 1,
         title: "Paris Arrival",
         description: "Welcome to Paris. Evening Seine River cruise with Eiffel Tower views.",
-        image: "/Destination/International/Europe/Paris-Arrival.jpg"
+        imageSrc: "/Destination/International/Europe/Paris-Arrival.jpg"
       },
       {
         day: 2,
         title: "Paris Exploration",
         description: "Louvre Museum, Notre Dame Cathedral, and Montmartre walking tour.",
-        image: "/Destination/International/Europe/Paris-Exploration.jpg"
+        imageSrc: "/Destination/International/Europe/Paris-Exploration.jpg"
       },
       {
         day: 3,
         title: "Paris to Swiss Alps",
         description: "Scenic train to Interlaken. Evening Swiss folklore dinner show.",
-        image: "/Destination/International/Europe/Paris-Swiss-Alps.jpg"
+        imageSrc: "/Destination/International/Europe/Paris-Swiss-Alps.jpg"
       },
       {
         day: 4,
         title: "Jungfrau Experience",
         description: "Visit to Jungfraujoch - Top of Europe. Alpine cheese and chocolate tasting.",
-        image: "/Destination/International/Europe/Jungfrau-Experience.jpg"
+        imageSrc: "/Destination/International/Europe/Jungfrau-Experience.jpg"
       },
       {
         day: 5,
         title: "Swiss Beauty",
         description: "Lake Lucerne cruise. Mount Pilatus golden round trip.",
-        image: "/Destination/International/Europe/Swiss-Beauty.jpg"
+        imageSrc: "/Destination/International/Europe/Swiss-Beauty.jpg"
       },
       {
         day: 6,
         title: "Venice Romance",
         description: "Train to Venice. Evening gondola ride with musicians.",
-        image: "/Destination/International/Europe/Venice-Romance.jpg"
+        imageSrc: "/Destination/International/Europe/Venice-Romance.jpg"
       },
       {
         day: 7,
         title: "Venice Discovery",
         description: "St. Mark's Basilica, Doge's Palace, and Murano glass-making tour.",
-        image: "/Destination/International/Europe/Venice-Discovery.jpg"
+        imageSrc: "/Destination/International/Europe/Venice-Discovery.jpg"
       },
       {
         day: 8,
         title: "Florence Art",
         description: "Train to Florence. Uffizi Gallery and Tuscan wine tasting.",
-        image: "/Destination/International/Europe/Florence-Art.jpg"
+        imageSrc: "/Destination/International/Europe/Florence-Art.jpg"
       },
       {
         day: 9,
         title: "Rome Classics",
         description: "Colosseum, Roman Forum, and Vatican Museums tour.",
-        image: "/Destination/International/Europe/Rome-Classics.jpg"
+        imageSrc: "/Destination/International/Europe/Rome-Classics.jpg"
       },
       {
         day: 10,
         title: "Arrivederci",
         description: "Morning at leisure in Rome. Departure transfer.",
-        image: "/Destination/International/Europe/Arrivederci.jpg"
+        imageSrc: "/Destination/International/Europe/Arrivederci.jpg"
       }
     ]
   },
@@ -1041,73 +1041,73 @@ export const tours: Tour[] = [
         day: 1,
         title: "Sydney Welcome",
         description: "Arrival in Sydney. Evening harbour dinner cruise past Opera House.",
-        image: "/Destination/International/Australia/Sydney-Welcome.jpg"
+        imageSrc: "/Destination/International/Australia/Sydney-Welcome.jpg"
       },
       {
         day: 2,
         title: "Sydney Icons",
         description: "Opera House tour, Bridge Climb, and Bondi Beach visit.",
-        image: "/Destination/International/Australia/Sydney-Icons.jpg"
+        imageSrc: "/Destination/International/Australia/Sydney-Icons.jpg"
       },
       {
         day: 3,
         title: "Blue Mountains",
         description: "Full-day tour including Three Sisters and wildlife park.",
-        image: "/Destination/International/Australia/Blue-Mountains.jpg"
+        imageSrc: "/Destination/International/Australia/Blue-Mountains.jpg"
       },
       {
         day: 4,
         title: "Cairns & Reef",
         description: "Flight to Cairns. Great Barrier Reef snorkeling experience.",
-        image: "/Destination/International/Australia/Cairns-Reef.jpg"
+        imageSrc: "/Destination/International/Australia/Cairns-Reef.jpg"
       },
       {
         day: 5,
         title: "Rainforest Magic",
         description: "Daintree Rainforest tour and Aboriginal cultural experience.",
-        image: "/Destination/International/Australia/Rainforest-Magic.jpg"
+        imageSrc: "/Destination/International/Australia/Rainforest-Magic.jpg"
       },
       {
         day: 6,
         title: "Ayers Rock",
         description: "Flight to Uluru. Sunset viewing and bush tucker dinner.",
-        image: "/Destination/International/Australia/Ayers-Rock.jpg"
+        imageSrc: "/Destination/International/Australia/Ayers-Rock.jpg"
       },
       {
         day: 7,
         title: "Red Center",
         description: "Sunrise at Uluru, Kata Tjuta walk, and Field of Light.",
-        image: "/Destination/International/Australia/Red-Center.jpg"
+        imageSrc: "/Destination/International/Australia/Red-Center.jpg"
       },
       {
         day: 8,
         title: "Melbourne Culture",
         description: "Flight to Melbourne. Laneway and street art tour.",
-        image: "/Destination/International/Australia/Melbourne-Culture.jpg"
+        imageSrc: "/Destination/International/Australia/Melbourne-Culture.jpg"
       },
       {
         day: 9,
         title: "Great Ocean Road",
         description: "Full-day Great Ocean Road tour with Twelve Apostles.",
-        image: "/Destination/International/Australia/Great-Ocean-Road.jpg"
+        imageSrc: "/Destination/International/Australia/Great-Ocean-Road.jpg"
       },
       {
         day: 10,
         title: "Wine & Wildlife",
         description: "Yarra Valley wineries and Phillip Island penguin parade.",
-        image: "/Destination/International/Australia/Wine-Wildlife.jpg"
+        imageSrc: "/Destination/International/Australia/Wine-Wildlife.jpg"
       },
       {
         day: 11,
         title: "Melbourne Leisure",
         description: "Free day for shopping and optional activities.",
-        image: "/Destination/International/Australia/Melbourne-Leisure.jpg"
+        imageSrc: "/Destination/International/Australia/Melbourne-Leisure.jpg"
       },
       {
         day: 12,
         title: "Farewell",
         description: "Morning at leisure. Departure transfer.",
-        image: "/Destination/International/Australia/Farewell.jpg"
+        imageSrc: "/Destination/International/Australia/Farewell.jpg"
       }
     ]
   },
@@ -1144,55 +1144,55 @@ export const tours: Tour[] = [
         day: 1,
         title: "Guwahati Arrival",
         description: "Welcome to Northeast. Visit Kamakhya Temple and river cruise on Brahmaputra.",
-        image: "/Destination/Domestic/Northeast/Guwahati-Arrival.jpg"
+        imageSrc: "/Destination/Domestic/Northeast/Guwahati-Arrival.jpg"
       },
       {
         day: 2,
         title: "Kaziranga Transfer",
         description: "Drive to Kaziranga. Evening cultural show and tea garden visit.",
-        image: "/Destination/Domestic/Northeast/Kaziranga-Transfer.jpg"
+        imageSrc: "/Destination/Domestic/Northeast/Kaziranga-Transfer.jpg"
       },
       {
         day: 3,
         title: "Kaziranga Safari",
         description: "Morning and afternoon safaris to spot one-horned rhinos and tigers.",
-        image: "/Destination/Domestic/Northeast/Kaziranga-Safari.jpg"
+        imageSrc: "/Destination/Domestic/Northeast/Kaziranga-Safari.jpg"
       },
       {
         day: 4,
         title: "Shillong Journey",
         description: "Scenic drive to Shillong. Visit Don Bosco Museum and Police Bazaar.",
-        image: "/Destination/Domestic/Northeast/Shillong-Journey.jpg"
+        imageSrc: "/Destination/Domestic/Northeast/Shillong-Journey.jpg"
       },
       {
         day: 5,
         title: "Cherrapunji Wonder",
         description: "Visit living root bridges, waterfalls, and caves in Cherrapunji.",
-        image: "/Destination/Domestic/Northeast/Cherrapunji-Wonder.jpg"
+        imageSrc: "/Destination/Domestic/Northeast/Cherrapunji-Wonder.jpg"
       },
       {
         day: 6,
         title: "Mawlynnong",
         description: "Asia's cleanest village tour and tree house views.",
-        image: "/Destination/Domestic/Northeast/Mawlynnong.jpg"
+        imageSrc: "/Destination/Domestic/Northeast/Mawlynnong.jpg"
       },
       {
         day: 7,
         title: "Majuli Island",
         description: "Visit world's largest river island. Mask making and monastery tours.",
-        image: "/Destination/Domestic/Northeast/Majuli-Island.jpg"
+        imageSrc: "/Destination/Domestic/Northeast/Majuli-Island.jpg"
       },
       {
         day: 8,
         title: "Tribal Experience",
         description: "Visit Nagaland border villages. Traditional dance and feast.",
-        image: "/Destination/Domestic/Northeast/Tribal-Experience.jpg"
+        imageSrc: "/Destination/Domestic/Northeast/Tribal-Experience.jpg"
       },
       {
         day: 9,
         title: "Departure",
         description: "Morning local market visit. Transfer to Guwahati airport.",
-        image: "/Destination/Domestic/Northeast/Departure.jpg"
+        imageSrc: "/Destination/Domestic/Northeast/Departure.jpg"
       }
     ]
   },
@@ -1229,49 +1229,49 @@ export const tours: Tour[] = [
         day: 1,
         title: "Nagpur Arrival",
         description: "Welcome at Nagpur. Drive to Pench National Park. Evening nature walk.",
-        image: "/Destination/Domestic/Wildlife/Nagpur-Arrival.jpg"
+        imageSrc: "/Destination/Domestic/Wildlife/Nagpur-Arrival.jpg"
       },
       {
         day: 2,
         title: "Pench Safari",
         description: "Morning and afternoon safaris in Pench, famous for tigers and wild dogs.",
-        image: "/Destination/Domestic/Wildlife/Pench-Safari.jpg"
+        imageSrc: "/Destination/Domestic/Wildlife/Pench-Safari.jpg"
       },
       {
         day: 3,
         title: "Kanha Transfer",
         description: "Drive to Kanha National Park. Evening wildlife documentary and expert talk.",
-        image: "/Destination/Domestic/Wildlife/Kanha-Transfer.jpg"
+        imageSrc: "/Destination/Domestic/Wildlife/Kanha-Transfer.jpg"
       },
       {
         day: 4,
         title: "Kanha Explorer",
         description: "Full day of safaris in Kanha, home to diverse wildlife and barasingha.",
-        image: "/Destination/Domestic/Wildlife/Kanha-Explorer.jpg"
+        imageSrc: "/Destination/Domestic/Wildlife/Kanha-Explorer.jpg"
       },
       {
         day: 5,
         title: "Bandhavgarh Journey",
         description: "Transfer to Bandhavgarh. Evening village visit and cultural interaction.",
-        image: "/Destination/Domestic/Wildlife/Bandhavgarh-Journey.jpg"
+        imageSrc: "/Destination/Domestic/Wildlife/Bandhavgarh-Journey.jpg"
       },
       {
         day: 6,
         title: "Tiger Territory",
         description: "Explore Bandhavgarh's high density tiger habitat with expert naturalists.",
-        image: "/Destination/Domestic/Wildlife/Tiger-Territory.jpg"
+        imageSrc: "/Destination/Domestic/Wildlife/Tiger-Territory.jpg"
       },
       {
         day: 7,
         title: "Final Safari",
         description: "Morning safari followed by wildlife photography workshop.",
-        image: "/Destination/Domestic/Wildlife/Final-Safari.jpg"
+        imageSrc: "/Destination/Domestic/Wildlife/Final-Safari.jpg"
       },
       {
         day: 8,
         title: "Farewell",
         description: "Early morning bird watching. Transfer to Jabalpur airport.",
-        image: "/Destination/Domestic/Wildlife/Farewell.jpg"
+        imageSrc: "/Destination/Domestic/Wildlife/Farewell.jpg"
       }
     ],
     localCuisine: [

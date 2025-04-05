@@ -1,5 +1,7 @@
+'use client';
+
 import { ReactNode, useEffect } from "react";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import MainNav from "./main-nav";
 import Footer from "./footer";
 import { ScrollToTop } from "./scroll-to-top";
@@ -19,13 +21,13 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps) => {
-  const router = useRouter();
+  const pathname = usePathname();
   
   useEffect(() => {
     // Track page views on route change
     if (window.gtag) {
       window.gtag('event', 'page_view', {
-        page_path: router.asPath,
+        page_path: pathname,
       });
     }
     
@@ -33,7 +35,7 @@ const Layout = ({ children }: LayoutProps) => {
     if (window.fbq) {
       window.fbq('track', 'PageView');
     }
-  }, [router.asPath]);
+  }, [pathname]);
 
   return (
     <div className="min-h-screen flex flex-col">

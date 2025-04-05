@@ -15,6 +15,7 @@ interface TourSectionProps {
   subtitle: string;
   tag: string;
   tours: Array<{
+    id: number;
     imageSrc: string;
     title: string;
     location: string;
@@ -66,16 +67,8 @@ const ToursSection = ({
                 {tours.map((tour, index) => (
                   <TourCard
                     key={index}
-                    imageSrc={tour.imageSrc}
-                    title={tour.title}
-                    location={tour.location}
-                    duration={tour.duration}
-                    price={tour.price}
-                    bestTime={tour.bestTime}
-                    packageType={tour.packageType}
-                    description={tour.description}
-                    itinerary={tour.itinerary}
-                    link={viewAllLink}
+                    tour={tour}
+                    className="h-full"
                   />
                 ))}
               </div>
@@ -88,16 +81,8 @@ const ToursSection = ({
                   .map((tour, index) => (
                     <TourCard
                       key={index}
-                      imageSrc={tour.imageSrc}
-                      title={tour.title}
-                      location={tour.location}
-                      duration={tour.duration}
-                      price={tour.price}
-                      bestTime={tour.bestTime}
-                      packageType={tour.packageType}
-                      description={tour.description}
-                      itinerary={tour.itinerary}
-                      link={viewAllLink}
+                      tour={tour}
+                      className="h-full"
                     />
                   ))}
               </div>
@@ -110,16 +95,8 @@ const ToursSection = ({
                   .map((tour, index) => (
                     <TourCard
                       key={index}
-                      imageSrc={tour.imageSrc}
-                      title={tour.title}
-                      location={tour.location}
-                      duration={tour.duration}
-                      price={tour.price}
-                      bestTime={tour.bestTime}
-                      packageType={tour.packageType}
-                      description={tour.description}
-                      itinerary={tour.itinerary}
-                      link={viewAllLink}
+                      tour={tour}
+                      className="h-full"
                     />
                   ))}
               </div>
@@ -132,16 +109,8 @@ const ToursSection = ({
                   .map((tour, index) => (
                     <TourCard
                       key={index}
-                      imageSrc={tour.imageSrc}
-                      title={tour.title}
-                      location={tour.location}
-                      duration={tour.duration}
-                      price={tour.price}
-                      bestTime={tour.bestTime}
-                      packageType={tour.packageType}
-                      description={tour.description}
-                      itinerary={tour.itinerary}
-                      link={viewAllLink}
+                      tour={tour}
+                      className="h-full"
                     />
                   ))}
               </div>
@@ -152,16 +121,8 @@ const ToursSection = ({
             {tours.map((tour, index) => (
               <TourCard
                 key={index}
-                imageSrc={tour.imageSrc}
-                title={tour.title}
-                location={tour.location}
-                duration={tour.duration}
-                price={tour.price}
-                bestTime={tour.bestTime}
-                packageType={tour.packageType}
-                description={tour.description}
-                itinerary={tour.itinerary}
-                link={viewAllLink}
+                tour={tour}
+                className="h-full"
               />
             ))}
           </div>

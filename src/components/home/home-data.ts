@@ -31,6 +31,9 @@ export interface BlogPost {
   category: string;
 }
 
+// Re-export Tour type
+export type { Tour };
+
 // Shared data for home page components
 export const heroSlides: HeroSlide[] = [
   {
@@ -198,51 +201,20 @@ export const internationalDestinations = [
     foodRecommendations: [
       "Nasi Goreng",
       "Babi Guling",
-      "Gado Gado",
-      "Bakso"
+      "Satay Lilit",
+      "Bebek Betutu"
     ],
     tips: [
       "Respect temple dress codes",
       "Carry light clothes",
-      "Book accommodations in advance",
+      "Book activities in advance",
       "Learn basic Indonesian phrases"
     ],
     majorTours: [
-      "Cultural Tour",
-      "Beach Tour",
+      "Cultural Heritage Tour",
+      "Beach Hopping Tour",
       "Adventure Tour",
-      "Wellness Tour"
-    ]
-  },
-  {
-    imageSrc: "/Destination/Home/International/Dubai-international.jpg",
-    title: "Dubai",
-    country: "Dubai",
-    description: "Experience the perfect blend of luxury, adventure, and cultural heritage in this modern metropolis.",
-    bestTime: "November - March",
-    placesToSee: [
-      "Burj Khalifa",
-      "Dubai Mall",
-      "Palm Jumeirah",
-      "Desert Safari"
-    ],
-    foodRecommendations: [
-      "Shawarma",
-      "Hummus",
-      "Arabic Coffee",
-      "Kunafa"
-    ],
-    tips: [
-      "Respect local customs",
-      "Dress modestly",
-      "Book desert safari in advance",
-      "Stay hydrated"
-    ],
-    majorTours: [
-      "City Explorer Tour",
-      "Desert Adventure Tour",
-      "Shopping Tour",
-      "Cultural Tour"
+      "Spa & Wellness Tour"
     ]
   }
 ];
@@ -274,24 +246,9 @@ export const hillStations = [
   },
 ];
 
-// Filter tours for different sections
-export const popularTours = tours
-  .filter((tour): tour is Tour => 
-    Boolean(tour) && 
-    typeof tour === 'object' && 
-    'packageType' in tour && 
-    tour.packageType === "Luxury"
-  )
-  .slice(0, 3);
-
-export const religiousTours = tours
-  .filter((tour): tour is Tour => 
-    Boolean(tour) && 
-    typeof tour === 'object' && 
-    'packageType' in tour && 
-    tour.packageType === "Premier"
-  )
-  .slice(0, 3);
+// Filter tours for popular and religious categories
+export const popularTours = tours.filter(tour => tour.packageType === "Premier").slice(0, 3);
+export const religiousTours = tours.filter(tour => tour.packageType === "Luxury").slice(0, 3);
 
 export const testimonials = [
   {
