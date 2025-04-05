@@ -242,15 +242,17 @@ export default function HomeWrapper() {
 
       {/* Calculator Section */}
       <ErrorBoundary>
-        <section className="relative bg-gradient-to-b from-background/80 to-secondary/5 py-24">
-          <div className="container mx-auto px-4 text-center mb-12 pt-20 md:pt-24">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Calculate Your Tour Package</h2>
-            <p className="text-muted-foreground">
-              Get an instant estimate for your dream vacation
-            </p>
-          </div>
-          <div className="container mx-auto px-4">
-            <PackageCalculator />
+        <section className="relative bg-gradient-to-b from-background/80 to-secondary/5">
+          <div className="pt-32 md:pt-40">
+            <div className="container mx-auto px-4 text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Calculate Your Tour Package</h2>
+              <p className="text-muted-foreground">
+                Get an instant estimate for your dream vacation
+              </p>
+            </div>
+            <div className="container mx-auto px-4 pb-24">
+              <PackageCalculator />
+            </div>
           </div>
         </section>
       </ErrorBoundary>
