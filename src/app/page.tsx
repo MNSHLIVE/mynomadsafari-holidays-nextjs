@@ -11,6 +11,7 @@ import ClientOnly from "@/components/client-only";
 import ServicesSection from "@/components/home/services-section";
 import TravelCategories from "@/components/home/travel-categories";
 import TestimonialsSection from "@/components/home/testimonials-section";
+import ErrorBoundary from "@/components/error-boundary";
 import {
   heroSlides,
   popularDestinations,
@@ -124,151 +125,175 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <div className="relative">
-        <ClientOnly>
-          <HeroSlider slides={safeData.heroSlides} />
-        </ClientOnly>
-      </div>
+      <ErrorBoundary>
+        <div className="relative">
+          <ClientOnly>
+            <HeroSlider slides={safeData.heroSlides} />
+          </ClientOnly>
+        </div>
+      </ErrorBoundary>
 
       {/* Services Section */}
-      <div className="relative">
-        <ClientOnly>
-          <ServicesSection />
-        </ClientOnly>
-      </div>
+      <ErrorBoundary>
+        <div className="relative">
+          <ClientOnly>
+            <ServicesSection />
+          </ClientOnly>
+        </div>
+      </ErrorBoundary>
 
       {/* Travel Categories */}
-      <div className="relative">
-        <ClientOnly>
-          <TravelCategories />
-        </ClientOnly>
-      </div>
+      <ErrorBoundary>
+        <div className="relative">
+          <ClientOnly>
+            <TravelCategories />
+          </ClientOnly>
+        </div>
+      </ErrorBoundary>
 
       {/* Featured Tours Section */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4">
-          <SectionHeading
-            title="Featured Tours"
-            subtitle="Discover our most popular travel experiences"
-            align="center"
-          />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-            {safeData.popularTours.map((tour) => (
-              <div key={tour.id} className="h-full">
-                <ClientOnly>
-                  <TourCard tour={tour} className="h-full" />
-                </ClientOnly>
-              </div>
-            ))}
+      <ErrorBoundary>
+        <section className="py-16 bg-background">
+          <div className="container mx-auto px-4">
+            <SectionHeading
+              title="Featured Tours"
+              subtitle="Discover our most popular travel experiences"
+              align="center"
+            />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+              {safeData.popularTours.map((tour) => (
+                <div key={tour.id} className="h-full">
+                  <ClientOnly>
+                    <TourCard tour={tour} className="h-full" />
+                  </ClientOnly>
+                </div>
+              ))}
+            </div>
+            <div className="text-center mt-8">
+              <Button asChild>
+                <Link href="/tours">View All Tours</Link>
+              </Button>
+            </div>
           </div>
-          <div className="text-center mt-8">
-            <Button asChild>
-              <Link href="/tours">View All Tours</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
+        </section>
+      </ErrorBoundary>
 
       {/* Religious Tours Section */}
-      <section className="py-16 bg-secondary/5">
-        <div className="container mx-auto px-4">
-          <SectionHeading
-            title="Religious Tours"
-            subtitle="Embark on a spiritual journey"
-            align="center"
-          />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-            {safeData.religiousTours.map((tour) => (
-              <div key={tour.id} className="h-full">
-                <ClientOnly>
-                  <TourCard tour={tour} className="h-full" />
-                </ClientOnly>
-              </div>
-            ))}
+      <ErrorBoundary>
+        <section className="py-16 bg-secondary/5">
+          <div className="container mx-auto px-4">
+            <SectionHeading
+              title="Religious Tours"
+              subtitle="Embark on a spiritual journey"
+              align="center"
+            />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+              {safeData.religiousTours.map((tour) => (
+                <div key={tour.id} className="h-full">
+                  <ClientOnly>
+                    <TourCard tour={tour} className="h-full" />
+                  </ClientOnly>
+                </div>
+              ))}
+            </div>
+            <div className="text-center mt-8">
+              <Button asChild>
+                <Link href="/tours/religious">View All Religious Tours</Link>
+              </Button>
+            </div>
           </div>
-          <div className="text-center mt-8">
-            <Button asChild>
-              <Link href="/tours/religious">View All Religious Tours</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
+        </section>
+      </ErrorBoundary>
 
       {/* Destinations Sections */}
-      <div className="relative">
-        <ClientOnly>
-          <DestinationsSection
-            title="Popular Destinations"
-            subtitle="Explore our handpicked destinations for your next adventure"
-            tag="Featured Destinations"
-            destinations={safeData.popularDestinations}
-            viewAllLink="/destinations"
-            viewAllText="View All Destinations"
-          />
-        </ClientOnly>
-      </div>
+      <ErrorBoundary>
+        <div className="relative">
+          <ClientOnly>
+            <DestinationsSection
+              title="Popular Destinations"
+              subtitle="Explore our handpicked destinations for your next adventure"
+              tag="Featured Destinations"
+              destinations={safeData.popularDestinations}
+              viewAllLink="/destinations"
+              viewAllText="View All Destinations"
+            />
+          </ClientOnly>
+        </div>
+      </ErrorBoundary>
 
-      <div className="relative">
-        <ClientOnly>
-          <DestinationsSection
-            title="Popular Religious Places"
-            subtitle="Embark on a spiritual journey to these sacred destinations"
-            tag="Religious Tourism"
-            destinations={safeData.religiousDestinations}
-            viewAllLink="/destinations?category=pilgrimage"
-            viewAllText="Explore Religious Tours"
-            bgColor="bg-muted/30 py-16"
-          />
-        </ClientOnly>
-      </div>
+      <ErrorBoundary>
+        <div className="relative">
+          <ClientOnly>
+            <DestinationsSection
+              title="Popular Religious Places"
+              subtitle="Embark on a spiritual journey to these sacred destinations"
+              tag="Religious Tourism"
+              destinations={safeData.religiousDestinations}
+              viewAllLink="/destinations?category=pilgrimage"
+              viewAllText="Explore Religious Tours"
+              bgColor="bg-muted/30 py-16"
+            />
+          </ClientOnly>
+        </div>
+      </ErrorBoundary>
 
-      <div className="relative">
-        <ClientOnly>
-          <DestinationsSection
-            title="International Destinations"
-            subtitle="Explore exotic locations around the world with our expertly crafted packages"
-            tag="Global Expeditions"
-            destinations={safeData.internationalDestinations}
-            viewAllLink="/destinations?category=international"
-            viewAllText="Explore International Destinations"
-            bgColor="bg-muted/30 py-16"
-          />
-        </ClientOnly>
-      </div>
+      <ErrorBoundary>
+        <div className="relative">
+          <ClientOnly>
+            <DestinationsSection
+              title="International Destinations"
+              subtitle="Explore exotic locations around the world with our expertly crafted packages"
+              tag="Global Expeditions"
+              destinations={safeData.internationalDestinations}
+              viewAllLink="/destinations?category=international"
+              viewAllText="Explore International Destinations"
+              bgColor="bg-muted/30 py-16"
+            />
+          </ClientOnly>
+        </div>
+      </ErrorBoundary>
 
-      <div className="relative">
-        <ClientOnly>
-          <DestinationsSection
-            title="Popular Hill Stations"
-            subtitle="Escape to the serene mountains and breathtaking landscapes"
-            tag="Mountain Retreats"
-            destinations={safeData.hillStations}
-            viewAllLink="/destinations?category=hillstations"
-            viewAllText="Explore Hill Stations"
-          />
-        </ClientOnly>
-      </div>
+      <ErrorBoundary>
+        <div className="relative">
+          <ClientOnly>
+            <DestinationsSection
+              title="Popular Hill Stations"
+              subtitle="Escape to the serene mountains and breathtaking landscapes"
+              tag="Mountain Retreats"
+              destinations={safeData.hillStations}
+              viewAllLink="/destinations?category=hillstations"
+              viewAllText="Explore Hill Stations"
+            />
+          </ClientOnly>
+        </div>
+      </ErrorBoundary>
 
       {/* Testimonials Section */}
-      <div className="relative">
-        <ClientOnly>
-          <TestimonialsSection testimonials={safeData.testimonials} />
-        </ClientOnly>
-      </div>
+      <ErrorBoundary>
+        <div className="relative">
+          <ClientOnly>
+            <TestimonialsSection testimonials={safeData.testimonials} />
+          </ClientOnly>
+        </div>
+      </ErrorBoundary>
 
       {/* Recent Blog Posts */}
-      <div className="relative">
-        <ClientOnly>
-          <BlogSection posts={safeData.blogPosts} />
-        </ClientOnly>
-      </div>
+      <ErrorBoundary>
+        <div className="relative">
+          <ClientOnly>
+            <BlogSection posts={safeData.blogPosts} />
+          </ClientOnly>
+        </div>
+      </ErrorBoundary>
 
       {/* WhatsApp Button */}
-      <div className="relative">
-        <ClientOnly>
-          <WhatsAppButton />
-        </ClientOnly>
-      </div>
+      <ErrorBoundary>
+        <div className="relative">
+          <ClientOnly>
+            <WhatsAppButton />
+          </ClientOnly>
+        </div>
+      </ErrorBoundary>
     </div>
   );
 } 
