@@ -14,7 +14,7 @@ export default function DestinationDetail() {
 
   // Find the destination by matching the slug with the title
   const destination = destinations.find(d => 
-    d.title.toLowerCase().replace(/\s+/g, '-') === slug
+    d.title?.toLowerCase().replace(/\s+/g, '-') === slug
   );
 
   if (!destination) {
@@ -35,49 +35,49 @@ export default function DestinationDetail() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 pt-24 pb-16">
       <BackButton />
       
+      {/* Hero Section */}
+      <div className="relative h-[400px] rounded-xl overflow-hidden mb-8">
+        <Image
+          src={destination.imageSrc}
+          alt={destination.title}
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <h1 className="text-4xl font-bold text-white">
+            {destination.title}
+          </h1>
+        </div>
+      </div>
+
+      {/* Content Section */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Main Content */}
         <div className="lg:col-span-2">
-          <div className="relative h-[400px] rounded-xl overflow-hidden mb-6">
-            <Image
-              src={destination.image}
-              alt={destination.title}
-              fill
-              className="object-cover"
-            />
-          </div>
+          <h2 className="text-2xl font-bold mb-4">About {destination.title}</h2>
+          <p className="text-muted-foreground mb-6">{destination.description}</p>
 
-          <h1 className="text-3xl font-bold mb-4">{destination.title}</h1>
-          
-          <div className="grid grid-cols-2 gap-4 mb-6">
-            {destination.state && (
-              <div className="flex items-center">
-                <MapPin className="w-4 h-4 mr-2 text-primary" />
-                <span>{destination.state}</span>
-              </div>
-            )}
-            {destination.bestTime && (
-              <div className="flex items-center">
-                <Calendar className="w-4 h-4 mr-2 text-primary" />
-                <span>Best time: {destination.bestTime}</span>
-              </div>
-            )}
-          </div>
+          {/* Best Time to Visit */}
+          {destination.bestTime && (
+            <div className="bg-muted/30 p-4 rounded-lg mb-6">
+              <h3 className="font-semibold mb-2">Best Time to Visit</h3>
+              <p className="text-muted-foreground">{destination.bestTime}</p>
+            </div>
+          )}
 
-          <div className="prose max-w-none mb-8">
-            <p className="text-lg text-muted-foreground">{destination.description}</p>
-          </div>
-
-          {destination.places && destination.places.length > 0 && (
-            <div className="mb-8">
-              <h2 className="text-2xl font-semibold mb-4">Places to Visit</h2>
+          {/* Places to See */}
+          {destination.placesToSee && destination.placesToSee.length > 0 && (
+            <div className="mb-6">
+              <h3 className="text-xl font-semibold mb-4">Places to See</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {destination.places.map((place, index) => (
-                  <div key={index} className="flex items-center gap-2">
-                    <span className="text-primary">•</span>
+                {destination.placesToSee.map((place, index) => (
+                  <div key={index} className="flex items-start gap-2">
+                    <MapPin className="h-5 w-5 text-primary mt-1" />
                     <span>{place}</span>
                   </div>
                 ))}
@@ -85,27 +85,29 @@ export default function DestinationDetail() {
             </div>
           )}
 
-          {destination.food && destination.food.length > 0 && (
-            <div className="mb-8">
-              <h2 className="text-2xl font-semibold mb-4">Local Cuisine</h2>
+          {/* Food Recommendations */}
+          {destination.foodRecommendations && destination.foodRecommendations.length > 0 && (
+            <div className="mb-6">
+              <h3 className="text-xl font-semibold mb-4">Food Recommendations</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {destination.food.map((item, index) => (
-                  <div key={index} className="flex items-center gap-2">
+                {destination.foodRecommendations.map((food, index) => (
+                  <div key={index} className="flex items-start gap-2">
                     <span className="text-primary">•</span>
-                    <span>{item}</span>
+                    <span>{food}</span>
                   </div>
                 ))}
               </div>
             </div>
           )}
 
+          {/* Tips */}
           {destination.tips && destination.tips.length > 0 && (
-            <div className="mb-8">
-              <h2 className="text-2xl font-semibold mb-4">Travel Tips</h2>
-              <div className="grid grid-cols-1 gap-4">
+            <div className="mb-6">
+              <h3 className="text-xl font-semibold mb-4">Travel Tips</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {destination.tips.map((tip, index) => (
                   <div key={index} className="flex items-start gap-2">
-                    <span className="text-primary mt-1">•</span>
+                    <span className="text-primary">•</span>
                     <span>{tip}</span>
                   </div>
                 ))}
@@ -116,32 +118,30 @@ export default function DestinationDetail() {
 
         {/* Sidebar */}
         <div className="lg:col-span-1">
-          <div className="bg-card p-6 rounded-xl shadow-sm sticky top-24">
-            <h2 className="text-xl font-semibold mb-4">Plan Your Trip</h2>
-            
-            <div className="mb-6">
-              <h3 className="text-lg font-medium mb-2">Package Types</h3>
-              <div className="space-y-2">
-                <div className="flex justify-between items-center">
-                  <span>Budgeted</span>
-                  <span className="font-medium">{destination.budgets.budgeted}</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span>Luxury</span>
-                  <span className="font-medium">{destination.budgets.luxury}</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span>Premier</span>
-                  <span className="font-medium">{destination.budgets.premier}</span>
-                </div>
-              </div>
-            </div>
-
-            <DestinationQueryForm
-              destinationName={destination.title}
+          <div className="bg-card p-6 rounded-xl shadow-sm">
+            <h3 className="text-xl font-semibold mb-4">Plan Your Trip</h3>
+            <DestinationQueryForm 
+              destinationName={destination.title} 
               buttonText="Enquire Now"
             />
           </div>
+
+          {/* Major Tours */}
+          {destination.majorTours && destination.majorTours.length > 0 && (
+            <div className="mt-6">
+              <h3 className="text-xl font-semibold mb-4">Major Tours</h3>
+              <div className="space-y-4">
+                {destination.majorTours.map((tour, index) => (
+                  <div key={index} className="p-4 border rounded-lg hover:border-primary/50 transition-colors">
+                    <h4 className="font-medium mb-2">{tour}</h4>
+                    <Button variant="link" className="p-0 h-auto text-primary">
+                      View Details
+                    </Button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

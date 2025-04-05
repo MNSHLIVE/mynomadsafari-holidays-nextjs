@@ -1,14 +1,15 @@
 export interface Destination {
+  id: number;
+  title: string;
+  imageSrc: string;
+  description: string;
+  bestTime?: string;
+  placesToSee?: string[];
+  foodRecommendations?: string[];
+  tips?: string[];
+  majorTours?: string[];
   state?: string;
   country?: string;
-  title: string;
-  image: string;
-  description: string;
-  bestTime: string;
-  places: string[];
-  food: string[];
-  tips: string[];
-  majorTours: string[];
   budgets: {
     budgeted: string;
     luxury: string;
@@ -27,13 +28,12 @@ export interface Destination {
 
 export const destinations: Destination[] = [
   {
-    state: "Maharashtra",
-    country: "India",
+    id: 1,
     title: "Mumbai",
-    image: "/Destination/Domestic/Maharashtra/Mumbai/Mumbai-Main.jpg",
+    imageSrc: "/Destination/Domestic/Maharashtra/Mumbai/Mumbai-Main.jpg",
     description: "Mumbai, the city of dreams, is a vibrant metropolis that seamlessly blends tradition with modernity. From historic architecture to bustling markets, from Bollywood glamour to street food culture, Mumbai offers an unforgettable experience.",
     bestTime: "October to February",
-    places: [
+    placesToSee: [
       "Gateway of India",
       "Marine Drive",
       "Colaba Causeway",
@@ -43,7 +43,7 @@ export const destinations: Destination[] = [
       "Dharavi",
       "Bollywood Studios"
     ],
-    food: [
+    foodRecommendations: [
       "Vada Pav",
       "Pav Bhaji",
       "Bhel Puri",
@@ -64,6 +64,8 @@ export const destinations: Destination[] = [
       "Food Trail Tour",
       "Heritage Walk"
     ],
+    state: "Maharashtra",
+    country: "India",
     budgets: {
       budgeted: "₹15,000",
       luxury: "₹35,000",

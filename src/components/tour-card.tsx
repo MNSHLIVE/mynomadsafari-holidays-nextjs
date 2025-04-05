@@ -71,7 +71,7 @@ const TourCard = ({ tour, className }: TourCardProps) => {
     return price;
   };
 
-  const defaultLink = `/tours/${tour.title.toLowerCase().replace(/\s+/g, '-')}`;
+  const tourUrl = `/tours/${tour.title.toLowerCase().replace(/\s+/g, '-')}`;
 
   return (
     <>
@@ -99,16 +99,16 @@ const TourCard = ({ tour, className }: TourCardProps) => {
               onError={() => setError("Failed to load image")}
               loading="lazy"
             />
-            {tour.packageType && (
-              <div className="absolute top-3 left-3">
-                <span className={cn(
-                  "text-xs font-medium px-2 py-1 rounded-full",
-                  packageColors[tour.packageType as keyof typeof packageColors]
-                )}>
-                  {tour.packageType}
-                </span>
-              </div>
-            )}
+            <div className="absolute top-2 right-2">
+              <span className={cn(
+                "px-2 py-1 text-xs rounded-full",
+                tour.packageType === "Budgeted" && "bg-blue-100 text-blue-700",
+                tour.packageType === "Luxury" && "bg-purple-100 text-purple-700",
+                tour.packageType === "Premier" && "bg-amber-100 text-amber-700"
+              )}>
+                {tour.packageType}
+              </span>
+            </div>
           </div>
 
           <div className="p-5 flex flex-col flex-grow">
@@ -169,7 +169,7 @@ const TourCard = ({ tour, className }: TourCardProps) => {
                   View Itinerary
                 </Button>
                 <Button asChild className="flex-1">
-                  <Link href={tour.link || defaultLink}>
+                  <Link href={tourUrl}>
                     Book Now
                   </Link>
                 </Button>
