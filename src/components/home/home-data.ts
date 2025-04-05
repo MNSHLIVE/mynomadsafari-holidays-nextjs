@@ -324,7 +324,8 @@ export const popularTours: Tour[] = [
     bestTime: "October - March",
     packageType: "Budgeted" as const,
     country: "India",
-    region: "North India"
+    region: "North India",
+    description: "Experience the rich history and culture of India's most iconic cities."
   },
   {
     id: "kerala-backwaters-luxury",
@@ -336,7 +337,8 @@ export const popularTours: Tour[] = [
     bestTime: "September - March",
     packageType: "Luxury" as const,
     country: "India",
-    region: "South India"
+    region: "South India",
+    description: "Indulge in a luxurious journey through God's own country."
   },
   {
     id: "premier-rajasthan-heritage",
@@ -348,7 +350,8 @@ export const popularTours: Tour[] = [
     bestTime: "October - March",
     packageType: "Premier" as const,
     country: "India",
-    region: "North India"
+    region: "North India",
+    description: "Experience the royal heritage of Rajasthan in ultimate luxury."
   }
 ];
 
@@ -1091,3 +1094,6 @@ export const destinations = {
     }
   ]
 };
+
+// Export combined tours array
+export const tours: Tour[] = [...popularTours, ...religiousTours];
