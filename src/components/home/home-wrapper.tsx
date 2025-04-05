@@ -193,9 +193,14 @@ export default function HomeWrapper() {
           packageType: "Budgeted"
         })) as Tour[], FALLBACK_DATA.religiousTours),
         testimonials: ensureArray<Testimonial>(testimonials as Testimonial[], FALLBACK_DATA.testimonials),
-        blogPosts: ensureArray<BlogPost>(blogPosts.map(post => ({
-          ...post,
-          id: post.id || `post-${Date.now()}-${Math.random().toString(36).slice(2)}`
+        blogPosts: ensureArray<BlogPost>(blogPosts.map((post: Partial<BlogPost>) => ({
+          id: `post-${Date.now()}-${Math.random().toString(36).slice(2)}`,
+          title: post.title || "Travel Blog",
+          excerpt: post.excerpt || "Explore amazing destinations",
+          imageSrc: post.imageSrc || "/placeholder.jpg",
+          date: post.date || new Date().toISOString(),
+          author: post.author || "Travel Expert",
+          tags: post.tags || ["Travel", "Adventure"]
         })) as BlogPost[], FALLBACK_DATA.blogPosts)
       };
       setSafeData(data);

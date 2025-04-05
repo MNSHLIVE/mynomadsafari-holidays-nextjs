@@ -27,17 +27,22 @@ import { Metadata } from "next";
 import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
 
-// Import HomeWrapper dynamically with no SSR
-const HomeWrapper = dynamic(() => import('@/components/home/home-wrapper'), {
-  ssr: false,
-  loading: () => (
+// Loading component
+function LoadingComponent() {
+  return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="text-center">
         <h2 className="text-2xl font-semibold mb-4">Loading...</h2>
         <p className="text-muted-foreground">Please wait while we prepare your experience.</p>
       </div>
     </div>
-  )
+  );
+}
+
+// Import HomeWrapper dynamically with no SSR
+const HomeWrapper = dynamic(() => import('@/components/home/home-wrapper'), {
+  ssr: false,
+  loading: LoadingComponent
 });
 
 // Metadata for the home page
@@ -125,16 +130,5 @@ const ensureArray = <T extends any>(data: T[] | undefined | null, fallback: T[])
 };
 
 export default function Home() {
-  return (
-    <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h2 className="text-2xl font-semibold mb-4">Loading...</h2>
-          <p className="text-muted-foreground">Please wait while we prepare your experience.</p>
-        </div>
-      </div>
-    }>
-      <HomeWrapper />
-    </Suspense>
-  );
+  return <HomeWrapper />;
 } 
