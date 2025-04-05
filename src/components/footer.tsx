@@ -81,6 +81,7 @@ const Footer = () => {
                 { label: "Visa Services", href: "/visa" },
                 { label: "Blog", href: "/blog" },
                 { label: "Contact Us", href: "/contact" },
+                { label: "Privacy Policy", href: "/privacy-policy" },
               ].map((link) => (
                 <li key={link.href}>
                   <Link 
@@ -111,15 +112,19 @@ const Footer = () => {
               <li className="flex items-center space-x-3">
                 <Phone size={18} className="text-primary flex-shrink-0" />
                 <div className="text-sm text-muted-foreground">
-                  <p>Mumbai: +91 9968682200</p>
-                  <p>Delhi: +91 7042910449</p>
+                  <a href="tel:+919968682200" className="hover:text-primary transition-colors">Mumbai: +91 9968682200</a>
+                  <br />
+                  <a href="tel:+917042910449" className="hover:text-primary transition-colors">Delhi: +91 7042910449</a>
                 </div>
               </li>
               <li className="flex items-center space-x-3">
                 <Mail size={18} className="text-primary flex-shrink-0" />
-                <span className="text-sm text-muted-foreground">
-                  info@mynomadsafariholidays.in
-                </span>
+                <a 
+                  href="mailto:mynomadsafariholidays@gmail.com" 
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors break-all"
+                >
+                  mynomadsafariholidays@gmail.com
+                </a>
               </li>
             </ul>
           </div>
@@ -147,7 +152,7 @@ const Footer = () => {
         <div className="border-t border-border mt-10 pt-6 text-center">
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-4 text-sm text-muted-foreground">
             <Link href="/terms" className="hover:text-primary transition-colors">Terms & Conditions</Link>
-            <Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
+            <Link href="/privacy-policy" className="hover:text-primary transition-colors">Privacy Policy</Link>
             <Link href="/refund" className="hover:text-primary transition-colors">Refund Policy</Link>
             <Link href="/faq" className="hover:text-primary transition-colors">FAQs</Link>
           </div>

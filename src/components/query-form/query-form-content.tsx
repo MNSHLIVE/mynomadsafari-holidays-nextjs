@@ -25,7 +25,7 @@ export const QueryFormContent = ({ destinationName, onClose }: QueryFormContentP
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
@@ -35,12 +35,38 @@ export const QueryFormContent = ({ destinationName, onClose }: QueryFormContentP
       return;
     }
 
-    setTimeout(() => {
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          phone,
+          travelDate: travelDate?.toISOString(),
+          adults,
+          children,
+          packageType,
+          message,
+          destinationName,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send inquiry");
+      }
+
       toast.success("Thank you for your inquiry! Our team will contact you shortly.");
-      setIsSubmitting(false);
       onClose();
       resetForm();
-    }, 1500);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast.error("Failed to send inquiry. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const resetForm = () => {
