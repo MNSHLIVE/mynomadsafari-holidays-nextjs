@@ -1,3 +1,4 @@
+'use client';
 
 import SectionHeading from "@/components/section-heading";
 import TestimonialCard from "@/components/testimonial-card";

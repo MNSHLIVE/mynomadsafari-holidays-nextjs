@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -26,6 +28,12 @@ const BlogCard = ({
   className,
 }: BlogCardProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [hasError, setHasError] = useState(false);
+
+  const handleImageError = () => {
+    setHasError(true);
+    setIsLoaded(true);
+  };
 
   return (
     <div 
@@ -36,19 +44,28 @@ const BlogCard = ({
     >
       <div className="relative h-48 overflow-hidden">
         <div className={cn(
-          "absolute inset-0 bg-gray-200",
-          isLoaded ? "hidden" : "block"
-        )} />
-        <Image
-          src={imageSrc}
-          alt={title}
-          fill
-          className={cn(
-            "object-cover transition-all duration-500 group-hover:scale-105",
-            isLoaded ? "block" : "invisible"
+          "absolute inset-0 bg-gray-200 flex items-center justify-center",
+          isLoaded && !hasError ? "hidden" : "block"
+        )}>
+          {hasError && (
+            <span className="text-sm text-muted-foreground">Image not available</span>
           )}
-          onLoadingComplete={() => setIsLoaded(true)}
-        />
+        </div>
+        {!hasError && (
+          <Image
+            src={imageSrc}
+            alt={title}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            priority={false}
+            className={cn(
+              "object-cover transition-all duration-500 group-hover:scale-105",
+              isLoaded ? "block" : "invisible"
+            )}
+            onLoadingComplete={() => setIsLoaded(true)}
+            onError={handleImageError}
+          />
+        )}
       </div>
       
       <div className="p-5 flex flex-col flex-grow">

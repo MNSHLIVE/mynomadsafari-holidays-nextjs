@@ -21,53 +21,24 @@ export interface Destination {
 export interface Tour {
   id: string;
   title: string;
-  imageSrc: string;
-  location: string;
+  description: string;
   duration: string;
-  price: string | number;  // Allow both string and number for price
-  bestTime: string;
-  packageType: "Budgeted" | "Luxury" | "Premier";
-  country?: string;
-  region?: string;
-  description?: string;
-  activities?: string[];
-  included?: string[];
-  groupSize?: string;
-  highlight?: string;
-  itinerary?: Array<{
-    day: number;
-    title: string;
-    description: string;
-    imageSrc?: string;
-  }>;
-  localCuisine?: string[];
-  shoppingGuide?: string[];
-  culturalExperiences?: string[];
-  durationOptions?: Array<{
-    days: string;
-    title: string;
-    price: number;
-    cities: string[];
-    suitableFor: string;
-    accommodation: string;
-  }>;
-  internationalGuestPerks?: {
-    accommodation: string[];
-    dining: string[];
-    transport: string[];
-    support: string[];
-  };
+  price: number;
+  imageSrc: string;
+  category: string;
+  rating?: number;
+  reviews?: number;
+  isPopular?: boolean;
 }
 
 export interface BlogPost {
   id: string;
   title: string;
   excerpt: string;
-  content: string;
   imageSrc: string;
   date: string;
   author: string;
-  category: string;
+  tags: string[];
 }
 
 // Shared data for home page components
@@ -313,9 +284,8 @@ export const hillStations = [
   },
 ];
 
-export const popularTours: Tour[] = [
+export const popularTours = [
   {
-    id: "golden-triangle-tour",
     imageSrc: "/Destination/Home/Featured-Tours/Golden-Triangle.jpg",
     title: "Golden Triangle Tour",
     location: "Delhi, Agra, Jaipur",
@@ -323,12 +293,8 @@ export const popularTours: Tour[] = [
     price: "Starting from ₹21,000",
     bestTime: "October - March",
     packageType: "Budgeted" as const,
-    country: "India",
-    region: "North India",
-    description: "Experience the rich history and culture of India's most iconic cities."
   },
   {
-    id: "kerala-backwaters-luxury",
     imageSrc: "/Destination/Home/Featured-Tours/Kerala-Backwaters.jpg",
     title: "Kerala Backwaters Luxury",
     location: "Kochi, Munnar, Alleppey",
@@ -336,12 +302,8 @@ export const popularTours: Tour[] = [
     price: "Starting from ₹35,000",
     bestTime: "September - March",
     packageType: "Luxury" as const,
-    country: "India",
-    region: "South India",
-    description: "Indulge in a luxurious journey through God's own country."
   },
   {
-    id: "premier-rajasthan-heritage",
     imageSrc: "/Destination/Home/Featured-Tours/Rajasthan-Heritage.jpg",
     title: "Premier Rajasthan Heritage",
     location: "Jaipur, Udaipur, Jodhpur",
@@ -349,15 +311,11 @@ export const popularTours: Tour[] = [
     price: "Starting from ₹75,000",
     bestTime: "October - March",
     packageType: "Premier" as const,
-    country: "India",
-    region: "North India",
-    description: "Experience the royal heritage of Rajasthan in ultimate luxury."
-  }
+  },
 ];
 
-export const religiousTours: Tour[] = [
+export const religiousTours = [
   {
-    id: "char-dham-yatra",
     imageSrc: "/Destination/Home/Religious-Tours/Char-Dham.jpg",
     title: "Char Dham Yatra",
     location: "Uttarakhand, India",
@@ -366,16 +324,13 @@ export const religiousTours: Tour[] = [
     bestTime: "May - June, September - October",
     packageType: "Premier" as const,
     description: "A spiritual journey to the four sacred Hindu temples in the Himalayas: Yamunotri, Gangotri, Kedarnath, and Badrinath.",
-    country: "India",
-    region: "North India",
     itinerary: [
       {day: 1, title: "Arrival in Haridwar", description: "Welcome at Haridwar and transfer to hotel. Evening Ganga Aarti at Har Ki Pauri."},
       {day: 2, title: "Haridwar to Yamunotri", description: "Drive to Janki Chatti and trek to Yamunotri temple. Return to Barkot for overnight stay."},
-      {day: 3, title: "Barkot to Gangotri", description: "Drive to Gangotri through scenic Himalayan landscapes. Visit Gangotri Temple."}
+      {day: 3, title: "Barkot to Gangotri", description: "Drive to Gangotri through scenic Himalayan landscapes. Visit Gangotri Temple."},
     ]
   },
   {
-    id: "varanasi-spiritual-tour",
     imageSrc: "/Destination/Home/Religious-Tours/Varanasi-Spiritual.jpg",
     title: "Varanasi Spiritual Tour",
     location: "Uttar Pradesh, India",
@@ -384,16 +339,13 @@ export const religiousTours: Tour[] = [
     bestTime: "October - March",
     packageType: "Budgeted" as const,
     description: "Experience the spiritual essence of India's oldest city with morning boat rides on the Ganges and evening aartis.",
-    country: "India",
-    region: "North India",
     itinerary: [
       {day: 1, title: "Arrival in Varanasi", description: "Welcome at Varanasi Airport/Railway Station and transfer to hotel. Evening Ganga Aarti."},
       {day: 2, title: "Morning Boat Ride & Temples", description: "Early morning boat ride on the Ganges to witness sunrise. Visit important temples."},
-      {day: 3, title: "Sarnath Excursion", description: "Day trip to Sarnath where Buddha gave his first sermon. Visit the Dhamek Stupa."}
+      {day: 3, title: "Sarnath Excursion", description: "Day trip to Sarnath where Buddha gave his first sermon. Visit the Dhamek Stupa."},
     ]
   },
   {
-    id: "golden-temple-amritsar",
     imageSrc: "/Destination/Home/Religious-Tours/Golden-Temple.jpg",
     title: "Golden Temple & Amritsar",
     location: "Punjab, India",
@@ -402,14 +354,12 @@ export const religiousTours: Tour[] = [
     bestTime: "October - March",
     packageType: "Budgeted" as const,
     description: "Visit the magnificent Golden Temple and experience the vibrant Punjabi culture in Amritsar.",
-    country: "India",
-    region: "North India",
     itinerary: [
       {day: 1, title: "Arrival in Amritsar", description: "Welcome at Amritsar and transfer to hotel. Evening visit to Golden Temple for Palki Ceremony."},
       {day: 2, title: "Golden Temple & Wagah Border", description: "Morning visit to Golden Temple. Afternoon visit to Wagah Border for the Retreat Ceremony."},
-      {day: 3, title: "Amritsar City Tour", description: "Visit Jallianwala Bagh, Durgiana Temple, and local markets. Departure from Amritsar."}
+      {day: 3, title: "Amritsar City Tour", description: "Visit Jallianwala Bagh, Durgiana Temple, and local markets. Departure from Amritsar."},
     ]
-  }
+  },
 ];
 
 export const testimonials = [
@@ -435,6 +385,7 @@ export const testimonials = [
 
 export const blogPosts = [
   {
+    id: "budget-destinations",
     imageSrc: "/Destination/Home/Blog/Budget-Destinations.jpg",
     title: "Top 5 Budget Destinations in India",
     excerpt: "Discover incredible places to visit in India without breaking the bank. From the beaches of Goa to the mountains of Himachal Pradesh.",
@@ -443,6 +394,7 @@ export const blogPosts = [
     tags: ["Budget Travel", "India"],
   },
   {
+    id: "luxury-bali",
     imageSrc: "/Destination/Home/Blog/Luxury-Bali.jpg",
     title: "How to Plan a Luxury Bali Trip",
     excerpt: "Planning a luxury getaway to Bali? Here's everything you need to know about the best resorts, dining experiences, and private tours.",
@@ -451,6 +403,7 @@ export const blogPosts = [
     tags: ["Luxury Travel", "Bali"],
   },
   {
+    id: "visa-guide",
     imageSrc: "/Destination/Home/Blog/Visa-Guide.jpg",
     title: "The Complete Guide to Visa Requirements",
     excerpt: "Navigate the complex world of travel visas with our comprehensive guide to requirements for popular destinations.",
@@ -1094,6 +1047,3 @@ export const destinations = {
     }
   ]
 };
-
-// Export combined tours array
-export const tours: Tour[] = [...popularTours, ...religiousTours];

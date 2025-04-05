@@ -6,21 +6,27 @@ const WhatsAppWidget = () => {
     const script = document.createElement("script");
     script.src = "https://static.elfsight.com/platform/platform.js";
     script.defer = true;
-    document.body.appendChild(script);
+    script.async = true;
 
-    // Create the WhatsApp widget container if it doesn't exist
-    if (!document.getElementById("whatsapp-widget")) {
-      const widgetContainer = document.createElement("div");
-      widgetContainer.id = "whatsapp-widget";
-      widgetContainer.className = "elfsight-app-a66932d0-6134-4f31-a0eb-1464fb2300a4";
-      widgetContainer.setAttribute("data-elfsight-app-lazy", "");
-      document.body.appendChild(widgetContainer);
-    }
+    // Error handling for script loading
+    script.onerror = () => {
+      console.error('Failed to load WhatsApp widget script');
+    };
+
+    // Create the WhatsApp widget container
+    const widgetContainer = document.createElement("div");
+    widgetContainer.id = "whatsapp-widget";
+    widgetContainer.className = "elfsight-app-a66932d0-6134-4f31-a0eb-1464fb2300a4";
+
+    // Append elements
+    document.body.appendChild(script);
+    document.body.appendChild(widgetContainer);
 
     return () => {
-      // Cleanup script when component unmounts
-      if (script.parentNode) {
-        document.body.removeChild(script);
+      // Cleanup when component unmounts
+      document.body.removeChild(script);
+      if (document.getElementById("whatsapp-widget")) {
+        document.body.removeChild(widgetContainer);
       }
     };
   }, []);

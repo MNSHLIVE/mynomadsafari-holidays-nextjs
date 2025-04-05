@@ -1,3 +1,5 @@
+'use client';
+
 import Link from "next/link";
 import { Palmtree, Mountain, Star, Building, Plane, Map } from "lucide-react";
 import SectionHeading from "@/components/section-heading";
