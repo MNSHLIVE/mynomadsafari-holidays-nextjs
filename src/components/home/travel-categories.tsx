@@ -21,7 +21,7 @@ const travelCategories: TravelCategoryProps[] = [
 
 const TravelCategories = () => {
   return (
-    <section className="py-10 container mx-auto px-4">
+    <section className="py-10 container mx-auto px-4 bg-secondary/5">
       <SectionHeading
         title="Plan Your Perfect Trip"
         subtitle="Choose from our diverse range of travel experiences"
