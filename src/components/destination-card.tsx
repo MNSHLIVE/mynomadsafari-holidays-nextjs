@@ -86,7 +86,6 @@ const DestinationCard = ({
         </div>
       </div>
 
-      {/* Destination Details Modal */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <DialogContent className="max-w-4xl h-[80vh] overflow-y-auto">
           <DialogHeader>
