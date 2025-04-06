@@ -9,23 +9,13 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs";
+import { Tour } from "@/components/home/home-data";
 
 interface TourSectionProps {
   title: string;
   subtitle: string;
   tag: string;
-  tours: Array<{
-    id: number;
-    imageSrc: string;
-    title: string;
-    location: string;
-    duration: string;
-    price: string;
-    bestTime: string;
-    packageType: "Budgeted" | "Luxury" | "Premier";
-    description?: string;
-    itinerary?: Array<{day: number, title: string, description: string}>;
-  }>;
+  tours: Tour[];
   viewAllLink: string;
   viewAllText: string;
   bgColor?: string;
@@ -64,9 +54,9 @@ const ToursSection = ({
 
             <TabsContent value="all" className="mt-0">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {tours.map((tour, index) => (
+                {tours.map((tour) => (
                   <TourCard
-                    key={index}
+                    key={tour.id}
                     tour={tour}
                     className="h-full"
                   />
@@ -78,9 +68,9 @@ const ToursSection = ({
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {tours
                   .filter(tour => tour.packageType === "Budgeted")
-                  .map((tour, index) => (
+                  .map((tour) => (
                     <TourCard
-                      key={index}
+                      key={tour.id}
                       tour={tour}
                       className="h-full"
                     />
@@ -92,9 +82,9 @@ const ToursSection = ({
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {tours
                   .filter(tour => tour.packageType === "Luxury")
-                  .map((tour, index) => (
+                  .map((tour) => (
                     <TourCard
-                      key={index}
+                      key={tour.id}
                       tour={tour}
                       className="h-full"
                     />
@@ -106,9 +96,9 @@ const ToursSection = ({
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {tours
                   .filter(tour => tour.packageType === "Premier")
-                  .map((tour, index) => (
+                  .map((tour) => (
                     <TourCard
-                      key={index}
+                      key={tour.id}
                       tour={tour}
                       className="h-full"
                     />
@@ -118,9 +108,9 @@ const ToursSection = ({
           </Tabs>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {tours.map((tour, index) => (
+            {tours.map((tour) => (
               <TourCard
-                key={index}
+                key={tour.id}
                 tour={tour}
                 className="h-full"
               />

@@ -5,7 +5,7 @@ import TourCard from "@/components/tour-card";
 import CTASection from "@/components/cta-section";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { Calendar, MapPin, Users, Plane, Check, ArrowLeft } from "lucide-react";
+import { Calendar, MapPin, Users, Plane, Check, ArrowLeft, Clock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import BackButton from "@/components/back-button";
 import { useRouter } from "next/router";
@@ -113,7 +113,7 @@ const internationalGroupTours = [
 
 const GroupTours = () => {
   const [activeTab, setActiveTab] = useState("domestic");
-  const [selectedTour, setSelectedTour] = useState(null);
+  const [selectedTour, setSelectedTour] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
 
@@ -121,7 +121,7 @@ const GroupTours = () => {
     window.history.back();
   };
 
-  const handleViewDetails = (tour) => {
+  const handleViewDetails = (tour: any) => {
     setSelectedTour(tour);
     setIsModalOpen(true);
   };
@@ -440,42 +440,62 @@ const GroupTours = () => {
                   </div>
 
                   {/* Tour Info */}
-                  <div className="grid grid-cols-2 gap-4 text-sm">
-                    <div>
-                      <p className="font-medium">Location</p>
-                      <p className="text-muted-foreground">{selectedTour.location}</p>
-                    </div>
-                    <div>
-                      <p className="font-medium">Duration</p>
-                      <p className="text-muted-foreground">{selectedTour.duration}</p>
-                    </div>
-                    <div>
-                      <p className="font-medium">Group Size</p>
-                      <p className="text-muted-foreground">{selectedTour.groupSize}</p>
-                    </div>
-                    <div>
-                      <p className="font-medium">Departure</p>
-                      <p className="text-muted-foreground">{selectedTour.departureDate}</p>
-                    </div>
-                  </div>
-
-                  {/* Itinerary */}
-                  <div>
-                    <h3 className="text-lg font-semibold mb-4">Tour Itinerary</h3>
-                    <div className="space-y-4">
-                      {selectedTour.itinerary.map((day) => (
-                        <div key={day.day} className="border-l-2 border-primary/20 pl-4">
-                          <h4 className="font-medium">Day {day.day}: {day.title}</h4>
-                          <p className="text-sm text-muted-foreground">{day.description}</p>
+                  <div className="grid gap-4">
+                    <div className="bg-muted/30 p-4 rounded-lg">
+                      <h4 className="font-medium mb-2">Tour Details</h4>
+                      <div className="space-y-2 text-sm">
+                        <div className="flex items-center">
+                          <MapPin className="w-4 h-4 mr-2 text-primary" />
+                          <span>{selectedTour.location}</span>
                         </div>
-                      ))}
+                        <div className="flex items-center">
+                          <Calendar className="w-4 h-4 mr-2 text-primary" />
+                          <span>Departure: {selectedTour.departureDate}</span>
+                        </div>
+                        <div className="flex items-center">
+                          <Users className="w-4 h-4 mr-2 text-primary" />
+                          <span>Group Size: {selectedTour.groupSize}</span>
+                        </div>
+                        <div className="flex items-center">
+                          <Clock className="w-4 h-4 mr-2 text-primary" />
+                          <span>{selectedTour.duration}</span>
+                        </div>
+                      </div>
                     </div>
+
+                    {selectedTour.highlights && selectedTour.highlights.length > 0 && (
+                      <div>
+                        <h4 className="font-medium mb-2">Tour Highlights</h4>
+                        <div className="grid gap-2">
+                          {selectedTour.highlights.map((highlight: string, index: number) => (
+                            <div key={index} className="flex items-start gap-2">
+                              <span className="text-primary">•</span>
+                              <span className="text-sm">{highlight}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {selectedTour.inclusions && selectedTour.inclusions.length > 0 && (
+                      <div>
+                        <h4 className="font-medium mb-2">What's Included</h4>
+                        <div className="grid gap-2">
+                          {selectedTour.inclusions.map((inclusion: string, index: number) => (
+                            <div key={index} className="flex items-start gap-2">
+                              <Check className="w-4 h-4 text-green-500" />
+                              <span className="text-sm">{inclusion}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
 
                 {/* Inquiry Form */}
                 <div className="bg-muted/30 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold mb-4">Inquire About This Tour</h3>
+                  <h3 className="text-lg font-semibold mb-4">Book {selectedTour.title}</h3>
                   <DestinationQueryForm 
                     destinationName={selectedTour.title}
                     buttonText="Send Inquiry"
