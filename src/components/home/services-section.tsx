@@ -39,18 +39,18 @@ const services: ServiceItemProps[] = [
 
 const ServicesSection = () => {
   return (
-    <section className="py-16 container mx-auto px-4">
+    <section className="section-padding container mx-auto px-4">
       <SectionHeading
         title="Services We Offer"
         subtitle="We provide comprehensive travel services to make your journey memorable and hassle-free"
         align="center"
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
         {services.map((service, index) => (
           <div 
             key={index} 
-            className="p-6 border border-border/50 rounded-lg bg-card hover:shadow-md transition-shadow duration-300"
+            className="p-6 border border-border/50 rounded-xl bg-card shadow-sm hover-scale h-full"
           >
             <div className="p-3 bg-primary/10 rounded-full w-fit mb-4">
               {service.icon}
