@@ -12,10 +12,16 @@ export interface Destination {
   bestTime: string;
   isPopular?: boolean;
   country?: string;
+  state?: string;
   placesToSee?: string[];
   foodRecommendations?: string[];
   tips?: string[];
   majorTours?: string[];
+  budgets?: {
+    budgeted: string;
+    luxury: string;
+    premier: string;
+  };
 }
 
 export interface Tour {
@@ -35,10 +41,11 @@ export interface BlogPost {
   id: string;
   title: string;
   excerpt: string;
+  content: string;
   imageSrc: string;
   date: string;
   author: string;
-  tags: string[];
+  category: string;
 }
 
 // Shared data for home page components
@@ -75,32 +82,155 @@ export const heroSlides: HeroSlide[] = [
   }
 ];
 
-export const popularDestinations = [
+export const popularDestinations: Destination[] = [
   {
     imageSrc: "/Destination/Home/Popular-Destinations/Rajasthan-popular.jpg",
-    title: "Rajasthan, India",
+    title: "Rajasthan",
     description: "Experience the vibrant culture and majestic forts of the royal state.",
     bestTime: "October - March",
     isPopular: true,
+    state: "Rajasthan",
+    country: "India",
+    placesToSee: [
+      "Jaipur - The Pink City",
+      "Udaipur - City of Lakes",
+      "Jodhpur - The Blue City",
+      "Jaisalmer - The Golden City"
+    ],
+    foodRecommendations: [
+      "Dal Baati Churma",
+      "Laal Maas",
+      "Ker Sangri",
+      "Pyaaz Kachori"
+    ],
+    tips: [
+      "Best to visit during winter months",
+      "Carry light cotton clothes",
+      "Respect local customs",
+      "Try local cuisine"
+    ],
+    majorTours: [
+      "Golden Triangle Tour",
+      "Rajasthan Heritage Tour",
+      "Desert Safari Experience",
+      "Palace on Wheels"
+    ],
+    budgets: {
+      budgeted: "₹15,000",
+      luxury: "₹35,000",
+      premier: "₹75,000"
+    }
   },
   {
     imageSrc: "/Destination/Home/Popular-Destinations/Kerala-popular.jpg",
-    title: "Kerala, India",
+    title: "Kerala",
     description: "Discover the serene backwaters and lush greenery of God's own country.",
     bestTime: "September - March",
+    state: "Kerala",
+    country: "India",
+    placesToSee: [
+      "Backwaters of Alleppey",
+      "Munnar Tea Gardens",
+      "Kochi Fort",
+      "Kerala Houseboats"
+    ],
+    foodRecommendations: [
+      "Appam with Stew",
+      "Kerala Parotta",
+      "Fish Curry",
+      "Puttu and Kadala"
+    ],
+    tips: [
+      "Book houseboats in advance",
+      "Carry light cotton clothes",
+      "Try Ayurvedic treatments",
+      "Respect local customs"
+    ],
+    majorTours: [
+      "Kerala Backwaters Tour",
+      "Kerala Ayurveda Tour",
+      "Kerala Wildlife Tour",
+      "Kerala Cultural Tour"
+    ],
+    budgets: {
+      budgeted: "₹12,000",
+      luxury: "₹30,000",
+      premier: "₹60,000"
+    }
   },
   {
     imageSrc: "/Destination/Home/Popular-Destinations/Goa-popular.jpg",
-    title: "Goa, India",
+    title: "Goa",
     description: "Relax on sandy beaches and enjoy the vibrant nightlife of this coastal paradise.",
     bestTime: "November - February",
+    state: "Goa",
+    country: "India",
+    placesToSee: [
+      "Calangute Beach",
+      "Anjuna Flea Market",
+      "Chapora Fort",
+      "Fort Aguada"
+    ],
+    foodRecommendations: [
+      "Goan Fish Curry",
+      "Prawn Vindaloo",
+      "Coconut Crab",
+      "Feni"
+    ],
+    tips: [
+      "Visit during the off-season for lower prices",
+      "Try local seafood",
+      "Explore the nightlife",
+      "Respect local customs"
+    ],
+    majorTours: [
+      "Goa Beach Tour",
+      "Goa Cultural Tour",
+      "Goa Adventure Tour",
+      "Goa Wellness Tour"
+    ],
+    budgets: {
+      budgeted: "₹10,000",
+      luxury: "₹25,000",
+      premier: "₹50,000"
+    }
   },
   {
     imageSrc: "/Destination/Home/Popular-Destinations/Bali-popular.jpg",
-    title: "Bali, Indonesia",
+    title: "Bali",
     description: "Experience the perfect blend of beaches, culture, and adventure in this island paradise.",
     bestTime: "April - October",
-  },
+    country: "Indonesia",
+    placesToSee: [
+      "Ubud Sacred Monkey Forest",
+      "Uluwatu Temple",
+      "Rice Terraces",
+      "Beach Clubs"
+    ],
+    foodRecommendations: [
+      "Nasi Goreng",
+      "Babi Guling",
+      "Gado Gado",
+      "Bakso"
+    ],
+    tips: [
+      "Respect temple dress codes",
+      "Carry light clothes",
+      "Book accommodations in advance",
+      "Learn basic Indonesian phrases"
+    ],
+    majorTours: [
+      "Cultural Tour",
+      "Beach Tour",
+      "Adventure Tour",
+      "Wellness Tour"
+    ],
+    budgets: {
+      budgeted: "₹30,000",
+      luxury: "₹60,000",
+      premier: "₹120,000"
+    }
+  }
 ];
 
 export const religiousDestinations = [
@@ -385,7 +515,6 @@ export const testimonials = [
 
 export const blogPosts = [
   {
-    id: "budget-destinations",
     imageSrc: "/Destination/Home/Blog/Budget-Destinations.jpg",
     title: "Top 5 Budget Destinations in India",
     excerpt: "Discover incredible places to visit in India without breaking the bank. From the beaches of Goa to the mountains of Himachal Pradesh.",
@@ -394,7 +523,6 @@ export const blogPosts = [
     tags: ["Budget Travel", "India"],
   },
   {
-    id: "luxury-bali",
     imageSrc: "/Destination/Home/Blog/Luxury-Bali.jpg",
     title: "How to Plan a Luxury Bali Trip",
     excerpt: "Planning a luxury getaway to Bali? Here's everything you need to know about the best resorts, dining experiences, and private tours.",
@@ -403,7 +531,6 @@ export const blogPosts = [
     tags: ["Luxury Travel", "Bali"],
   },
   {
-    id: "visa-guide",
     imageSrc: "/Destination/Home/Blog/Visa-Guide.jpg",
     title: "The Complete Guide to Visa Requirements",
     excerpt: "Navigate the complex world of travel visas with our comprehensive guide to requirements for popular destinations.",

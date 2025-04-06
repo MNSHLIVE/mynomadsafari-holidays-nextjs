@@ -31,6 +31,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Calendar as CalendarComponent } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import DestinationQueryForm from "./destination-query-form";
+import { cn } from "@/lib/utils";
 
 const HOTEL_RATES = {
   "3-star": {
@@ -201,8 +202,38 @@ const PackageCalculator = ({ className }: PackageCalculatorProps) => {
     }).format(amount);
   };
 
+  const handleNumberChange = (value: string, setter: (val: number) => void, min: number, max: number) => {
+    const num = parseInt(value);
+    if (isNaN(num)) {
+      setter(min);
+    } else {
+      setter(Math.min(Math.max(num, min), max));
+    }
+  };
+
+  const numberInputClass = `w-full 
+    [appearance:textfield] 
+    [&::-webkit-outer-spin-button]:appearance-auto 
+    [&::-webkit-inner-spin-button]:appearance-auto 
+    [&::-webkit-outer-spin-button]:h-6 
+    [&::-webkit-inner-spin-button]:h-6 
+    [&::-webkit-outer-spin-button]:w-6 
+    [&::-webkit-inner-spin-button]:w-6 
+    [&::-webkit-outer-spin-button]:m-0 
+    [&::-webkit-inner-spin-button]:m-0 
+    [&::-webkit-outer-spin-button]:border-0 
+    [&::-webkit-inner-spin-button]:border-0 
+    [&::-webkit-outer-spin-button]:bg-transparent 
+    [&::-webkit-inner-spin-button]:bg-transparent 
+    [&::-webkit-outer-spin-button]:cursor-pointer 
+    [&::-webkit-inner-spin-button]:cursor-pointer 
+    [&::-webkit-outer-spin-button]:opacity-100 
+    [&::-webkit-inner-spin-button]:opacity-100
+    [-moz-appearance:textfield]
+  `;
+
   return (
-    <div id="package-calculator" className={className}>
+    <div id="package-calculator" className={cn("pt-16 md:pt-20", className)}>
       <Card className="w-full shadow-lg border-primary/10">
         <CardHeader className="bg-primary/5">
           <CardTitle className="text-2xl flex items-center gap-2">
@@ -256,7 +287,8 @@ const PackageCalculator = ({ className }: PackageCalculatorProps) => {
                       min={1}
                       max={30}
                       value={days}
-                      onChange={(e) => setDays(parseInt(e.target.value) || 1)}
+                      onChange={(e) => handleNumberChange(e.target.value, setDays, 1, 30)}
+                      className={numberInputClass}
                     />
                   </div>
 
@@ -301,7 +333,8 @@ const PackageCalculator = ({ className }: PackageCalculatorProps) => {
                           min={1}
                           max={20}
                           value={adults}
-                          onChange={(e) => setAdults(parseInt(e.target.value) || 1)}
+                          onChange={(e) => handleNumberChange(e.target.value, setAdults, 1, 20)}
+                          className={numberInputClass}
                         />
                       </div>
                       <div>
@@ -312,7 +345,8 @@ const PackageCalculator = ({ className }: PackageCalculatorProps) => {
                           min={0}
                           max={10}
                           value={children}
-                          onChange={(e) => setChildren(parseInt(e.target.value) || 0)}
+                          onChange={(e) => handleNumberChange(e.target.value, setChildren, 0, 10)}
+                          className={numberInputClass}
                         />
                       </div>
                     </div>
@@ -386,7 +420,8 @@ const PackageCalculator = ({ className }: PackageCalculatorProps) => {
                       min={1}
                       max={10}
                       value={rooms}
-                      onChange={(e) => setRooms(parseInt(e.target.value) || 1)}
+                      onChange={(e) => handleNumberChange(e.target.value, setRooms, 1, 10)}
+                      className={numberInputClass}
                     />
                     {adults > 4 && (
                       <p className="text-xs text-amber-600 mt-1">

@@ -1,6 +1,6 @@
 'use client';
 
-import { useRouter } from 'next/router';
+import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { MapPin, Calendar } from 'lucide-react';
@@ -8,9 +8,14 @@ import { destinations } from '@/components/home/home-data';
 import BackButton from '@/components/back-button';
 import DestinationQueryForm from '@/components/destination-query-form';
 
-export default function DestinationDetail() {
-  const router = useRouter();
-  const { slug } = router.query;
+interface Props {
+  params: {
+    slug: string;
+  };
+}
+
+export default function DestinationDetail({ params }: Props) {
+  const { slug } = params;
 
   // Combine all destinations
   const allDestinations = [
@@ -23,37 +28,8 @@ export default function DestinationDetail() {
     d.title?.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-') === slug
   );
 
-  // Show loading state while the page is loading
-  if (router.isFallback || !slug) {
-    return (
-      <div className="container mx-auto px-4 py-8">
-        <div className="animate-pulse">
-          <div className="h-[400px] bg-gray-200 rounded-xl mb-8"></div>
-          <div className="space-y-4">
-            <div className="h-8 bg-gray-200 rounded w-1/3"></div>
-            <div className="h-4 bg-gray-200 rounded"></div>
-            <div className="h-4 bg-gray-200 rounded"></div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   if (!destination) {
-    return (
-      <div className="container mx-auto px-4 py-8">
-        <BackButton />
-        <div className="text-center py-16">
-          <h1 className="text-2xl font-bold mb-4">Destination Not Found</h1>
-          <p className="text-muted-foreground mb-8">
-            The destination you are looking for might have been removed or is temporarily unavailable.
-          </p>
-          <Button onClick={() => router.push('/destinations')}>
-            View All Destinations
-          </Button>
-        </div>
-      </div>
-    );
+    return notFound();
   }
 
   return (
@@ -65,7 +41,7 @@ export default function DestinationDetail() {
         <div className="lg:col-span-2">
           <div className="relative h-[400px] rounded-xl overflow-hidden mb-6">
             <Image
-              src={destination.image || destination.imageSrc}
+              src={destination.image}
               alt={destination.title}
               fill
               className="object-cover"
@@ -171,23 +147,25 @@ export default function DestinationDetail() {
           <div className="bg-card p-6 rounded-xl shadow-sm sticky top-24">
             <h2 className="text-xl font-semibold mb-4">Plan Your Trip</h2>
             
-            <div className="mb-6">
-              <h3 className="text-lg font-medium mb-2">Package Types</h3>
-              <div className="space-y-2">
-                <div className="flex justify-between items-center">
-                  <span>Budgeted</span>
-                  <span className="font-medium">{destination.budgets.budgeted}</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span>Luxury</span>
-                  <span className="font-medium">{destination.budgets.luxury}</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span>Premier</span>
-                  <span className="font-medium">{destination.budgets.premier}</span>
+            {destination.budgets && (
+              <div className="mb-6">
+                <h3 className="text-lg font-medium mb-2">Package Types</h3>
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center">
+                    <span>Budgeted</span>
+                    <span className="font-medium">{destination.budgets.budgeted}</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span>Luxury</span>
+                    <span className="font-medium">{destination.budgets.luxury}</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span>Premier</span>
+                    <span className="font-medium">{destination.budgets.premier}</span>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
 
             <DestinationQueryForm
               destinationName={destination.title}

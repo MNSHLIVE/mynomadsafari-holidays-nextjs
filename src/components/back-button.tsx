@@ -1,8 +1,8 @@
 'use client';
 
-import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
+import { useRouter } from 'next/navigation';
+import { Button } from '@/components/ui/button';
+import { ArrowLeft } from 'lucide-react';
 
 export function BackButton() {
   const router = useRouter();
@@ -10,12 +10,11 @@ export function BackButton() {
   return (
     <Button
       variant="ghost"
-      size="icon"
+      className="mb-6 group"
       onClick={() => router.back()}
-      className="hover:bg-primary/5"
     >
-      <ArrowLeft className="h-5 w-5" />
-      <span className="sr-only">Go back</span>
+      <ArrowLeft className="h-4 w-4 mr-2 transition-transform group-hover:-translate-x-1" />
+      Back
     </Button>
   );
 } 
