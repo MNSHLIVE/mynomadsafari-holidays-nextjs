@@ -12,8 +12,6 @@
   }
 }
 
-/* ... existing styles ... */
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -31,7 +29,7 @@
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
 
-    --primary: 92 42% 51%;
+    --primary: 222.2 47.4% 11.2%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
@@ -64,8 +62,8 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
 
-    --primary: 92 42% 51%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
 
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
@@ -113,4 +111,4 @@
   }
 }
 
-/* ... rest of the styles ... */ 
+/* ... rest of the styles ... */
