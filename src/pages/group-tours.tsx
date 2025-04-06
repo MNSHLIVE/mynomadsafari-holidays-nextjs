@@ -8,6 +8,15 @@ import { Button } from "@/components/ui/button";
 import { Calendar, MapPin, Users, Plane, Check, ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import BackButton from "@/components/back-button";
+import { useRouter } from "next/router";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import DestinationQueryForm from "@/components/destination-query-form";
 
 const domesticGroupTours = [
   {
@@ -104,9 +113,17 @@ const internationalGroupTours = [
 
 const GroupTours = () => {
   const [activeTab, setActiveTab] = useState("domestic");
+  const [selectedTour, setSelectedTour] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const router = useRouter();
 
   const handleBack = () => {
     window.history.back();
+  };
+
+  const handleViewDetails = (tour) => {
+    setSelectedTour(tour);
+    setIsModalOpen(true);
   };
 
   return (
@@ -241,7 +258,10 @@ const GroupTours = () => {
                       <span className="text-xs text-muted-foreground">per person</span>
                     </div>
                     
-                    <Button className="w-full bg-primary hover:bg-primary/90">
+                    <Button 
+                      className="w-full bg-primary hover:bg-primary/90"
+                      onClick={() => handleViewDetails(tour)}
+                    >
                       View Details
                     </Button>
                   </div>
@@ -313,7 +333,10 @@ const GroupTours = () => {
                       <span className="text-xs text-muted-foreground">per person</span>
                     </div>
                     
-                    <Button className="w-full bg-primary hover:bg-primary/90">
+                    <Button 
+                      className="w-full bg-primary hover:bg-primary/90"
+                      onClick={() => handleViewDetails(tour)}
+                    >
                       View Details
                     </Button>
                   </div>
@@ -390,6 +413,79 @@ const GroupTours = () => {
         buttonText="Book Now"
         buttonLink="/contact"
       />
+
+      {/* Tour Details Modal */}
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogContent className="max-w-4xl h-[80vh] overflow-y-auto">
+          {selectedTour && (
+            <>
+              <DialogHeader>
+                <DialogTitle>{selectedTour.title}</DialogTitle>
+                <DialogDescription>
+                  {selectedTour.description}
+                </DialogDescription>
+              </DialogHeader>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Tour Details */}
+                <div className="space-y-6">
+                  {/* Tour Image */}
+                  <div className="relative h-64 rounded-lg overflow-hidden">
+                    <Image
+                      src={selectedTour.imageSrc}
+                      alt={selectedTour.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+
+                  {/* Tour Info */}
+                  <div className="grid grid-cols-2 gap-4 text-sm">
+                    <div>
+                      <p className="font-medium">Location</p>
+                      <p className="text-muted-foreground">{selectedTour.location}</p>
+                    </div>
+                    <div>
+                      <p className="font-medium">Duration</p>
+                      <p className="text-muted-foreground">{selectedTour.duration}</p>
+                    </div>
+                    <div>
+                      <p className="font-medium">Group Size</p>
+                      <p className="text-muted-foreground">{selectedTour.groupSize}</p>
+                    </div>
+                    <div>
+                      <p className="font-medium">Departure</p>
+                      <p className="text-muted-foreground">{selectedTour.departureDate}</p>
+                    </div>
+                  </div>
+
+                  {/* Itinerary */}
+                  <div>
+                    <h3 className="text-lg font-semibold mb-4">Tour Itinerary</h3>
+                    <div className="space-y-4">
+                      {selectedTour.itinerary.map((day) => (
+                        <div key={day.day} className="border-l-2 border-primary/20 pl-4">
+                          <h4 className="font-medium">Day {day.day}: {day.title}</h4>
+                          <p className="text-sm text-muted-foreground">{day.description}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Inquiry Form */}
+                <div className="bg-muted/30 p-6 rounded-lg">
+                  <h3 className="text-lg font-semibold mb-4">Inquire About This Tour</h3>
+                  <DestinationQueryForm 
+                    destinationName={selectedTour.title}
+                    buttonText="Send Inquiry"
+                  />
+                </div>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
