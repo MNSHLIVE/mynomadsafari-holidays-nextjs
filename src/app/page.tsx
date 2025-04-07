@@ -28,6 +28,7 @@ import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
 import HeroSection from "@/components/home/hero-section";
 import PackageCalculator from "@/components/home/package-calculator";
+import HomeClientWrapper from "@/components/home/home-client-wrapper";
 
 // Loading component
 function LoadingComponent() {
@@ -133,22 +134,8 @@ const ensureArray = <T extends any>(data: T[] | undefined | null, fallback: T[])
 
 export default function Home() {
   return (
-    <main>
-      <HeroSection />
-      
-      {/* Calculator Section */}
-      <section className="relative bg-gradient-to-b from-background to-secondary/5 pt-24 pb-16">
-        <div className="container mx-auto px-4 text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Calculate Your Tour Package</h2>
-          <p className="text-muted-foreground">
-            Get an instant estimate for your dream vacation
-          </p>
-        </div>
-        <PackageCalculator />
-      </section>
-
-      {/* Rest of the sections */}
-      <HomeWrapper />
+    <main className="flex min-h-screen flex-col items-center justify-between">
+      <HomeClientWrapper />
     </main>
   );
 } 
