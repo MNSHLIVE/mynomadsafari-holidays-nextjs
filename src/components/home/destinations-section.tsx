@@ -1,22 +1,25 @@
 'use client';
 
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
-import SectionHeading from "@/components/section-heading";
-import DestinationCard from "@/components/destination-card";
+import React from 'react';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { ArrowRight } from 'lucide-react';
+import SectionHeading from '@/components/section-heading';
+import DestinationCard from '@/components/destination-card';
 
-interface DestinationsProps {
+interface Destination {
+  imageSrc: string;
+  title: string;
+  description: string;
+  bestTime: string;
+  location: string;
+}
+
+interface DestinationsSectionProps {
   title: string;
   subtitle: string;
-  tag: string;
-  destinations: Array<{
-    imageSrc: string;
-    title: string;
-    description: string;
-    bestTime?: string;
-    isPopular?: boolean;
-  }>;
+  tag?: string;
+  destinations: Destination[];
   viewAllLink: string;
   viewAllText: string;
   bgColor?: string;
@@ -29,38 +32,34 @@ const DestinationsSection = ({
   destinations,
   viewAllLink,
   viewAllText,
-  bgColor,
-}: DestinationsProps) => {
+  bgColor = 'bg-background'
+}: DestinationsSectionProps) => {
   return (
-    <section className={`section-padding ${bgColor ? bgColor : ''}`}>
+    <section className={`py-16 ${bgColor}`}>
       <div className="container mx-auto px-4">
         <SectionHeading
           title={title}
           subtitle={subtitle}
+          align="center"
           tag={tag}
         />
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
           {destinations.map((destination, index) => (
             <DestinationCard
               key={index}
-              imageSrc={destination.imageSrc}
-              title={destination.title}
-              description={destination.description}
-              bestTime={destination.bestTime}
-              isPopular={destination.isPopular}
-              link={viewAllLink}
+              destination={{
+                ...destination,
+                days: [],
+                includes: [],
+                excludes: []
+              }}
             />
           ))}
         </div>
-
-        <div className="text-center mt-10">
-          <Link href={viewAllLink}>
-            <Button variant="outline" className="group">
-              <span>{viewAllText}</span>
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Button>
-          </Link>
+        <div className="text-center mt-8">
+          <Button asChild>
+            <Link href={viewAllLink}>{viewAllText}</Link>
+          </Button>
         </div>
       </div>
     </section>

@@ -1,66 +1,66 @@
 "use client";
 
 import React from 'react';
-import SectionHeading from "@/components/section-heading";
-import { Globe, Compass, MapPin, Shield, Headphones } from "lucide-react";
+import { Plane, Hotel, Bus, Map, Shield, HeartHandshake } from 'lucide-react';
+import SectionHeading from '@/components/section-heading';
 
-interface ServiceItemProps {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-}
-
-const services: ServiceItemProps[] = [
+const services = [
   {
-    icon: <Globe className="h-8 w-8 text-[rgb(130,185,75)]" />,
-    title: "Destination Planning",
-    description: "Customized itineraries tailored to your preferences, time constraints, and budget."
+    icon: Plane,
+    title: 'Flight Bookings',
+    description: 'Get the best deals on domestic and international flights'
   },
   {
-    icon: <Compass className="h-8 w-8 text-[rgb(130,185,75)]" />,
-    title: "Tour Packages",
-    description: "All-inclusive tour packages for popular destinations, with various budget options."
+    icon: Hotel,
+    title: 'Hotel Reservations',
+    description: 'Book comfortable stays at handpicked hotels'
   },
   {
-    icon: <MapPin className="h-8 w-8 text-[rgb(130,185,75)]" />,
-    title: "Visa Assistance",
-    description: "Expert guidance on visa requirements and application process for different countries."
+    icon: Bus,
+    title: 'Transportation',
+    description: 'Reliable ground transportation services'
   },
   {
-    icon: <Shield className="h-8 w-8 text-[rgb(130,185,75)]" />,
-    title: "Travel Insurance",
-    description: "Comprehensive travel insurance options to ensure a safe and secure journey."
+    icon: Map,
+    title: 'Tour Packages',
+    description: 'Customized tour packages for every type of traveler'
   },
   {
-    icon: <Headphones className="h-8 w-8 text-[rgb(130,185,75)]" />,
-    title: "24/7 Support",
-    description: "Round-the-clock customer support during your trip for any assistance you need."
+    icon: Shield,
+    title: 'Travel Insurance',
+    description: 'Comprehensive travel insurance coverage'
+  },
+  {
+    icon: HeartHandshake,
+    title: '24/7 Support',
+    description: 'Round-the-clock assistance for all your needs'
   }
 ];
 
 const ServicesSection = () => {
   return (
-    <section className="section-padding container mx-auto px-4">
-      <SectionHeading
-        title="Services We Offer"
-        subtitle="We provide comprehensive travel services to make your journey memorable and hassle-free"
-        align="center"
-        tag="Our Services"
-      />
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
-        {services.map((service, index) => (
-          <div 
-            key={index} 
-            className="p-6 border border-border/50 rounded-xl bg-card shadow-sm hover-scale h-full"
-          >
-            <div className="p-3 bg-[rgb(130,185,75)]/10 rounded-full w-fit mb-4">
-              {service.icon}
-            </div>
-            <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
-            <p className="text-muted-foreground">{service.description}</p>
-          </div>
-        ))}
+    <section className="py-16 bg-secondary/5">
+      <div className="container mx-auto px-4">
+        <SectionHeading
+          title="Our Services"
+          subtitle="Comprehensive travel services to make your journey seamless"
+          align="center"
+        />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+          {services.map((service, index) => {
+            const Icon = service.icon;
+            return (
+              <div
+                key={index}
+                className="p-6 bg-background rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
+              >
+                <Icon className="h-10 w-10 text-primary mb-4" />
+                <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
+                <p className="text-muted-foreground">{service.description}</p>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
