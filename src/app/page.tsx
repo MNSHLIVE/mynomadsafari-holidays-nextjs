@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import HomeClientWrapper from "@/components/home/home-client-wrapper";
+import HomeWrapper from "./home-wrapper.client";
 
 export const metadata: Metadata = {
   title: "NomadSafari Holidays - Your One-Stop Travel Expert",
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
-      <HomeClientWrapper />
+      <HomeWrapper />
     </main>
   );
 } 
