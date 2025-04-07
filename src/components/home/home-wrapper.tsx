@@ -13,6 +13,9 @@ import ServicesSection from "@/components/home/services-section";
 import TravelCategories from "@/components/home/travel-categories";
 import TestimonialsSection from "@/components/home/testimonials-section";
 import ErrorBoundary from "@/components/error-boundary";
+import FeaturedTours from "@/components/home/featured-tours";
+import PopularDestinations from "@/components/home/popular-destinations";
+import Testimonials from "@/components/home/testimonials";
 import {
   HeroSlide as ImportedHeroSlide,
   Destination as ImportedDestination,
@@ -194,21 +197,13 @@ export default function HomeWrapper() {
           packageType: "Budgeted"
         })) as Tour[], FALLBACK_DATA.religiousTours),
         testimonials: ensureArray<Testimonial>(testimonials as Testimonial[], FALLBACK_DATA.testimonials),
-        blogPosts: ensureArray<BlogPost>(blogPosts.map((post: Partial<BlogPost>) => ({
-          id: `post-${Date.now()}-${Math.random().toString(36).slice(2)}`,
-          title: post.title || "Travel Blog",
-          excerpt: post.excerpt || "Explore amazing destinations",
-          imageSrc: post.imageSrc || "/placeholder.jpg",
-          date: post.date || new Date().toISOString(),
-          author: post.author || "Travel Expert",
-          tags: post.tags || ["Travel", "Adventure"]
-        })) as BlogPost[], FALLBACK_DATA.blogPosts)
+        blogPosts: ensureArray<BlogPost>(blogPosts as BlogPost[], FALLBACK_DATA.blogPosts)
       };
+
       setSafeData(data);
+      setIsLoading(false);
     } catch (error) {
       console.error('Error loading data:', error);
-      setSafeData(FALLBACK_DATA);
-    } finally {
       setIsLoading(false);
     }
   }, []);
@@ -225,156 +220,46 @@ export default function HomeWrapper() {
   }
 
   return (
-    <main>
+    <div className="min-h-screen">
       {/* Hero Section */}
       <ErrorBoundary>
         <div className="relative">
           <HeroSlider slides={safeData.heroSlides} />
         </div>
       </ErrorBoundary>
-
-      {/* Services Section */}
-      <ErrorBoundary>
-        <div className="relative">
-          <ServicesSection />
-        </div>
-      </ErrorBoundary>
-
-      {/* Calculator Section */}
-      <ErrorBoundary>
-        <section className="relative bg-gradient-to-b from-background/80 to-secondary/5">
-          <div className="py-32">
-            <div className="container mx-auto px-4 text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Calculate Your Tour Package</h2>
-              <p className="text-muted-foreground">
-                Get an instant estimate for your dream vacation
-              </p>
-            </div>
-            <div className="container mx-auto px-4">
-              <PackageCalculator />
-            </div>
-          </div>
-        </section>
       
+      {/* Package Calculator */}
+      <ErrorBoundary>
+        <PackageCalculator />
+      </ErrorBoundary>
 
       {/* Travel Categories */}
       <ErrorBoundary>
-        <div className="relative">
-          <TravelCategories />
-        </div>
+        <TravelCategories />
       </ErrorBoundary>
 
-      {/* Featured Tours Section */}
+      {/* Featured Tours */}
       <ErrorBoundary>
-        <section className="py-16 bg-background">
-          <div className="container mx-auto px-4">
-            <SectionHeading
-              title="Featured Tours"
-              subtitle="Discover our most popular travel experiences"
-              align="center"
-            />
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-              {safeData.popularTours.map((tour) => (
-                <div key={tour.id} className="h-full">
-                  <TourCard tour={tour} className="h-full" />
-                </div>
-              ))}
-            </div>
-            <div className="text-center mt-8">
-              <Button asChild>
-                <Link href="/tours">View All Tours</Link>
-              </Button>
-            </div>
-          </div>
-        </section>
+        <FeaturedTours tours={safeData.popularTours} />
       </ErrorBoundary>
 
-      {/* Religious Tours Section */}
+      {/* Popular Destinations */}
       <ErrorBoundary>
-        <section className="py-16 bg-secondary/5">
-          <div className="container mx-auto px-4">
-            <SectionHeading
-              title="Religious Tours"
-              subtitle="Embark on a spiritual journey"
-              align="center"
-            />
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-              {safeData.religiousTours.map((tour) => (
-                <div key={tour.id} className="h-full">
-                  <TourCard tour={tour} className="h-full" />
-                </div>
-              ))}
-            </div>
-            <div className="text-center mt-8">
-              <Button asChild>
-                <Link href="/tours/religious">View All Religious Tours</Link>
-              </Button>
-            </div>
-          </div>
-        </section>
+        <PopularDestinations destinations={safeData.popularDestinations} />
       </ErrorBoundary>
 
-      {/* Destinations Sections */}
+      {/* Testimonials */}
       <ErrorBoundary>
-        <DestinationsSection
-          title="Popular Destinations"
-          subtitle="Explore our handpicked destinations for your next adventure"
-          tag="Featured Destinations"
-          destinations={safeData.popularDestinations}
-          viewAllLink="/destinations"
-          viewAllText="View All Destinations"
-        />
+        <Testimonials testimonials={safeData.testimonials} />
       </ErrorBoundary>
 
-      <ErrorBoundary>
-        <DestinationsSection
-          title="Popular Religious Places"
-          subtitle="Embark on a spiritual journey to these sacred destinations"
-          tag="Religious Tourism"
-          destinations={safeData.religiousDestinations}
-          viewAllLink="/destinations?category=pilgrimage"
-          viewAllText="Explore Religious Tours"
-          bgColor="bg-muted/30 py-16"
-        />
-      </ErrorBoundary>
-
-      <ErrorBoundary>
-        <DestinationsSection
-          title="International Destinations"
-          subtitle="Explore exotic locations around the world with our expertly crafted packages"
-          tag="Global Expeditions"
-          destinations={safeData.internationalDestinations}
-          viewAllLink="/destinations?category=international"
-          viewAllText="Explore International Destinations"
-          bgColor="bg-muted/30 py-16"
-        />
-      </ErrorBoundary>
-
-      <ErrorBoundary>
-        <DestinationsSection
-          title="Popular Hill Stations"
-          subtitle="Escape to the serene mountains and breathtaking landscapes"
-          tag="Mountain Retreats"
-          destinations={safeData.hillStations}
-          viewAllLink="/destinations?category=hillstations"
-          viewAllText="Explore Hill Stations"
-        />
-      </ErrorBoundary>
-
-      {/* Testimonials Section */}
-      <ErrorBoundary>
-        <TestimonialsSection testimonials={safeData.testimonials} />
-      </ErrorBoundary>
-
-      {/* Recent Blog Posts */}
+      {/* Blog Section */}
       <ErrorBoundary>
         <BlogSection posts={safeData.blogPosts} />
       </ErrorBoundary>
 
       {/* WhatsApp Button */}
-      <ErrorBoundary>
-        <WhatsAppButton />
-      </ErrorBoundary>
-    </main>
+      <WhatsAppButton />
+    </div>
   );
 } 
