@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Palmtree, Mountain, Star, Building, Plane, Map } from "lucide-react";
 import SectionHeading from "@/components/section-heading";
+import { cn } from "@/lib/utils";
 
 interface TravelCategoryProps {
   icon: React.ReactNode;
@@ -32,12 +33,21 @@ const TravelCategories = () => {
           <Link
             key={index}
             href={category.link}
-            className="flex flex-col items-center group"
+            className={cn(
+              "flex flex-col items-center group p-4 rounded-lg transition-all duration-300",
+              "hover:bg-primary/5 hover:scale-105"
+            )}
           >
-            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-2 transition-all group-hover:bg-primary/20">
+            <div className={cn(
+              "w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-2",
+              "transition-all duration-300 group-hover:bg-primary/20 group-hover:shadow-lg"
+            )}>
               {category.icon}
             </div>
-            <span className="text-xs md:text-sm text-center">
+            <span className={cn(
+              "text-xs md:text-sm text-center font-medium",
+              "transition-colors duration-300 group-hover:text-primary"
+            )}>
               {category.name}
             </span>
           </Link>
