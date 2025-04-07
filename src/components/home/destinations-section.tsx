@@ -16,9 +16,6 @@ interface DestinationsProps {
     description: string;
     bestTime?: string;
     isPopular?: boolean;
-    places?: string[];
-    food?: string[];
-    tips?: string[];
   }>;
   viewAllLink: string;
   viewAllText: string;
@@ -52,9 +49,7 @@ const DestinationsSection = ({
               description={destination.description}
               bestTime={destination.bestTime}
               isPopular={destination.isPopular}
-              places={destination.places}
-              food={destination.food}
-              tips={destination.tips}
+              link={viewAllLink}
             />
           ))}
         </div>

@@ -5,18 +5,9 @@ import TourCard from "@/components/tour-card";
 import CTASection from "@/components/cta-section";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { Calendar, MapPin, Users, Plane, Check, ArrowLeft, Clock } from "lucide-react";
+import { Calendar, MapPin, Users, Plane, Check, ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import BackButton from "@/components/back-button";
-import { useRouter } from "next/router";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import DestinationQueryForm from "@/components/destination-query-form";
 
 const domesticGroupTours = [
   {
@@ -113,17 +104,9 @@ const internationalGroupTours = [
 
 const GroupTours = () => {
   const [activeTab, setActiveTab] = useState("domestic");
-  const [selectedTour, setSelectedTour] = useState<any>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const router = useRouter();
 
   const handleBack = () => {
     window.history.back();
-  };
-
-  const handleViewDetails = (tour: any) => {
-    setSelectedTour(tour);
-    setIsModalOpen(true);
   };
 
   return (
@@ -258,10 +241,7 @@ const GroupTours = () => {
                       <span className="text-xs text-muted-foreground">per person</span>
                     </div>
                     
-                    <Button 
-                      className="w-full bg-primary hover:bg-primary/90"
-                      onClick={() => handleViewDetails(tour)}
-                    >
+                    <Button className="w-full bg-primary hover:bg-primary/90">
                       View Details
                     </Button>
                   </div>
@@ -333,10 +313,7 @@ const GroupTours = () => {
                       <span className="text-xs text-muted-foreground">per person</span>
                     </div>
                     
-                    <Button 
-                      className="w-full bg-primary hover:bg-primary/90"
-                      onClick={() => handleViewDetails(tour)}
-                    >
+                    <Button className="w-full bg-primary hover:bg-primary/90">
                       View Details
                     </Button>
                   </div>
@@ -413,99 +390,6 @@ const GroupTours = () => {
         buttonText="Book Now"
         buttonLink="/contact"
       />
-
-      {/* Tour Details Modal */}
-      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="max-w-4xl h-[80vh] overflow-y-auto">
-          {selectedTour && (
-            <>
-              <DialogHeader>
-                <DialogTitle>{selectedTour.title}</DialogTitle>
-                <DialogDescription>
-                  {selectedTour.description}
-                </DialogDescription>
-              </DialogHeader>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* Tour Details */}
-                <div className="space-y-6">
-                  {/* Tour Image */}
-                  <div className="relative h-64 rounded-lg overflow-hidden">
-                    <Image
-                      src={selectedTour.imageSrc}
-                      alt={selectedTour.title}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-
-                  {/* Tour Info */}
-                  <div className="grid gap-4">
-                    <div className="bg-muted/30 p-4 rounded-lg">
-                      <h4 className="font-medium mb-2">Tour Details</h4>
-                      <div className="space-y-2 text-sm">
-                        <div className="flex items-center">
-                          <MapPin className="w-4 h-4 mr-2 text-primary" />
-                          <span>{selectedTour.location}</span>
-                        </div>
-                        <div className="flex items-center">
-                          <Calendar className="w-4 h-4 mr-2 text-primary" />
-                          <span>Departure: {selectedTour.departureDate}</span>
-                        </div>
-                        <div className="flex items-center">
-                          <Users className="w-4 h-4 mr-2 text-primary" />
-                          <span>Group Size: {selectedTour.groupSize}</span>
-                        </div>
-                        <div className="flex items-center">
-                          <Clock className="w-4 h-4 mr-2 text-primary" />
-                          <span>{selectedTour.duration}</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {selectedTour.highlights && selectedTour.highlights.length > 0 && (
-                      <div>
-                        <h4 className="font-medium mb-2">Tour Highlights</h4>
-                        <div className="grid gap-2">
-                          {selectedTour.highlights.map((highlight: string, index: number) => (
-                            <div key={index} className="flex items-start gap-2">
-                              <span className="text-primary">•</span>
-                              <span className="text-sm">{highlight}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {selectedTour.inclusions && selectedTour.inclusions.length > 0 && (
-                      <div>
-                        <h4 className="font-medium mb-2">What's Included</h4>
-                        <div className="grid gap-2">
-                          {selectedTour.inclusions.map((inclusion: string, index: number) => (
-                            <div key={index} className="flex items-start gap-2">
-                              <Check className="w-4 h-4 text-green-500" />
-                              <span className="text-sm">{inclusion}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                {/* Inquiry Form */}
-                <div className="bg-muted/30 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold mb-4">Book {selectedTour.title}</h3>
-                  <DestinationQueryForm 
-                    destinationName={selectedTour.title}
-                    buttonText="Send Inquiry"
-                  />
-                </div>
-              </div>
-            </>
-          )}
-        </DialogContent>
-      </Dialog>
     </div>
   );
 };

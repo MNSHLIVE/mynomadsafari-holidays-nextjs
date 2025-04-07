@@ -84,31 +84,30 @@ export const heroSlides: HeroSlide[] = [
 
 export const popularDestinations: Destination[] = [
   {
-    imageSrc: "/destinations/rajasthan.jpg",
+    imageSrc: "/Destination/Home/Popular-Destinations/Rajasthan-popular.jpg",
     title: "Rajasthan",
-    description: "Experience the royal heritage and vibrant culture of Rajasthan.",
-    bestTime: "October to March",
+    description: "Experience the vibrant culture and majestic forts of the royal state.",
+    bestTime: "October - March",
     isPopular: true,
+    state: "Rajasthan",
+    country: "India",
     placesToSee: [
       "Jaipur - The Pink City",
       "Udaipur - City of Lakes",
       "Jodhpur - The Blue City",
-      "Jaisalmer - The Golden City",
-      "Ranthambore National Park"
+      "Jaisalmer - The Golden City"
     ],
     foodRecommendations: [
       "Dal Baati Churma",
       "Laal Maas",
       "Ker Sangri",
-      "Pyaaz Kachori",
-      "Rajasthani Thali"
+      "Pyaaz Kachori"
     ],
     tips: [
-      "Best to avoid summer months (April-June) due to extreme heat",
-      "Book heritage hotels for authentic experience",
-      "Carry light cotton clothes and sunscreen",
-      "Try local street food but from hygienic places",
-      "Respect local customs and dress modestly"
+      "Best to visit during winter months",
+      "Carry light cotton clothes",
+      "Respect local customs",
+      "Try local cuisine"
     ],
     majorTours: [
       "Golden Triangle Tour",
@@ -123,31 +122,29 @@ export const popularDestinations: Destination[] = [
     }
   },
   {
-    imageSrc: "/destinations/kerala.jpg",
+    imageSrc: "/Destination/Home/Popular-Destinations/Kerala-popular.jpg",
     title: "Kerala",
-    description: "Discover God's Own Country with its serene backwaters and rich cultural heritage.",
-    bestTime: "September to March",
-    isPopular: true,
+    description: "Discover the serene backwaters and lush greenery of God's own country.",
+    bestTime: "September - March",
+    state: "Kerala",
+    country: "India",
     placesToSee: [
-      "Alleppey Backwaters",
+      "Backwaters of Alleppey",
       "Munnar Tea Gardens",
-      "Kovalam Beach",
-      "Thekkady Wildlife Sanctuary",
-      "Fort Kochi"
+      "Kochi Fort",
+      "Kerala Houseboats"
     ],
     foodRecommendations: [
-      "Kerala Fish Curry",
       "Appam with Stew",
-      "Puttu and Kadala Curry",
-      "Kerala Sadya",
-      "Karimeen Pollichathu"
+      "Kerala Parotta",
+      "Fish Curry",
+      "Puttu and Kadala"
     ],
     tips: [
-      "Book houseboat stays in advance",
-      "Carry mosquito repellent",
+      "Book houseboats in advance",
+      "Carry light cotton clothes",
       "Try Ayurvedic treatments",
-      "Best to visit after monsoon season",
-      "Respect local temple customs"
+      "Respect local customs"
     ],
     majorTours: [
       "Kerala Backwaters Tour",
@@ -162,31 +159,29 @@ export const popularDestinations: Destination[] = [
     }
   },
   {
-    imageSrc: "/destinations/goa.jpg",
+    imageSrc: "/Destination/Home/Popular-Destinations/Goa-popular.jpg",
     title: "Goa",
-    description: "Experience the perfect blend of beaches, Portuguese heritage, and vibrant nightlife.",
-    bestTime: "November to February",
-    isPopular: true,
+    description: "Relax on sandy beaches and enjoy the vibrant nightlife of this coastal paradise.",
+    bestTime: "November - February",
+    state: "Goa",
+    country: "India",
     placesToSee: [
       "Calangute Beach",
-      "Basilica of Bom Jesus",
-      "Fort Aguada",
-      "Dudhsagar Falls",
-      "Anjuna Flea Market"
+      "Anjuna Flea Market",
+      "Chapora Fort",
+      "Fort Aguada"
     ],
     foodRecommendations: [
-      "Fish Curry Rice",
-      "Vindaloo",
-      "Bebinca",
-      "Xacuti",
-      "Goan Chorizo"
+      "Goan Fish Curry",
+      "Prawn Vindaloo",
+      "Coconut Crab",
+      "Feni"
     ],
     tips: [
-      "Book beach resorts in advance during peak season",
-      "Rent a bike for easy transportation",
-      "Visit during off-season for better rates",
-      "Try water sports activities",
-      "Explore both North and South Goa"
+      "Visit during the off-season for lower prices",
+      "Try local seafood",
+      "Explore the nightlife",
+      "Respect local customs"
     ],
     majorTours: [
       "Goa Beach Tour",

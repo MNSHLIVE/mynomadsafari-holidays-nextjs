@@ -2,9 +2,6 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
 import {
   Dialog,
   DialogContent,
@@ -18,104 +15,49 @@ import ClientOnly from "./client-only";
 import { cn } from "@/lib/utils";
 
 interface DestinationQueryFormProps {
-  destination: string;
+  destinationName: string;
+  className?: string;
+  buttonVariant?: "default" | "outline" | "secondary";
+  buttonText?: string;
 }
 
-export function DestinationQueryForm({ destination }: DestinationQueryFormProps) {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-  });
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    // TODO: Implement form submission logic
-    console.log("Form submitted:", { destination, ...formData });
-  };
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+const DestinationQueryForm = ({
+  destinationName,
+  className,
+  buttonVariant = "default",
+  buttonText = "Enquire Now"
+}: DestinationQueryFormProps) => {
+  const [open, setOpen] = useState(false);
 
   return (
     <ClientOnly>
-      <Dialog open={true} onOpenChange={() => {}}>
+      <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <Button 
-            variant="default" 
+            variant={buttonVariant} 
             className={cn(
-              "w-full text-lg py-6 shadow-lg hover:shadow-xl transition-all duration-300"
+              "w-full text-lg py-6 shadow-lg hover:shadow-xl transition-all duration-300",
+              className
             )}
           >
-            Enquire Now
+            {buttonText}
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[500px] max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-xl">Enquire about {destination}</DialogTitle>
+            <DialogTitle className="text-xl">Enquire about {destinationName}</DialogTitle>
             <DialogDescription>
               Fill in your details and we'll get back to you with the best packages
             </DialogDescription>
           </DialogHeader>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <Label htmlFor="name">Name</Label>
-              <Input
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                name="email"
-                type="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="phone">Phone</Label>
-              <Input
-                id="phone"
-                name="phone"
-                type="tel"
-                value={formData.phone}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="message">Message</Label>
-              <Textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                placeholder={`I'm interested in visiting ${destination}...`}
-                required
-              />
-            </div>
-
-            <Button type="submit" className="w-full">
-              Send Inquiry
-            </Button>
-          </form>
+          <QueryFormContent 
+            destinationName={destinationName}
+            onClose={() => setOpen(false)} 
+          />
         </DialogContent>
       </Dialog>
     </ClientOnly>
   );
-}
+};
+
+export default DestinationQueryForm;
