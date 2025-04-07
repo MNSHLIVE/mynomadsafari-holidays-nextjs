@@ -2,24 +2,27 @@ export interface Tour {
   id: number;
   title: string;
   imageSrc: string;
+  description: string;
   location: string;
   duration: string;
-  price: number | string;
+  price: string;
   bestTime: string;
   packageType: "Budgeted" | "Luxury" | "Premier";
-  country: string;
-  region: string;
-  description: string;
-  activities?: string[];
-  included?: string[];
   groupSize?: string;
-  highlight?: string;
-  itinerary?: Array<{
+  country?: string;
+  region?: string;
+  activities?: string[];
+  itinerary: Array<{
     day: number;
     title: string;
     description: string;
-    imageSrc: string;
+    imageSrc?: string;
   }>;
+  highlights?: string[];
+  highlight?: string; // For backward compatibility
+  includes?: string[];
+  excludes?: string[];
+  included?: string[]; // For backward compatibility
   localCuisine?: string[];
   shoppingGuide?: string[];
   culturalExperiences?: string[];
@@ -47,7 +50,7 @@ export const tours: Tour[] = [
     imageSrc: "/Destination/International/Tours/Dubai/Dubai-Family-Delight.jpg",
     location: "Dubai, UAE",
     duration: "7 Days",
-    price: 159999,
+    price: "From ₹159,999",
     bestTime: "October - April",
     packageType: "Luxury",
     country: "UAE",
@@ -73,7 +76,7 @@ export const tours: Tour[] = [
     imageSrc: "/Destination/International/Tours/Singapore/Singapore-Complete-Experience.jpg",
     location: "Singapore",
     duration: "6 Days",
-    price: 145999,
+    price: "From ₹145,999",
     bestTime: "Year Round",
     packageType: "Luxury",
     country: "Singapore",
@@ -98,7 +101,7 @@ export const tours: Tour[] = [
     imageSrc: "/Destination/Domestic/Goa/goa-main.jpg",
     location: "Goa, India",
     duration: "5 Days",
-    price: 35999,
+    price: "From ₹35,999",
     bestTime: "October to March",
     packageType: "Premier",
     country: "India",
@@ -353,7 +356,7 @@ export const tours: Tour[] = [
     imageSrc: "/Destination/Domestic/GoldenTriangle/golden-triangle-main.jpg",
     location: "Delhi-Agra-Jaipur, India",
     duration: "5 Days",
-    price: 49999,
+    price: "From ₹49,999",
     bestTime: "October to March",
     packageType: "Premier",
     country: "India",
@@ -415,7 +418,7 @@ export const tours: Tour[] = [
     imageSrc: "/Destination/Domestic/Kerala/kerala-backwaters-main.jpg",
     location: "Kerala, India",
     duration: "6 Days",
-    price: 65999,
+    price: "From ₹65,999",
     bestTime: "September to March",
     packageType: "Luxury",
     country: "India",
@@ -482,7 +485,7 @@ export const tours: Tour[] = [
     imageSrc: "/Destination/Domestic/Religious/chardham-main.jpg",
     location: "Uttarakhand, India",
     duration: "12 Days",
-    price: 85999,
+    price: "From ₹85,999",
     bestTime: "May to June, September to October",
     packageType: "Premier",
     country: "India",
@@ -535,7 +538,7 @@ export const tours: Tour[] = [
     imageSrc: "/Destination/Domestic/Religious/varanasi-main.jpg",
     location: "Varanasi, India",
     duration: "4 Days",
-    price: 35999,
+    price: "From ₹35,999",
     bestTime: "October to March",
     packageType: "Premier",
     country: "India",
@@ -582,7 +585,7 @@ export const tours: Tour[] = [
     imageSrc: "/Destination/Domestic/Religious/amritsar-main.jpg",
     location: "Amritsar, Punjab",
     duration: "3 Days",
-    price: 25999,
+    price: "From ₹25,999",
     bestTime: "October to March",
     packageType: "Premier",
     country: "India",
@@ -631,7 +634,7 @@ export const tours: Tour[] = [
     imageSrc: "/Destination/International/Bali/bali-main.jpg",
     location: "Bali, Indonesia",
     duration: "7 Days",
-    price: 89999,
+    price: "From ₹89,999",
     bestTime: "April to October",
     packageType: "Luxury",
     country: "Indonesia",
@@ -704,7 +707,7 @@ export const tours: Tour[] = [
     imageSrc: "/Destination/International/Thailand/thailand-main.jpg",
     location: "Thailand",
     duration: "7 Days",
-    price: 79999,
+    price: "From ₹79,999",
     bestTime: "November to March",
     packageType: "Luxury",
     country: "Thailand",
@@ -777,7 +780,7 @@ export const tours: Tour[] = [
     imageSrc: "/Destination/International/Vietnam/vietnam-main.jpg",
     location: "Vietnam",
     duration: "8 Days",
-    price: 85999,
+    price: "From ₹85,999",
     bestTime: "October to March",
     packageType: "Premier",
     country: "Vietnam",
@@ -856,7 +859,7 @@ export const tours: Tour[] = [
     imageSrc: "/Destination/International/Malaysia/malaysia-main.jpg",
     location: "Malaysia",
     duration: "6 Days",
-    price: 72999,
+    price: "From ₹72,999",
     bestTime: "March to October",
     packageType: "Luxury",
     country: "Malaysia",
@@ -923,7 +926,7 @@ export const tours: Tour[] = [
     imageSrc: "/Destination/International/Europe/europe-main.jpg",
     location: "France-Switzerland-Italy",
     duration: "10 Days",
-    price: 225999,
+    price: "From ₹225,999",
     bestTime: "April to October",
     packageType: "Luxury",
     country: "Multiple",
@@ -1014,7 +1017,7 @@ export const tours: Tour[] = [
     imageSrc: "/Destination/International/Australia/australia-main.jpg",
     location: "Australia",
     duration: "12 Days",
-    price: 299999,
+    price: "From ₹299,999",
     bestTime: "March to November",
     packageType: "Luxury",
     country: "Australia",
@@ -1117,7 +1120,7 @@ export const tours: Tour[] = [
     imageSrc: "/Destination/Domestic/Northeast/northeast-main.jpg",
     location: "Northeast India",
     duration: "9 Days",
-    price: 85999,
+    price: "From ₹85,999",
     bestTime: "October to April",
     packageType: "Premier",
     country: "India",
@@ -1202,7 +1205,7 @@ export const tours: Tour[] = [
     imageSrc: "/Destination/Domestic/Wildlife/wildlife-main.jpg",
     location: "Central India",
     duration: "8 Days",
-    price: 95999,
+    price: "From ₹95,999",
     bestTime: "October to June",
     packageType: "Luxury",
     country: "India",
