@@ -28,29 +28,20 @@ import { Tour } from "@/components/home/home-data";
 import TourItineraryModal from "./tour-itinerary-modal";
 
 interface TourCardProps {
-  tour?: Tour & {
-    location?: string;
-    bestTime?: string;
-    packageType?: "Budgeted" | "Luxury" | "Premier";
-    itinerary?: Array<{
-      day: number;
-      title: string;
-      description: string;
-    }>;
-  };
+  tour?: Tour;
   className?: string;
 }
 
-const defaultTour: TourCardProps["tour"] = {
+const defaultTour: Tour = {
   id: "default-tour",
   title: "Tour Package",
   imageSrc: "/placeholder.jpg",
   location: "Location TBD",
   duration: "Duration TBD",
-  price: 0,
-  category: "default",
+  price: "Price TBD",
+  bestTime: "Best time TBD",
+  packageType: "Budgeted",
   description: "Tour description coming soon",
-  packageType: "Budgeted"
 };
 
 const TourCard = ({ tour = defaultTour, className }: TourCardProps) => {
@@ -185,11 +176,49 @@ const TourCard = ({ tour = defaultTour, className }: TourCardProps) => {
                 View Itinerary
               </Button>
             )}
-            <Button asChild className="flex-1">
-              <Link href={`/tours/${safeTour.id}`}>
-                View Details
-              </Link>
-            </Button>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button variant="outline" className="flex-1">
+                  View Details
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                  <DialogTitle>{safeTour.title}</DialogTitle>
+                  <DialogDescription>
+                    Get more information about this tour package
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="grid gap-4 py-4">
+                  <div className="grid grid-cols-4 items-center gap-4">
+                    <div className="col-span-4">
+                      <Image
+                        src={safeTour.imageSrc}
+                        alt={safeTour.title}
+                        width={400}
+                        height={200}
+                        className="rounded-lg object-cover"
+                      />
+                    </div>
+                  </div>
+                  <div className="grid gap-2">
+                    <div className="flex items-center gap-2">
+                      <MapPin className="h-4 w-4" />
+                      <span>{safeTour.location}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Clock className="h-4 w-4" />
+                      <span>{safeTour.duration}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <IndianRupee className="h-4 w-4" />
+                      <span>{safeTour.price}</span>
+                    </div>
+                  </div>
+                  <DestinationQueryForm tourId={safeTour.id} />
+                </div>
+              </DialogContent>
+            </Dialog>
             <Button asChild className="flex-1">
               <Link href={tourUrl}>
                 Book Now
