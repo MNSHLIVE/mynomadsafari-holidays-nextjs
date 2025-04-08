@@ -234,8 +234,8 @@ const PackageCalculator = ({ className }: PackageCalculatorProps) => {
   `;
 
   return (
-    <div id="package-calculator" className={cn("pt-16 md:pt-20 max-h-[90vh] overflow-hidden", className)}>
-      <Card className="w-full shadow-lg border-primary/10">
+    <div id="package-calculator" className={cn("pt-16 md:pt-20 h-screen md:max-h-[90vh] overflow-hidden", className)}>
+      <Card className="w-full h-full shadow-lg border-primary/10">
         <CardHeader className="bg-primary/5 sticky top-0 z-10">
           <CardTitle className="text-2xl flex items-center gap-2">
             <IndianRupee className="h-6 w-6" />
@@ -245,8 +245,8 @@ const PackageCalculator = ({ className }: PackageCalculatorProps) => {
             Plan your perfect trip with our easy-to-use package calculator
           </CardDescription>
         </CardHeader>
-        <ScrollArea className="h-[calc(90vh-8rem)]">
-          <CardContent className="pt-6">
+        <ScrollArea className="h-[calc(100vh-12rem)] md:h-[calc(90vh-8rem)]">
+          <CardContent className="pt-6 px-4 md:px-6">
             <Tabs defaultValue="domestic" value={calculatorType} onValueChange={(value) => setCalculatorType(value as "domestic" | "international")}>
               <TabsList className="grid grid-cols-2 mb-6 sticky top-0 bg-background z-10">
                 <TabsTrigger value="domestic">Domestic Tour</TabsTrigger>
