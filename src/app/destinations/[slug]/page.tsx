@@ -19,19 +19,27 @@ export default function DestinationDetail({ params }: Props) {
 
   // Combine all destinations
   const allDestinations = [
-    ...destinations.domestic,
-    ...destinations.international
+    ...destinations.domestic || [],
+    ...destinations.international || []
   ];
 
   // Find the destination by matching the slug with the title
-  const destination = allDestinations.find(d => 
-    d.title?.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-') === slug
-  );
+  const destination = allDestinations.find(d => {
+    // Create a properly formatted slug from the destination title
+    const destinationSlug = d.title?.toLowerCase()
+      .replace(/[^\w\s-]/g, '')
+      .replace(/\s+/g, '-');
+    
+    return destinationSlug === slug;
+  });
 
   if (!destination) {
     return notFound();
   }
 
+  // Fallback image if destination.imageSrc is undefined
+  const imageSrc = destination.imageSrc || '/placeholder-destination.jpg';
+  
   return (
     <div className="container mx-auto px-4 py-8">
       <BackButton />
@@ -41,7 +49,7 @@ export default function DestinationDetail({ params }: Props) {
         <div className="lg:col-span-2">
           <div className="relative h-[400px] rounded-xl overflow-hidden mb-6">
             <Image
-              src={destination.image}
+              src={imageSrc}
               alt={destination.title}
               fill
               className="object-cover"
@@ -77,7 +85,11 @@ export default function DestinationDetail({ params }: Props) {
                 {destination.itinerary.map((day, index) => (
                   <div key={index} className="bg-card p-4 rounded-lg">
                     <h3 className="font-semibold text-lg">Day {day.day}: {day.title}</h3>
-                    <p className="text-muted-foreground mt-2">{day.description}</p>
+                    <p className="text-muted-foreground mt-2">
+                      {Array.isArray(day.description) 
+                        ? day.description.join('. ') 
+                        : day.description}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -99,11 +111,12 @@ export default function DestinationDetail({ params }: Props) {
             </div>
           )}
 
-          {destination.places && destination.places.length > 0 && (
+          {/* Places to See Section */}
+          {destination.placesToSee && destination.placesToSee.length > 0 && (
             <div className="mb-8">
               <h2 className="text-2xl font-semibold mb-4">Places to Visit</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {destination.places.map((place, index) => (
+                {destination.placesToSee.map((place, index) => (
                   <div key={index} className="flex items-center gap-2">
                     <span className="text-primary">•</span>
                     <span>{place}</span>
@@ -113,11 +126,12 @@ export default function DestinationDetail({ params }: Props) {
             </div>
           )}
 
-          {destination.food && destination.food.length > 0 && (
+          {/* Food Recommendations Section */}
+          {destination.foodRecommendations && destination.foodRecommendations.length > 0 && (
             <div className="mb-8">
               <h2 className="text-2xl font-semibold mb-4">Local Cuisine</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {destination.food.map((item, index) => (
+                {destination.foodRecommendations.map((item, index) => (
                   <div key={index} className="flex items-center gap-2">
                     <span className="text-primary">•</span>
                     <span>{item}</span>
@@ -127,6 +141,7 @@ export default function DestinationDetail({ params }: Props) {
             </div>
           )}
 
+          {/* Travel Tips Section */}
           {destination.tips && destination.tips.length > 0 && (
             <div className="mb-8">
               <h2 className="text-2xl font-semibold mb-4">Travel Tips</h2>

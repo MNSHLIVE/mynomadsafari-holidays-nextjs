@@ -14,20 +14,55 @@ import {
 import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
+import { toast } from "sonner";
 
-const DestinationQueryForm = () => {
+interface DestinationQueryFormProps {
+  destinationName?: string;
+  buttonText?: string;
+  className?: string;
+}
+
+const DestinationQueryForm = ({ 
+  destinationName, 
+  buttonText = "Submit Query",
+  className
+}: DestinationQueryFormProps) => {
   const [date, setDate] = useState<Date>();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
-    message: '',
+    message: destinationName ? `I'm interested in the ${destinationName} tour package.` : '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement form submission logic
-    console.log('Form submitted:', { ...formData, date });
+    setIsSubmitting(true);
+    
+    try {
+      // Mock API call - in production, replace with actual API endpoint
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      console.log('Form submitted:', { ...formData, date, destination: destinationName });
+      
+      // Show success message
+      toast.success("Your query has been submitted successfully. We'll contact you soon!");
+      
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        message: destinationName ? `I'm interested in the ${destinationName} tour package.` : '',
+      });
+      setDate(undefined);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast.error("There was an error submitting your query. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -36,7 +71,7 @@ const DestinationQueryForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className={cn("space-y-4", className)}>
       <div className="space-y-2">
         <Label htmlFor="name">Name</Label>
         <Input
@@ -88,7 +123,7 @@ const DestinationQueryForm = () => {
             >
               <CalendarIcon className="mr-2 h-4 w-4" />
               {date ? format(date, "PPP") : "Pick a date"}
-        </Button>
+            </Button>
           </PopoverTrigger>
           <PopoverContent className="w-auto p-0">
             <Calendar
@@ -113,8 +148,8 @@ const DestinationQueryForm = () => {
         />
       </div>
 
-      <Button type="submit" className="w-full">
-        Submit Query
+      <Button type="submit" className="w-full" disabled={isSubmitting}>
+        {isSubmitting ? "Submitting..." : buttonText}
       </Button>
     </form>
   );
