@@ -3,7 +3,6 @@
 import React from 'react';
 import DestinationCard from '@/components/destination-card';
 
-
 export default function DestinationsPage() {
   return (
     <div className="py-16">
@@ -13,11 +12,9 @@ export default function DestinationsPage() {
           Explore our handpicked destinations and find your perfect getaway. Each destination offers unique experiences and carefully curated itineraries.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {sampleDestinations.map((destination, index) => (
-            <DestinationCard key={index} destination={destination} />
-          ))}
+          {/* Remove the sampleDestinations.map code */}
         </div>
       </div>
     </div>
   );
-} 
+}
